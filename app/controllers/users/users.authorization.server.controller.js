@@ -34,6 +34,7 @@ exports.requiresLogin = function(req, res, next) {
 	next();
 };
 
+
 /**
  * User authorizations routing middleware
  */
@@ -51,4 +52,17 @@ exports.hasAuthorization = function(roles) {
 			}
 		});
 	};
+};
+
+/**
+ * The user is an Admin routing middleware
+ */
+ exports.isAdmin = function(req, res, next) {
+	if (req.user.roles !== 'admin') {
+		return res.status(401).send({
+			message: 'User is not Admin'
+		});
+	}
+
+	next();
 };
