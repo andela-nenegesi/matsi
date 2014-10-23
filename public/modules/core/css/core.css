@@ -13,3 +13,13 @@
 .ng-valid.ng-dirty{
     border-color:#78FA89;
 }
+.matsiNav li a:hover, .navbar-brand a{
+	background-color: #fff;
+	border-bottom: 2px solid #428bca;
+	padding-bottom: 7px;
+}
+#homeContent{
+	height: 320px;
+	width: 100%;
+	background-color: #aaa;
+}
