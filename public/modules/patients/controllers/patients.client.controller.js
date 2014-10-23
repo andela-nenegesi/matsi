@@ -9,7 +9,13 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		$scope.create = function() {
 			// Create new Patient object
 			var patient = new Patients ({
-				name: this.name
+				name: this.name,
+				dob: this.dob,
+				gender: this.gender,
+				country: this.country,
+				description: this.description,
+				story: this.story,
+				amountNeeded: this.amountNeeded
 			});
 
 			// Redirect after save

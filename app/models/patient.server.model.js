@@ -50,8 +50,8 @@ var PatientSchema = new Schema({
 	},
 	image:{
 		type:String,
-		default:'',
-		required:'Please Upload a picture of the Patient'
+		default:''
+		// required:'Please Upload a picture of the Patient'
 	},
 	amountNeeded:{
 		type:Number,
