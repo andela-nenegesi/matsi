@@ -7,13 +7,13 @@ module.exports = function(app) {
 	// Patients Routes
 	app.route('/patients')
 		.get(patients.list)
-		.post(users.requiresLogin, patients.create);
+		.post(users.requiresLogin, users.isAdmin, patients.create);
 
 	app.route('/patients/:patientId')
-		.get(patients.read)
-		.put(users.requiresLogin, patients.hasAuthorization, patients.update)
-		.delete(users.requiresLogin, patients.hasAuthorization, patients.delete);
-
+		.get(patients.read);
+		// .put(users.requiresLogin, patients.hasAuthorization, patients.update)
+		// .delete(users.requiresLogin, patients.hasAuthorization, patients.delete);
+		
 	// Finish by binding the Patient middleware
 	app.param('patientId', patients.patientByID);
 };
