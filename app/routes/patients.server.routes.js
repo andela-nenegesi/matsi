@@ -7,7 +7,7 @@ module.exports = function(app) {
 	// Patients Routes
 	app.route('/patients')
 		.get(patients.list)
-		.post(users.requiresLogin, users.isAdmin ,patients.create);
+		.post(users.requiresLogin,patients.create);
 
 	app.route('/patients/:patientId')
 		.get(patients.read)
