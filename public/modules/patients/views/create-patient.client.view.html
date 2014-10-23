@@ -3,61 +3,62 @@
         <h1>New Patient</h1>
     </div>
     <div class="newPatient row col-md-6 col-md-offset-3">
-    <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-5">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
-                    </div>
-                    <label class="control-label" for="dob">Date of Birth</label>
+        <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-5">
+            <form class="form-horizontal" data-ng-submit="create()" novalidate>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                        </div>
+                        <label class="control-label" for="dob">Date of Birth</label>
                         <div class="row">
                             <div class="col-md-9">
-                                    <div class="input-group">
-                                        <input type="text" data-ng-model="dob" id="dob" class="form-control  datepicker" required datepicker-popup="{{format}}"is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" close-text="Close"/>
-                                          <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                          </span>
-                                    </div>
+                                <div class="input-group">
+                                    <input type="text" data-ng-model="dob" id="dob" class="form-control  datepicker" required datepicker-popup="{{format}}" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    <label class="control-label" for="gender">Gender</label>
-                    <div class="controls">
-                        <select data-ng-model="gender" id="gender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>                            
-                        </select>
-                    </div>  
-                    <label class="control-label" for="country">Country</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="country" id="country" class="form-control" placeholder="Country" required>
-                    </div>
-                    <label class="control-label" for="description">Patient's Summary</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="Enter patient's Summary" required>
-                    </div>
-                    <label class="control-label" for="story">Patient's Story</label>
+                        <label class="control-label" for="gender">Gender</label>
+                        <div class="controls">
+                            <select data-ng-model="gender" id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <label class="control-label" for="country">Country</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="country" id="country" class="form-control" placeholder="Country" required>
+                        </div>
+                        <label class="control-label" for="description">Patient's Summary</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="Enter patient's Summary" required>
+                        </div>
+                        <label class="control-label" for="story">Patient's Story</label>
                         <div class="controls">
                             <textarea class="form-control" rows="2" data-ng-model="story" id="story" placeholder="Enter Patient's Story" required></textarea>
                         </div>
-                    <label class="control-label" for="amountNeeded">Amount Needed</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="amountNeeded" id="amountNeeded" class="form-control" placeholder="0" required>
+                        <label class="control-label" for="amountNeeded">Amount Needed</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="amountNeeded" id="amountNeeded" class="form-control" placeholder="0" required>
+                        </div>
+                        <label class="control-label" for="amountCollected">Amount Collected</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="amountNeeded" id="amountCollected" class="form-control" placeholder="0" required>
+                        </div>
                     </div>
-                     <label class="control-label" for="amountCollected">Amount Collected</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="amountNeeded" id="amountCollected" class="form-control" placeholder="0" required>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default">
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default">
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
-        </form>
-    </div>
+                    <div data-ng-show="error" class="text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </section>
