@@ -43,7 +43,7 @@
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="  matsiNav"></header>
 	<section class="content">
 		<section class="container">
 			{% block content %}{% endblock %}
@@ -64,6 +64,7 @@
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
 
 	{% endif %}
+	<footer ng-include="'/modules/core/views/footer.client.view.html'"></footer>
 </body>
 
 </html>
