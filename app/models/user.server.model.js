@@ -54,26 +54,44 @@ var UserSchema = new Schema({
 		required: 'Please fill in a username',
 		trim: true
 	},
+	creditCard: {
+		type: Number,
+		default: '',
+		required: 'Please enter your Credit Card Number'
+	},
+	expiryDate: {
+		type: Date,
+		required: 'Please enter your Credit Card Expiry Date'
+	},
+	cvv: {
+		type: Number,
+		required: 'Please enter your Credit Card CVV'
+	},
 	password: {
 		type: String,
 		default: '',
-		validate: [validateLocalStrategyPassword, 'Password should be longer']
+		// validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
 	salt: {
 		type: String
 	},
 	provider: {
 		type: String,
-		required: 'Provider is required'
+		// required: 'Provider is required'
 	},
 	providerData: {},
 	additionalProvidersData: {},
+	userRoles: {
+		type: String,
+		default: '',
+		required: 'Please specify the User\'s Role'
+	},
 	roles: {
 		type: [{
 			type: String,
 			enum: ['user', 'admin']
 		}],
-		default: ['user']
+		default: ''
 	},
 	updated: {
 		type: Date
