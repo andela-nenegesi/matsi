@@ -1,6 +1,7 @@
 <section data-ng-controller="PatientsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="patient.name"></h1>
+		<p><h1 data-ng-bind="patient.description"></h1>{{patient.amountNeeded}}
+		</p>
 	</div>
 	<div class="pull-right" data-ng-show="authentication.user._id == patient.user._id">
 		<a class="btn btn-primary" href="/#!/patients/{{patient._id}}/edit">
@@ -10,12 +11,8 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="patient.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="patient.user.displayName"></span>
-		</em>
-	</small>
+	<div>
+		<img src="">
+		<p data-ng-bind="patient.story"></p>
+	</div>
 </section>
