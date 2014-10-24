@@ -26,8 +26,11 @@ var PatientSchema = new Schema({
 		required: 'Please specify your Date of Birth',
 	},
 	sex:{
-		type:String,
-		default:'',
+		type: [{
+					type: String,
+					enum: ['male', 'female']
+				}],
+		default: [''],
 		required: 'Please specify your Gender'
 	},
 	country:{
@@ -50,12 +53,12 @@ var PatientSchema = new Schema({
 		default:'',
 		required:'Please Upload a picture of the Patient'
 	},
-	amount_needed:{
+	amountNeeded:{
 		type:Number,
 		default:'',
 		required:'Specify Amount Needed'
 	},
-	amount_collected:{
+	amountCollected:{
 		type:Number,
 		default:0,
 	},
