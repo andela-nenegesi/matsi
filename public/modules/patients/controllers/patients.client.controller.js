@@ -1,7 +1,7 @@
 'use strict';
 
 // Patients controller
-angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$timeout', "$upload", '$location', 'Authentication', 'Patients',
+angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
 	function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients ) {
 		$scope.authentication = Authentication;
 
@@ -24,7 +24,6 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
         $scope.open = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
-
             $scope.opened = true;
         };
         $scope.dateOptions = {
@@ -46,7 +45,7 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 				amountNeeded: this.amountNeeded,
 				image: $scope.uploadResult
 			});
-
+				console.log($scope.uploadResult);
 			// Redirect after save
 			patient.$save(function(response) {
 				$location.path('patients/' + response._id);
@@ -67,28 +66,29 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		// Image Upload
 		// 		--on File Select
 		$scope.onFileSelect = function($files) {
-			console.log('called file Select')
+			console.log('called file Select');
 			$scope.files = $files;
 			$scope.imageFiles = [];
 			$scope.uploadResult = [];
-			$scope.correctFormat = false;
+			$scope.correctFormat = true;
 			if($scope.files) {
 			for (var i in $scope.files) {
 			if($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
-			$scope.correctFormat = true;
+			// $scope.correctFormat = true;
+			$scope.start(i);
 		} 
 			else {
 				// alert('error');
 				alert('Wrong file format...');
-				$scope.correctFormat = false;
+				$scope.correctFormat = true;
 		}
-			$scope.start(i);
+			
 
 		}
 		}
 		};
 		$scope.start = function(indexOftheFile) {
-			console.log('function 2 called')
+			console.log('function 2 called');
 			$scope.loading = true;
 				var formData = {
 				key: $scope.files[indexOftheFile].name,

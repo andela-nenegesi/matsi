@@ -49,7 +49,7 @@
                         <label class="control-label" for="photoUpload">Patient's Photo Upload</label>
                         <div class="controls">
                             <input type="file" ng-file-select="onFileSelect($files)" name="fileselect" required accept="image/*">
-                            <span class="spanError" ng-show="files && !correctFormat">Image file only</span>
+                          <!--   <span class="spanError" data-ng-if = "correctFormat">Image file only</span> -->
 
                             <!-- <div class="progress" style="margin-top: 20px;">
                                 <div class="progress-bar" progress-bar="uploadProgress" role="progressbar">
