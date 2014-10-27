@@ -22,25 +22,58 @@
 		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
 				<div class="form-group">
-					<label for="firstName">First Name</label>
-					<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-briefcase"></i>
+						</span>
+						<!-- <label for="firstName">First Name</label> -->
+						<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="lastName">Last Name</label>
-					<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-briefcase"></i>
+						</span>
+						<!-- <label for="lastName">Last Name</label> -->
+						<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+					<div class="input-group ">
+						<span class="input-group-addon">@</span>
+						<!-- <label for="email">Email</label> -->
+						<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-user"></i>
+						</span>
+						<!-- <label for="username">Username</label> -->
+						<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-asterisk"></i>
+						</span>
+						<!-- <label for="password">Password</label> -->
+						<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password" data-ng-class="{'ng-invalid':myForm.confirmPassword.$error.match}">
+					</div>
 				</div>
+				<div class="form-group">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-asterisk"></i>
+						</span>
+						<!-- <label for="password">Password</label> -->
+						<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" data-ng-model="credentials.confirmPassword" placeholder="Confirm Password" data-match="credentials.password">
+					</div>
+				</div>
+				<div data-ng-show="myForm.confirmPassword.$error.match">Passwords do not match!</div>
 				<div class="text-center form-group">
 					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
 					<a href="/#!/signin" class="show-signup">Sign in</a>
