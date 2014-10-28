@@ -18,28 +18,85 @@
 		</a>
 	</div>
 	<h3 class="col-md-12 text-center">Or with your email</h3>
-	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
+	<div class="col-xs-offset-2 col-xs-8 col-md-8">
 		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
-				<div class="form-group">
-					<label for="firstName">First Name</label>
-					<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
+				<div class="form-group col-sm-12">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-user"></i>
+						</span>
+						<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="lastName">Last Name</label>
-					<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+				<div class="form-group col-sm-12">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-user"></i>
+						</span>
+						<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+				<div class="form-group col-sm-12">
+					<div class="input-group ">
+						<span class="input-group-addon">@</span>
+						<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+				<div class="form-group col-sm-12">
+					<div class="form-group col-sm-5" style="margin-right: 25px;">
+						<div class="input-group ">
+							<span class="input-group-addon">
+							<i class="text-muted glyphicon glyphicon-credit-card"></i>								
+							</span>
+							<input type="number" id="creditCard" name="creditCard" class="form-control" data-ng-model="credentials.creditCard" placeholder="Credit Card Number">
+						</div>
+					</div>
+					<div class="form-group col-sm-3" style="margin-right: 11px;">
+						<div class="input-group">
+							<span class="input-group-addon">
+							<i class="text-muted glyphicon glyphicon-calendar"></i>
+							</span>
+							<input type="date" id="expiryDate" name="expiryDate" class="form-control" data-ng-model="credentials.expiryDate" placeholder="Expiry Date">
+						</div>
+					</div>
+					<div class="form-group col-sm-3" style="margin-left: 68px;">
+						<div class="input-group">
+							<span class="input-group-addon">
+							<i class="text-muted glyphicon glyphicon-credit-card"></i>	
+							</span>
+							<input type="number" id="cvv" name="cvv" min = 100 max = 999 class="form-control" data-ng-model="credentials.cvv" placeholder="CVV">
+						</div>
+					</div>
+
 				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+				<div class="form-group col-sm-12">
+					<div class="input-group ">
+						<span class="input-group-addon">
+						<i class="text-muted glyphicon glyphicon-user"></i>
+						</span>
+						<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+					</div>
+				</div>
+				<div class="form-group col-sm-12">
+					<div class="form-group col-sm-6">
+						<div class="input-group ">
+							<span class="input-group-addon">
+							<i class="text-muted glyphicon glyphicon-asterisk"></i>
+							</span>
+							<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password" data-ng-class="{'ng-invalid':myForm.confirmPassword.$error.match}">
+						</div>
+					</div>
+
+
+					<div class="form-group col-sm-6" style="margin-left: 45px;">
+						<div class="input-group ">
+							<span class="input-group-addon">
+							<i class="text-muted glyphicon glyphicon-asterisk"></i>
+							</span>
+							<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" data-ng-model="credentials.confirmPassword" placeholder="Confirm Password" data-match="credentials.password">
+						</div>
+					</div>
 				</div>
 				<div class="text-center form-group">
 					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;

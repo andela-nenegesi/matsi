@@ -82,9 +82,7 @@ var UserSchema = new Schema({
 	providerData: {},
 	additionalProvidersData: {},
 	userRoles: {
-		type: String,
-		default: 'admin'
-		// required: 'Please specify the User\'s Role'
+		type: String
 	},
 	roles: {
 		type: [{
