@@ -4,7 +4,6 @@
 angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
 	function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients ) {
 		$scope.authentication = Authentication;
-
 	//Date picker
         $scope.today = function() {
             $scope.dt = new Date();
