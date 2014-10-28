@@ -1,18 +1,25 @@
 <section data-ng-controller="PatientsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<p><h1 data-ng-bind="patient.description"></h1>{{patient.amountNeeded}}
-		</p>
-	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == patient.user._id">
-		<a class="btn btn-primary" href="/#!/patients/{{patient._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<div>
-		<img src="">
-		<p data-ng-bind="patient.story"></p>
-	</div>
+    <div class="page-header">
+        <p>
+            <h1 data-ng-bind="patient.description"></h1>{{patient.amountNeeded}}
+        </p>
+    </div>
+    <div class="pull-right" data-ng-show="authentication.user._id == patient.user._id">
+        <a class="btn btn-primary" href="/#!/patients/{{patient._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>
+        <img src="">
+        <p data-ng-bind="patient.story"></p>
+    </div>
+    <div class="pull-left" data-ng-show="authentication.user._id == patient.user._id">
+        <input type="number" ng-model="donateToPatient">
+        <a href="/#!/patients/{{patient._id}}/donate">
+            <i class="btn btn-success" ng-click="donate()">Donate</i>
+        </a>
+    </div>
 </section>

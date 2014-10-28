@@ -7,12 +7,19 @@ module.exports = function(app) {
 	// Patients Routes
 	app.route('/patients')
 		.get(patients.list)
-		.post(users.requiresLogin,patients.create);
+		.post(users.requiresLogin, patients.create);
 
+	// Donate route for donors to donate to a selected patient
+	app.route('/patients/:patientId/donate')
+		.get(patients.read)
+		.post(users.requiresLogin, patients.donate);
+		
 	app.route('/patients/:patientId')
 		.get(patients.read)
 		.put(users.requiresLogin, users.isAdmin, patients.hasAuthorization, patients.update)
 		.delete(users.requiresLogin, users.isAdmin, patients.hasAuthorization, patients.delete);
+
+
 
 	// Finish by binding the Patient middleware
 	app.param('patientId', patients.patientByID);

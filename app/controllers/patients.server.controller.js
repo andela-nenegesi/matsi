@@ -52,6 +52,18 @@ exports.update = function(req, res) {
 	});
 };
 
+
+/**
+*	Donate to patient
+// */
+// exports.donate = function (req, res){
+// 	var patient = req.patient;
+
+// }
+
+exports.donate = function(req, res){
+	console.log(req);
+};
 /**
  * Delete an Patient
  */

@@ -1,9 +1,11 @@
 'use strict';
 
 // Patients controller
-angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Patients',
-	function($scope, $stateParams, $location, Authentication, Patients ) {
+angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Patients', 'Donations',
+	function($scope, $stateParams, $location, Authentication, Patients, Donations ) {
 		$scope.authentication = Authentication;
+		$scope.donationValue = '';
+	
 
 	//Date picker
         $scope.today = function() {
@@ -23,7 +25,7 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
         $scope.toggleMin();
         $scope.open = function($event) {
             $event.preventDefault();
-            $event.stopPropagation();
+            $event.stopPropagation(); 
 
             $scope.opened = true;
         };
@@ -33,6 +35,9 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
         };
         $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         $scope.format = $scope.formats[1];
+
+
+
 		// Create new Patient
 		$scope.create = function() {
 			// Create new Patient object
@@ -72,6 +77,28 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 				});
 			}
 		};
+
+
+
+// donate function added by Terwase Gberikon
+		$scope.donate = function(){
+			//donateToPatient = $scope.donateToPatient;
+			// amountCollected
+
+		Donations.donors = $scope.donateToPatient;
+		console.log(Donations.donors);
+		$scope.donationValue = Donations.donors;
+		console.log($scope.donationValue);
+		Donations.donors.push(Donations.donors);
+		console.log(Donations.donors);
+		};
+
+// $scope.getValue = function (){
+// 	console.log(donateToPatient);
+// };
+
+/////////////////////////////////////////////////////////////
+
 
 		// Update existing Patient
 		$scope.update = function() {
