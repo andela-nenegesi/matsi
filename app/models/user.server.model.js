@@ -57,15 +57,15 @@ var UserSchema = new Schema({
 	creditCard: {
 		type: Number,
 		default: '',
-		required: 'Please enter your Credit Card Number'
+		// required: 'Please enter your Credit Card Number'
 	},
 	expiryDate: {
 		type: Date,
-		required: 'Please enter your Credit Card Expiry Date'
+		// required: 'Please enter your Credit Card Expiry Date'
 	},
 	cvv: {
 		type: Number,
-		required: 'Please enter your Credit Card CVV'
+		// required: 'Please enter your Credit Card CVV'
 	},
 	password: {
 		type: String,
@@ -83,8 +83,7 @@ var UserSchema = new Schema({
 	additionalProvidersData: {},
 	userRoles: {
 		type: String,
-		default: '',
-		required: 'Please specify the User\'s Role'
+		default: ''
 	},
 	roles: {
 		type: [{
