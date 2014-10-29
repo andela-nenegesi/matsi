@@ -38,12 +38,12 @@ exports.requiresLogin = function(req, res, next) {
 /**
  * User authorizations routing middleware
  */
-exports.hasAuthorization = function(roles) {
+exports.hasAuthorization = function(userRoles) {
 	var _this = this;
 
 	return function(req, res, next) {
 		_this.requiresLogin(req, res, function() {
-			if (_.intersection(req.user.roles, roles).length) {
+			if (_.intersection(req.user.userRoles, userRoles).length) {
 				return next();
 			} else {
 				return res.status(403).send({
@@ -58,7 +58,7 @@ exports.hasAuthorization = function(roles) {
  * The user is an Admin routing middleware
  */
  exports.isAdmin = function(req, res, next) {
-	if (req.user.roles !== 'admin') {
+	if (req.user.userRoles !== 'admin') {
 		return res.status(401).send({
 			message: 'User is not Admin'
 		});

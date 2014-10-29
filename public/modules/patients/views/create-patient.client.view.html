@@ -46,9 +46,21 @@
                         <div class="controls">
                             <input type="number" data-ng-model="amountNeeded" id="amountNeeded" class="form-control" placeholder="0" required>
                         </div>
+                        <label class="control-label" for="photoUpload">Patient's Photo Upload</label>
+                        <div class="controls">
+                            <input type="file" ng-file-select="onFileSelect($files)" name="fileselect" required accept="image/*">
+                          <!--   <span class="spanError" data-ng-if = "correctFormat">Image file only</span> -->
+
+                            <!-- <div class="progress" style="margin-top: 20px;">
+                                <div class="progress-bar" progress-bar="uploadProgress" role="progressbar">
+                                    <span ng-bind="uploadProgress"></span>
+                                    <span>%</span>
+                                </div>
+                            </div> -->
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-default">
+                        <input type="submit" class="btn btn-default" >
                     </div>
                     <div data-ng-show="error" class="text-danger">
                         <strong data-ng-bind="error"></strong>
