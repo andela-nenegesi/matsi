@@ -1,5 +1,6 @@
 <section class="row" data-ng-controller="AuthenticationController">
-	<h3 class="col-md-12 text-center">Sign up using your social accounts</h3>
+<div class="pushFooter">
+	<!-- <h3 class="col-md-12 text-center">Sign up using your social accounts</h3>
 	<div class="col-md-12 text-center">
 		<a href="/auth/facebook" class="undecorated-link">
 			<img src="/modules/users/img/buttons/facebook.png">
@@ -17,7 +18,7 @@
 			<img src="/modules/users/img/buttons/github.png">
 		</a>
 	</div>
-	<h3 class="col-md-12 text-center">Or with your email</h3>
+	<h3 class="col-md-12 text-center">Or with your email</h3> -->
 	<div class="col-xs-offset-2 col-xs-8 col-md-8">
 		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
@@ -57,7 +58,7 @@
 							<span class="input-group-addon">
 							<i class="text-muted glyphicon glyphicon-calendar"></i>
 							</span>
-							<input type="date" id="expiryDate" name="expiryDate" class="form-control" data-ng-model="credentials.expiryDate" placeholder="Expiry Date">
+							<input type="month" id="expiryDate" name="expiryDate" class="form-control" data-ng-model="credentials.expiryDate" placeholder="Expiry Date">
 						</div>
 					</div>
 					<div class="form-group col-sm-3" style="margin-left: 68px;">
@@ -84,7 +85,7 @@
 							<span class="input-group-addon">
 							<i class="text-muted glyphicon glyphicon-asterisk"></i>
 							</span>
-							<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password" data-ng-class="{'ng-invalid':myForm.confirmPassword.$error.match}">
+							<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
 						</div>
 					</div>
 
@@ -94,12 +95,14 @@
 							<span class="input-group-addon">
 							<i class="text-muted glyphicon glyphicon-asterisk"></i>
 							</span>
-							<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" data-ng-model="credentials.confirmPassword" placeholder="Confirm Password" data-match="credentials.password">
+							<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" data-ng-model="credentials.confirmPassword" placeholder="Confirm Password" ng-keyup="checkpass()"
+							>
 						</div>
 					</div>
 				</div>
+				<span ng-show="passMatch" class="btn btn-danger">Password does not match</span>
 				<div class="text-center form-group">
-					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
+					<button type="submit" class="btn btn-large btn-primary" ng-disabled="passMatch2">Sign up</button>&nbsp; or&nbsp;
 					<a href="/#!/signin" class="show-signup">Sign in</a>
 				</div>
 				<div data-ng-show="error" class="text-center text-danger">
@@ -108,4 +111,5 @@
 			</fieldset>
 		</form>
 	</div>
+<div>
 </section>
