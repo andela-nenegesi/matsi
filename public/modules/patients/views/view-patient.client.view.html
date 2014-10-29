@@ -3,7 +3,8 @@
 		<p><h1 data-ng-bind="patient.description"></h1>{{patient.amountNeeded}}
 		</p>
 	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == patient.user._id">
+	<div class="pull-right" data-ng-show="authentication.user._id == patient.user._id"
+	data-ng-if="authentication.user.userRoles === 'admin' ">
 		<a class="btn btn-primary" href="/#!/patients/{{patient._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>

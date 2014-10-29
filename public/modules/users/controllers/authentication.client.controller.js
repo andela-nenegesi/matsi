@@ -8,7 +8,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		if ($scope.authentication.user) $location.path('/');
 
 		$scope.signup = function() {
-			if(($scope.credentials.email.substring($scope.credentials.email.indexOf('@'), $scope.credentials.email.length)) === "@andela.co"){
+			if(($scope.credentials.email.substring($scope.credentials.email.indexOf('@'), $scope.credentials.email.length)) === '@andela.co'){
         		$scope.credentials.userRoles = 'admin';
     		} else {
         		$scope.credentials.userRoles = 'user';
@@ -23,6 +23,22 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
+		};
+		$scope.passMatch = false;
+		$scope.passMatch2 = true;
+		$scope.checkpass = function(){
+			console.log('i called the function');
+			if ($scope.credentials.password === $scope.credentials.confirmPassword)
+			{
+				$scope.passMatch = false;
+				$scope.passMatch2 = false;
+				console.log('i called the function2');
+			}
+			else{
+				$scope.passMatch = true;
+				$scope.passMatch2 = true;
+				console.log('i called the function3');
+			}
 		};
 
 		$scope.signin = function() {

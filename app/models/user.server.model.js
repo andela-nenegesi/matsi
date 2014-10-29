@@ -46,7 +46,8 @@ var UserSchema = new Schema({
 		trim: true,
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-		match: [/.+\@.+\..+/, 'Please fill a valid email address']
+		match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+		required: 'Please fill in a Email Address'
 	},
 	username: {
 		type: String,
@@ -57,20 +58,20 @@ var UserSchema = new Schema({
 	creditCard: {
 		type: Number,
 		default: '',
-		// required: 'Please enter your Credit Card Number'
+		required: 'Please enter your Credit Card Number'
 	},
 	expiryDate: {
 		type: Date,
-		// required: 'Please enter your Credit Card Expiry Date'
+		required: 'Please enter your Credit Card Expiry Date'
 	},
 	cvv: {
 		type: Number,
-		// required: 'Please enter your Credit Card CVV'
+		required: 'Please enter your Credit Card CVV'
 	},
 	password: {
 		type: String,
 		default: '',
-		// validate: [validateLocalStrategyPassword, 'Password should be longer']
+		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
 	salt: {
 		type: String

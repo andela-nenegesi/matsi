@@ -14,3 +14,11 @@
 	right: 10px;
 	position: absolute;
 }
+.pushFooter{
+	/*margin-bottom:545px; */
+	background: #fcd15c;
+	min-height: 545px;
+	min-width: 350px;
+	padding-top: 100px;
+}
+
