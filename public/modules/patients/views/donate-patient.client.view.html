@@ -1,7 +1,7 @@
 <section data-ng-controller="PatientsController">
     <div class="row col-md-6 col-md-offset-3">
         <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-9">
-            <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <form class="form-horizontal" stripe-form="stripeCallback">
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label" for="name">Name</label>
@@ -24,21 +24,21 @@
                         <div class="controls input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
                             </span>
-                            <input type="number" data-ng-model="creditCard" id="creditCard" class="form-control" placeholder="Please enter credit card number" required>
+                            <input ng-model="number" payments-format="card" payments-validate="card" id="creditCard" class="form-control" placeholder="Please enter credit card number" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="controls input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
                             </span>
-                            <input type="number" data-ng-model="cvv" id="cvv" class="form-control" placeholder="Please enter cvv" required>
+                            <input  ng-model="cvc" payments-validate="cvc" payments-format="cvc" id="cvv" class="form-control" placeholder="Please enter cvv" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="controls input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
                             </span>
-                            <input type="Date">
+                            <input ng-model="expiry" payments-format="expiry">
                         </div><span>Card expiry date</span>
                     </div>
                     

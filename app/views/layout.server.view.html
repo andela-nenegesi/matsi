@@ -58,6 +58,7 @@
 	<!--Application JavaScript Files-->
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %} 
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->

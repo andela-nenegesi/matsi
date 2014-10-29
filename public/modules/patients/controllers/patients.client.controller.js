@@ -1,7 +1,9 @@
 'use strict';
 
 // Patients controller
-angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Patients', 'Donations',
+angular.module('patients').config(function() {
+		window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
+	}).controller('PatientsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Patients', 'Donations',
 	function($scope, $stateParams, $location, Authentication, Patients, Donations ) {
 		$scope.authentication = Authentication;
 	
@@ -81,8 +83,14 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 
 // donate function added by Terwase Gberikon
 
-
-
+$scope.stripeCallback = function (code, result) { 
+	console.log(result, code);
+	if (result.error) { 
+		window.alert('it failed! error: ' + result.error.message); 
+	} else { 
+		window.alert('success! token: ' + result.id); 
+	}
+	 };
 /////////////////////////////////////////////////////////////
 
 
