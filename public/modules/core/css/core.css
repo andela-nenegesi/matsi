@@ -19,15 +19,15 @@
 }
 .container{
 	width: 100%;
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0;
+	margin-right: 0;
 }
 p.fundWhite1{
 	margin-top: 30px;
 	margin-bottom: 90px;
 }
 .fundWhite1, .fundWhite2{
-	color: #ebebeb;
+	color: #4b5c66;
 }
 .fundWhite2{
 	background-color: #00b2d8;
@@ -39,7 +39,7 @@ p.fundWhite1{
 	border-bottom: 1.5px solid #428bca;
 	padding-bottom: 2px;
 }
-.homeContent1, .homeContent2, .homeContent3{
+.homeContent1, .homeContent2, .homeContent3, .contactBox, .contactBox1{
 	text-align: center;
 }
 a.fundWhite2.cta.button.blue:hover{
@@ -95,7 +95,7 @@ a:hover{
 }
 .aboutHead{
 	background: #fff;
-	padding: 30px 50px;
+	padding: 30px 30px;
 }
 .teamPix{
 	width: 150px;
@@ -105,7 +105,7 @@ a:hover{
 	margin-bottom: 20px;
 }
 .teamPixBox span{
-	color: #424242;
+	color: #4b5c66;
 }
 .aboutBox h3, .aboutBox1 h3{
 	margin-bottom: 42px;
@@ -123,16 +123,32 @@ a:hover{
 .aboutBox1{
 	padding: 60px 150px;
 	background: #f4f7f8;
-	color: #89949b;
+	color: #4b5c66;
 }
 .aboutBox2{
+	color: #4b5c66;
 	background: #fcd15c;
 	padding-top: 70px;
 	padding-left: 40px;
 	padding-right: 40px;
 	padding-bottom: 50px;
 }
-
+/******************
+	CONTACT PAGE
+*******************/
+.contactBox{
+	background: url('/modules/core/img/loaders/matsi10.jpg') no-repeat center center;
+	background-size: cover;
+	text-align: center;
+	padding: 200px 200px;
+	color: #4b5c66;
+}
+.contact-info li{
+	list-style: none;
+}
+.contactBox1{
+	padding: 60px 150px;
+}
 /*******************
 		FOOTER
 *******************/
