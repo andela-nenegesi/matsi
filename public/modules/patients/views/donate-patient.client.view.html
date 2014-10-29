@@ -1,7 +1,5 @@
 <section data-ng-controller="PatientsController">
-    {{patient.donationValue}}
     <div class="row col-md-6 col-md-offset-3">
-
         <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-9">
             <form class="form-horizontal" data-ng-submit="create()" novalidate>
                 <fieldset>
@@ -23,23 +21,33 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="creditCard">Credit Card Details</label>
-                        <div class="controls input-group">                       
-                         <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
                             </span>
                             <input type="number" data-ng-model="creditCard" id="creditCard" class="form-control" placeholder="Please enter credit card number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                            </span>
                             <input type="number" data-ng-model="cvv" id="cvv" class="form-control" placeholder="Please enter cvv" required>
-                           <input type="Date" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                            </span>
+                            <input type="Date">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="amountCollected">Donation</label>
                         <div class="controls input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i>
                             </span>
                             <input type="number" data-ng-model="amountCollected" id="amountCollected" class="form-control" required>
-
                         </div>
-
                     </div>
                     <button class="pull-right btn btn-success">Donate</button>
                 </fieldset>
