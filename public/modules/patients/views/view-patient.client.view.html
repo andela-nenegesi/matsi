@@ -17,9 +17,8 @@
         <p data-ng-bind="patient.story"></p>
     </div>
     <div class="pull-left" data-ng-show="authentication.user._id == patient.user._id">
-        <input type="number" ng-model="donateToPatient">
         <a href="/#!/patients/{{patient._id}}/donate">
-            <i class="btn btn-success" ng-click="donate()">Donate</i>
+            <i class="btn btn-success">Make Donation to this patient</i>
         </a>
     </div>
 </section>
