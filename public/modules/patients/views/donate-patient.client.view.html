@@ -31,14 +31,14 @@
                         <div class="controls input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
                             </span>
-                            <input ng-model="cvc" payments-validate="cvc" payments-format="cvc" id="cvv" class="form-control" placeholder="Please enter cvv" required>
+                            <input ng-model="cvc" payments-validate="cvc" payments-format="cvc" id="cvv" class="form-control" placeholder="Please Enter CVC Number" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="controls input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
                             </span>
-                            <input ng-model="expiry" payments-format="expiry">
+                            <input class="form-control" placeholder="Please enter Card Expiry Date" ng-model="expiry" payments-format="expiry">
                         </div><span>Card expiry date</span>
                     </div>
                     
@@ -47,7 +47,7 @@
                         <div class="controls input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i>
                             </span>
-                            <input type="number" data-ng-model="amountCollected" id="amountCollected" class="form-control" required>
+                            <input type="number" data-ng-model="amountCollected" placeholder="Your generous donation is..." id="amountCollected" class="form-control" required>
                         </div>
                     </div>
                     <button class="pull-right btn btn-success">Donate</button>
