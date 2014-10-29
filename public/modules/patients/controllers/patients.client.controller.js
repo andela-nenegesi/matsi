@@ -4,8 +4,10 @@
 angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Patients',
 	function($scope, $stateParams, $location, Authentication, Patients ) {
 		$scope.authentication = Authentication;
+		$scope.url = 'http://watsi.org' + $location.path();
+		// $scope.url = $location.absUrl();
 
-	//Date picker
+		//Date picker
         $scope.today = function() {
             $scope.dt = new Date();
             var curr_date = $scope.dt.getDate();
@@ -93,7 +95,35 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		$scope.findOne = function() {
 			$scope.patient = Patients.get({ 
 				patientId: $stateParams.patientId
+			}, function(){
+			 $scope.patientName = $scope.patient.name.toUpperCase();
 			});
 		};
+
+		//percentage of patients funds
+		$scope.fundsPercentage = function(amountNeeded, amountCollected) {
+			return ((amountCollected / amountNeeded) * 100);
+		};
 	}
-]);
+]).filter('myCurrency', ['$filter', function ($filter) {
+ 	return function(input) {
+		input = parseFloat(input);
+
+		if(input % 1 === 0) {
+    		input = input.toFixed(0);
+		}
+    	else {
+    		input = input.toFixed(2);
+		}
+    	return '$' + input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  	};
+}]);
+
+
+
+
+
+
+
+
+
