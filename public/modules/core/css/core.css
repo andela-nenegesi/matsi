@@ -1,5 +1,9 @@
-.content {
-	margin-top: 50px;
+header.matsiNav.ng-scope{
+	background: #d4d5d1;
+}
+
+.navbar-nav > li > a{
+	color: #4b5c66;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -26,29 +30,29 @@ p.fundWhite1{
 	margin-top: 30px;
 	margin-bottom: 90px;
 }
-.fundWhite1, .fundWhite2{
+.fundWhite1{
 	color: #4b5c66;
 }
 .fundWhite2{
 	background-color: #00b2d8;
 	padding: 15px 40px;
-	margin-top: 90px;
+	margin-top: 30px;
+	color: #fff;
 }
 .matsiNav li a:hover, .navbar-brand a{
-	background-color: #fff;
+	background-color: #d4d5d1;
 	border-bottom: 1.5px solid #428bca;
 	padding-bottom: 2px;
 }
 .homeContent1, .homeContent2, .homeContent3, .contactBox, .contactBox1{
 	text-align: center;
 }
-a.fundWhite2.cta.button.blue:hover{
-	color: #fff;
-}
+
 .homeContent1{
 	width: 100%;
-	padding: 200px 200px;
-	background: url('/modules/core/img/loaders/matsi9.jpg') no-repeat center center;
+	padding-top: 200px;
+	padding-bottom: 200px;
+	background: url('/modules/core/img/loaders/bkgd2.jpg') no-repeat center center;
 	background-size: cover;
 }
 .homeContent2{
@@ -59,6 +63,9 @@ a.fundWhite2.cta.button.blue:hover{
 }
 .homeContent1 h2, .homeContent p, .homeContent2 h2, .homeContent2 h4, .homeContent3{	
 	color: #4b5c66;
+}
+.fundWhite2:hover{
+	color: #fff;
 }
 .homeContent2 h2{
 	font-size: 36px;
@@ -85,17 +92,18 @@ a:hover{
 	ABOUT PAGE
 *********************/
 .aboutImage{
-	background: url('/modules/core/img/loaders/matsi10.jpg') no-repeat center center;
+	background: url('/modules/core/img/loaders/bkgd1.jpg') no-repeat center center;
 	background-size: cover;
 	text-align: center;
-	padding: 200px 200px;
+	padding-top: 200px;
+	padding-bottom: 200px;
 }
 .aboutBox, .aboutBox1, .aboutBox2{
 	text-align: center;
 }
 .aboutHead{
 	background: #fff;
-	padding: 30px 30px;
+	padding: 20px 20px;
 }
 .teamPix{
 	width: 150px;
@@ -121,9 +129,10 @@ a:hover{
 	padding-bottom: 20px;
 }
 .aboutBox1{
-	padding: 60px 150px;
 	background: #f4f7f8;
 	color: #4b5c66;
+	padding-top: 15px;
+	padding-bottom: 25px;
 }
 .aboutBox2{
 	color: #4b5c66;
@@ -137,17 +146,19 @@ a:hover{
 	CONTACT PAGE
 *******************/
 .contactBox{
-	background: url('/modules/core/img/loaders/matsi10.jpg') no-repeat center center;
+	background: url('/modules/core/img/loaders/bkgd3.jpg') no-repeat center center;
 	background-size: cover;
 	text-align: center;
-	padding: 200px 200px;
+	padding-top: 200px;
+	padding-bottom: 250px;
 	color: #4b5c66;
 }
 .contact-info li{
 	list-style: none;
 }
 .contactBox1{
-	padding: 60px 150px;
+	padding-top: 60px;
+	padding-bottom: 80px;
 }
 /*******************
 		FOOTER
@@ -160,13 +171,20 @@ list-style: none;
 	padding-right: 80px;
 	padding-top: 30px;
 	padding-bottom: 30px;
+	background: #424242;
 }
 .footerNav li{
 display: inline;
 margin-right: 20px;
 margin-left: 20px;	
 }
+.footerNav li  a{
+	color: #fff;
+}
 .footerContainer{
-	background: #424242;
 	color: #ebebeb;
 }
+
+/******************************
+		MEDIA QUERIES
+*******************************

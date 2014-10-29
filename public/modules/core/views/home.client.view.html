@@ -1,16 +1,15 @@
 <section data-ng-controller="HomeController">
-	<div class="homeContent1">
-		<h2 class="fundWhiteBack">Fund healthcare for people around the world.</h2>
-		<p class="fundWhite1"><span></span>People have funded healthcare for <span></span> patients in <span></span> countries</p>
-		<a href="/#!/patients" class="fundWhite2 button">VIEW PATIENTS</a>
-	</div>
-	<div class="homeContent2" data-ng-controller="PatientController"> 
+	<section class="homeContent1 col-md-12">
+		<h2 class="fundWhiteBack col-md-8 col-md-offset-2">Fund healthcare for people around the world.</h2>
+		<p class="fundWhite1 col-md-8 col-md-offset-2"><span></span>People have funded healthcare for <span></span> patients in <span></span> countries</p>
+		<a href="/#!/patients" class="fundWhite2 button col-md-2 col-md-offset-5">VIEW PATIENTS</a>
+	</section>
+	<div class="homeContent2" data-ng-controller="PatientsController" data-ng-init="find()"> 
 		<h2>Meet the Patients</h2>
 		<h4>100% of your donation funds life-changing healthcare</h4>
 		<div class="col-md-12">
-			<div  class="homePatients1 col-md-4">Pictures</div>
-			<div class="homePatients1 col-md-4">Pictures</div>
-			<div class="homePatients1 col-md-4">Pictures</div>
+			<div  class="homePatients1 col-md-4" ng-repeat="patient in patients|limitTo:3" >
+			<img data-ng-src="{{patient.image}}">
 		</div>	
 	</div>
 	<div class="homeContent3 col-md-12">
