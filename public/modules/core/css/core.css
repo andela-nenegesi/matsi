@@ -187,8 +187,6 @@ margin-left: 20px;
 }
 .container{
 	width: 100%;
-<<<<<<< HEAD
-	background-color: #aaa;
 }
 .footer {
 position: absolute;
@@ -199,10 +197,6 @@ background-color: #f5f5f5;
 }
 input[type='text']{
 	width:12em;
-}
-=======
-	margin-left: 0;
-	margin-right: 0;
 }
 
 /******************************

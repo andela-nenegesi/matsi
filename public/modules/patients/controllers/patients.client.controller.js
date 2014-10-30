@@ -1,23 +1,15 @@
 'use strict';
 
 // Patients controller
-<<<<<<< HEAD
 angular.module('patients').config(function() {
-		window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
-	}).controller('PatientsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Patients', 'Donations',
-	function($scope, $stateParams, $location, Authentication, Patients, Donations ) {
-		$scope.authentication = Authentication;
-	
+    window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
+}).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
+    function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
+        $scope.authentication = Authentication;
+        $scope.url = 'http://watsi.org' + $location.path();
 
-	//Date picker
-=======
-angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
-	function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients ) {
-		$scope.authentication = Authentication;
-		$scope.url = 'http://watsi.org' + $location.path();
-		// $scope.url = $location.absUrl();
-		//Date picker
->>>>>>> c2943e9a7f0e0bd4ea4f55952c06fb3fe7034965
+        // $scope.url = $location.absUrl();
+        //Date picker
         $scope.today = function() {
             $scope.dt = new Date();
             var curr_date = $scope.dt.getDate();
@@ -35,12 +27,7 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
         $scope.toggleMin();
         $scope.open = function($event) {
             $event.preventDefault();
-<<<<<<< HEAD
-            $event.stopPropagation(); 
-
-=======
             $event.stopPropagation();
->>>>>>> c2943e9a7f0e0bd4ea4f55952c06fb3fe7034965
             $scope.opened = true;
         };
         $scope.dateOptions = {
@@ -52,80 +39,79 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 
 
 
-		// Create new Patient
-		$scope.create = function() {
-			// Create new Patient object
-			var patient = new Patients ({
-				name: this.name,
-				dob: this.dob,
-				gender: this.gender,
-				country: this.country,
-				description: this.description,
-				story: this.story,
-				amountNeeded: this.amountNeeded,
-				image: $scope.uploadResult
-			});
-			// Redirect after save
-			patient.$save(function(response) {
-				$location.path('patients/' + response._id);
+        // Create new Patient
+        $scope.create = function() {
+            // Create new Patient object
+            var patient = new Patients({
+                name: this.name,
+                dob: this.dob,
+                gender: this.gender,
+                country: this.country,
+                description: this.description,
+                story: this.story,
+                amountNeeded: this.amountNeeded,
+                image: $scope.uploadResult
+            });
+            // Redirect after save
+            patient.$save(function(response) {
+                $location.path('patients/' + response._id);
 
-				// Clear form fields
-				$scope.name = '';
-				$scope.dob = '';
-				$scope.gender = '';
-				$scope.country = '';
-				$scope.description = '';
-				$scope.story = '';
-				$scope.amountNeeded = '';
-				$scope.image = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-		// Image Upload
-		// 		--on File Select
-		$scope.onFileSelect = function($files) {
-			$scope.files = $files;
-			$scope.imageFiles = [];
-			$scope.uploadResult = [];
-			$scope.correctFormat = true;
-			if($scope.files) {
-			for (var i in $scope.files) {
-			if($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
-			// $scope.correctFormat = true;
-			$scope.start(i);
-		} 
-			else {
-				alert('Wrong file format...');
-				$scope.correctFormat = true;
-		}
-			
+                // Clear form fields
+                $scope.name = '';
+                $scope.dob = '';
+                $scope.gender = '';
+                $scope.country = '';
+                $scope.description = '';
+                $scope.story = '';
+                $scope.amountNeeded = '';
+                $scope.image = '';
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+        // Image Upload
+        // 		--on File Select
+        $scope.onFileSelect = function($files) {
+            $scope.files = $files;
+            $scope.imageFiles = [];
+            $scope.uploadResult = [];
+            $scope.correctFormat = true;
+            if ($scope.files) {
+                for (var i in $scope.files) {
+                    if ($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
+                        // $scope.correctFormat = true;
+                        $scope.start(i);
+                    } else {
+                        alert('Wrong file format...');
+                        $scope.correctFormat = true;
+                    }
 
-		}
-		}
-		};
-		$scope.start = function(indexOftheFile) {
-			$scope.loading = true;
-				var formData = {
-				key: $scope.files[indexOftheFile].name,
-				AWSAccessKeyID: 'AKIAIWGDKQ33PXY36LQA',
-				acl: 'private',
-				policy: 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImtlaGVzamF5In0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwcml2YXRlIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiIl0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRmaWxlbmFtZSIsICIiXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9',
-				signature: 'PLzajm+JQ9bf/rv9lZJzChPwiBc=',
-				filename: $scope.files[indexOftheFile].name,
-				'Content-Type':$scope.files[indexOftheFile].type
-			};
-            
-		$scope.imageFiles[indexOftheFile] = $upload.upload({
+
+                }
+            }
+        };
+        $scope.start = function(indexOftheFile) {
+            $scope.loading = true;
+            var formData = {
+                key: $scope.files[indexOftheFile].name,
+                AWSAccessKeyID: 'AKIAIWGDKQ33PXY36LQA',
+                acl: 'private',
+                policy: 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImtlaGVzamF5In0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAiIl0sCiAgICB7ImFjbCI6ICJwcml2YXRlIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiIl0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRmaWxlbmFtZSIsICIiXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9',
+                signature: 'PLzajm+JQ9bf/rv9lZJzChPwiBc=',
+                filename: $scope.files[indexOftheFile].name,
+                'Content-Type': $scope.files[indexOftheFile].type
+            };
+
+            $scope.imageFiles[indexOftheFile] = $upload.upload({
                 url: 'https://kehesjay.s3-us-west-2.amazonaws.com/',
                 method: 'POST',
                 headers: {
-                    'Content-Type':$scope.files[indexOftheFile].type
+                    'Content-Type': $scope.files[indexOftheFile].type
                 },
                 data: formData,
                 file: $scope.files[indexOftheFile]
             });
-		$scope.imageFiles[indexOftheFile].then(function(response) {
+            $scope.imageFiles[indexOftheFile].then(function(response) {
                 $timeout(function() {
                     $scope.loading = false;
                     //alert('uploaded');
@@ -137,89 +123,86 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
                 alert('Connection Timed out');
             }, function(evt) {
-                
+
             });
-		$scope.imageFiles[indexOftheFile].xhr(function(xhr) {
-            });
-            
+            $scope.imageFiles[indexOftheFile].xhr(function(xhr) {});
+
         };
 
-		// Remove existing Patient
-		$scope.remove = function( patient ) {
-			if ( patient ) { patient.$remove();
+        // Remove existing Patient
+        $scope.remove = function(patient) {
+            if (patient) {
+                patient.$remove();
 
-				for (var i in $scope.patients ) {
-					if ($scope.patients [i] === patient ) {
-						$scope.patients.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.patient.$remove(function() {
-					$location.path('patients');
-				});
-			}
-		};
-
-
-
-// donate function added by Terwase Gberikon
-
-$scope.stripeCallback = function (code, result) { 
-	console.log(result, code);
-	if (result.error) { 
-		window.alert('it failed! error: ' + result.error.message); 
-	} else { 
-		window.alert('success! token: ' + result.id); 
-	}
-	 };
-/////////////////////////////////////////////////////////////
+                for (var i in $scope.patients) {
+                    if ($scope.patients[i] === patient) {
+                        $scope.patients.splice(i, 1);
+                    }
+                }
+            } else {
+                $scope.patient.$remove(function() {
+                    $location.path('patients');
+                });
+            }
+        };
 
 
-		// Update existing Patient
-		$scope.update = function() {
-			var patient = $scope.patient;
-			patient.$update(function() {
-				$location.path('patients/' + patient._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
 
-		// Find a list of Patients
-		$scope.find = function() {
-			$scope.patients = Patients.query();
-			$scope.patients.amountCollected = 20;
-		};
+        // donate function added by Terwase Gberikon
 
-		// Find existing Patient
-		$scope.findOne = function() {
-			$scope.patient = Patients.get({ 
-				patientId: $stateParams.patientId
-			}, function(){
-			 $scope.patientName = $scope.patient.name.toUpperCase();
-			});
-		};
+        $scope.stripeCallback = function(code, result) {
+            if (result.error) {
+                window.alert('it failed! error: ' + result.error.message);
+            } else {
+                window.alert('your donation of ' + '$'+ $scope.amountCollected + ' has been recieved');
+            }
+        };
+        /////////////////////////////////////////////////////////////
 
-		//percentage of patients funds
-		$scope.fundsPercentage = function(amountCollected, amountNeeded) {
-			return ((amountCollected / amountNeeded) * 100);
-		};
 
-		$scope.ellipsis = function(story, length) {
-			return story.substring(0,length).replace(/[^ ]*$/,'...');
-		};
-	}
-]).filter('myCurrency', ['$filter', function ($filter) {
- 	return function(input) {
-		input = parseFloat(input);
+        // Update existing Patient
+        $scope.update = function() {
+            var patient = $scope.patient;
+            patient.$update(function() {
+                $location.path('patients/' + patient._id);
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
 
-		if(input % 1 === 0) {
-    		input = input.toFixed(0);
-		}
-    	else {
-    		input = input.toFixed(2);
-		}
-    	return '$' + input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  	};
+        // Find a list of Patients
+        $scope.find = function() {
+            $scope.patients = Patients.query();
+            $scope.patients.amountCollected = 20;
+        };
+
+        // Find existing Patient
+        $scope.findOne = function() {
+            $scope.patient = Patients.get({
+                patientId: $stateParams.patientId
+            }, function() {
+                $scope.patientName = $scope.patient.name.toUpperCase();
+            });
+        };
+
+        //percentage of patients funds
+        $scope.fundsPercentage = function(amountCollected, amountNeeded) {
+            return ((amountCollected / amountNeeded) * 100);
+        };
+
+        $scope.ellipsis = function(story, length) {
+            return story.substring(0, length).replace(/[^ ]*$/, '...');
+        };
+    }
+]).filter('myCurrency', ['$filter', function($filter) {
+    return function(input) {
+        input = parseFloat(input);
+
+        if (input % 1 === 0) {
+            input = input.toFixed(0);
+        } else {
+            input = input.toFixed(2);
+        }
+        return '$' + input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
 }]);
-
