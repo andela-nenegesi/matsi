@@ -5,7 +5,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		$scope.authentication = Authentication;
 		$scope.userRole = '';
 		// If user is signed in then redirect back home
-		if ($scope.authentication.user) $location.path('/');
+		if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
 
 		$scope.signup = function() {
 			if(($scope.credentials.email.substring($scope.credentials.email.indexOf('@'), $scope.credentials.email.length)) === '@andela.co'){
@@ -13,7 +13,6 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
     		} else {
         		$scope.credentials.userRoles = 'user';
     		} 
-    		console.log($scope.credentials);
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
