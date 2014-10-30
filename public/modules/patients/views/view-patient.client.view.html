@@ -13,6 +13,7 @@
 			</a>
 		</div>
 		<div class="patimglrg col-md-8">
+			<img ng-src="{{patient.image}}">
 		</div>
 		<div class="col-md-4">
 		</div>
@@ -38,6 +39,9 @@
 	    	<div data-ng-repeat="patient in patients|limitTo:2" class="col-md-6 related1">
 		    	<a data-ng-href="#!/patients/{{patient._id}}">
 					<div class="col-md-5 relatedimage">
+						
+                 			<img ng-src="{{patient.image}}">
+ 
 						<div class="col-md-5 progressbar">
 		                    <progressbar class="progress-strip active" value="fundsPercentage(patient.amountcollected, patient.amountNeeded)" type="{{warning}}">
 		                    </progressbar>

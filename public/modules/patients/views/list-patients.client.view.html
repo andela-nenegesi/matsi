@@ -5,10 +5,10 @@
             <a data-ng-repeat="patient in patients" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item patients">
                 <div class="patient col-md-4">
                     <div class="patientimg">
-                       <!--  <img src=""> -->
+                        <img ng-src="{{patient.image}}">
                     </div>
                     <div class="patientstory">
-                       <p class="ellipsis">
+                        <p class="ellipsis">
                             {{ellipsis(patient.story, 100)}}
                             <span class="link">Read More&nbsp;»</span>
                         </p>

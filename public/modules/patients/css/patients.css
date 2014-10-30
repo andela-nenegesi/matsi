@@ -5,7 +5,7 @@
 .contain {
 	padding: 35px;
 	margin: 0px auto;
-	width: 1153px;
+	max-width: 1153px;
 }
 
 .listHeader {
@@ -35,13 +35,19 @@
 	border: none;
 	margin: 10px;
 	padding: 0px;
+
 }
 
 .patient {
 	width: 330px;
 	height: 388px;
+	text-align: left;
+	float: none;
 } 
-
+.patientimg img{
+	width: 330px;
+	height: 250px;
+}
 .patientstory {
 	padding: 11px 15px 17px;
 	width:300px;
@@ -52,7 +58,6 @@
 }
 
 .patientimg {
-	background: grey;
 	height: 250px;
 	width: 330px;
 	margin-left: -15px;
@@ -90,7 +95,7 @@
 .morepat {
 	height: 66px;
 	border-top: 1px solid #e5e5e5;
-	width: 1278px;
+	max-width: 1278px;
 	margin-left: -93px;
 }
 
@@ -123,7 +128,12 @@
 .patimglrg {
 	width: 638px;
 	height: 479px;
-	border: 1px solid red;
+	/*border: 1px solid;*/
+	padding: 0;
+}
+.patimglrg img{
+	width: 638px;
+	height: 479px;
 }
 
 .patientStory {
@@ -174,6 +184,11 @@
 	border:  1px solid #e5e5e5;
 	margin: 54px 20px 54px 60px;
 	background: #e5e5e5;
+	padding: 0;
+}
+.relatedimage img{
+	width:198px;
+	height: 149px;
 }
 
 .relatedtext {
