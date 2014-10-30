@@ -4,7 +4,9 @@
 angular.module('patients').controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
 	function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients ) {
 		$scope.authentication = Authentication;
-	//Date picker
+		$scope.url = 'http://watsi.org' + $location.path();
+		// $scope.url = $location.absUrl();
+		//Date picker
         $scope.today = function() {
             $scope.dt = new Date();
             var curr_date = $scope.dt.getDate();
@@ -152,13 +154,38 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		// Find a list of Patients
 		$scope.find = function() {
 			$scope.patients = Patients.query();
+			$scope.patients.amountCollected = 20;
 		};
 
 		// Find existing Patient
 		$scope.findOne = function() {
 			$scope.patient = Patients.get({ 
 				patientId: $stateParams.patientId
+			}, function(){
+			 $scope.patientName = $scope.patient.name.toUpperCase();
 			});
 		};
+
+		//percentage of patients funds
+		$scope.fundsPercentage = function(amountCollected, amountNeeded) {
+			return ((amountCollected / amountNeeded) * 100);
+		};
+
+		$scope.ellipsis = function(story, length) {
+			return story.substring(0,length).replace(/[^ ]*$/,'...');
+		};
 	}
-]);
+]).filter('myCurrency', ['$filter', function ($filter) {
+ 	return function(input) {
+		input = parseFloat(input);
+
+		if(input % 1 === 0) {
+    		input = input.toFixed(0);
+		}
+    	else {
+    		input = input.toFixed(2);
+		}
+    	return '$' + input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  	};
+}]);
+
