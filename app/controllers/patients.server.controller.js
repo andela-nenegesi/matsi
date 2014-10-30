@@ -14,7 +14,6 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var patient = new Patient(req.body);
 	patient.user = req.user;
-
 	patient.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -38,9 +37,7 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
 	var patient = req.patient ;
-
 	patient = _.extend(patient , req.body);
-
 	patient.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -53,11 +50,10 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an Patient
+ * Delete a Patient
  */
 exports.delete = function(req, res) {
 	var patient = req.patient ;
-
 	patient.remove(function(err) {
 		if (err) {
 			return res.status(400).send({

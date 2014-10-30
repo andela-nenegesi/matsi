@@ -78,7 +78,7 @@ var UserSchema = new Schema({
 	},
 	provider: {
 		type: String,
-		// required: 'Provider is required'
+		required: 'Provider is required'
 	},
 	providerData: {},
 	additionalProvidersData: {},
@@ -144,7 +144,6 @@ UserSchema.methods.authenticate = function(password) {
 UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	var _this = this;
 	var possibleUsername = username + (suffix || '');
-
 	_this.findOne({
 		username: possibleUsername
 	}, function(err, user) {

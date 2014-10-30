@@ -46,7 +46,6 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 				amountNeeded: this.amountNeeded,
 				image: $scope.uploadResult
 			});
-				console.log($scope.uploadResult);
 			// Redirect after save
 			patient.$save(function(response) {
 				$location.path('patients/' + response._id);
@@ -67,7 +66,6 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		// Image Upload
 		// 		--on File Select
 		$scope.onFileSelect = function($files) {
-			console.log('called file Select');
 			$scope.files = $files;
 			$scope.imageFiles = [];
 			$scope.uploadResult = [];
@@ -79,7 +77,6 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 			$scope.start(i);
 		} 
 			else {
-				// alert('error');
 				alert('Wrong file format...');
 				$scope.correctFormat = true;
 		}
@@ -89,7 +86,6 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		}
 		};
 		$scope.start = function(indexOftheFile) {
-			console.log('function 2 called');
 			$scope.loading = true;
 				var formData = {
 				key: $scope.files[indexOftheFile].name,
@@ -118,18 +114,13 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
                     $scope.uploadResult.push(imageUrl);
                 });
             }, function(response) {
-                console.log(response);
                 $scope.loading = false;
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
                 alert('Connection Timed out');
             }, function(evt) {
                 
             });
-
-            console.log($scope.imageFiles[indexOftheFile]);
-
 		$scope.imageFiles[indexOftheFile].xhr(function(xhr) {
-                //alert('xhr');
             });
             
         };
@@ -152,8 +143,7 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 
 		// Update existing Patient
 		$scope.update = function() {
-			var patient = $scope.patient ;
-
+			var patient = $scope.patient;
 			patient.$update(function() {
 				$location.path('patients/' + patient._id);
 			}, function(errorResponse) {
@@ -198,12 +188,4 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
     	return '$' + input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   	};
 }]);
-
-
-
-
-
-
-
-
 

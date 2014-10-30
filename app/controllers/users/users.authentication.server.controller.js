@@ -14,9 +14,6 @@ var _ = require('lodash'),
  */
 exports.signup = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
-	console.log('inspect signup');
-	console.log(req.body);
-	console.log('inspection ends');
 	delete req.body.roles;
 
 	// Init Variables
