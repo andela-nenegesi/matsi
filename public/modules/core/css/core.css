@@ -193,5 +193,11 @@ margin-left: 20px;
 
 /******************************
 		MEDIA QUERIES
-*******************************
->>>>>>> 9ee634e7293d19656b0c63e4cc24b41093b05b64
+*******************************/
+.pushFooter2{
+	/*margin-bottom:545px; */
+	/*background: #fcd15c;*/
+	min-height: 60rem;
+	min-width: 350px;
+	padding-top: 100px;
+}
