@@ -52,6 +52,7 @@ img{
 	text-align: center;
 }
 
+
 .homeContent1{
 	width: 100%;
 	padding-top: 200px;
@@ -188,7 +189,13 @@ margin-left: 20px;
 .footerContainer{
 	color: #ebebeb;
 }
+.container{
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
 
 /******************************
 		MEDIA QUERIES
 *******************************
+>>>>>>> 9ee634e7293d19656b0c63e4cc24b41093b05b64
