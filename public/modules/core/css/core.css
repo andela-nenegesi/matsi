@@ -185,6 +185,11 @@ margin-left: 20px;
 .footerContainer{
 	color: #ebebeb;
 }
+.container{
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
 
 /******************************
 		MEDIA QUERIES

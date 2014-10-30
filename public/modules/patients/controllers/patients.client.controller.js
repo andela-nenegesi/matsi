@@ -164,6 +164,7 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		// Find a list of Patients
 		$scope.find = function() {
 			$scope.patients = Patients.query();
+			$scope.patients.amountCollected = 20;
 		};
 
 		// Find existing Patient
@@ -176,8 +177,12 @@ angular.module('patients').controller('PatientsController', ['$scope', '$statePa
 		};
 
 		//percentage of patients funds
-		$scope.fundsPercentage = function(amountNeeded, amountCollected) {
+		$scope.fundsPercentage = function(amountCollected, amountNeeded) {
 			return ((amountCollected / amountNeeded) * 100);
+		};
+
+		$scope.ellipsis = function(story, length) {
+			return story.substring(0,length).replace(/[^ ]*$/,'...');
 		};
 	}
 ]).filter('myCurrency', ['$filter', function ($filter) {
