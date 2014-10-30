@@ -27,9 +27,9 @@ var PatientSchema = new Schema({
 	},
 	sex:{
 		type: [{
-					type: String,
-					enum: ['male', 'female']
-				}],
+				type: String,
+				enum: ['male', 'female']
+			}],
 		default: [''],
 		required: 'Please specify your Gender'
 	},
@@ -50,8 +50,8 @@ var PatientSchema = new Schema({
 	},
 	image:{
 		type:String,
-		default:''
-		// required:'Please Upload a picture of the Patient'
+		default:'',
+		required:'Please Upload a picture of the Patient'
 	},
 	amountNeeded:{
 		type:Number,
