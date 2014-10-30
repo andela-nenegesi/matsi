@@ -39,10 +39,6 @@ p.fundWhite1{
 	margin-top: 30px;
 	color: #fff;
 }
-img{
-	width: 160px;
-	height:180px;
-}
 .matsiNav li a:hover, .navbar-brand a{
 	background-color: #d4d5d1;
 	border-bottom: 1.5px solid #428bca;
