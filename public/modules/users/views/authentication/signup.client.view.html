@@ -1,5 +1,5 @@
-<section class="row" data-ng-controller="AuthenticationController">
-<div class="pushFooter">
+<section class="row pushFooter" data-ng-controller="AuthenticationController">
+<div class="" data-ng-if ="authentication.user.userRoles==='admin'">
 	<div class="col-xs-offset-2 col-xs-8 col-md-8">
 		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
@@ -8,15 +8,7 @@
 						<span class="input-group-addon">
 						<i class="text-muted glyphicon glyphicon-user"></i>
 						</span>
-						<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
-					</div>
-				</div>
-				<div class="form-group col-sm-12">
-					<div class="input-group ">
-						<span class="input-group-addon">
-						<i class="text-muted glyphicon glyphicon-user"></i>
-						</span>
-						<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+						<input type="text" required id="fullName" name="fullName" class="form-control" data-ng-model="credentials.fullName" placeholder="Full Name">
 					</div>
 				</div>
 				<div class="form-group col-sm-12">
@@ -24,33 +16,6 @@
 						<span class="input-group-addon">@</span>
 						<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
 					</div>
-				</div>
-				<div class="form-group col-sm-12">
-					<div class="form-group col-sm-5" style="margin-right: 25px;">
-						<div class="input-group ">
-							<span class="input-group-addon">
-							<i class="text-muted glyphicon glyphicon-credit-card"></i>								
-							</span>
-							<input type="number" id="creditCard" name="creditCard" class="form-control" data-ng-model="credentials.creditCard" placeholder="Credit Card Number">
-						</div>
-					</div>
-					<div class="form-group col-sm-3" style="margin-right: 11px;">
-						<div class="input-group">
-							<span class="input-group-addon">
-							<i class="text-muted glyphicon glyphicon-calendar"></i>
-							</span>
-							<input type="month" id="expiryDate" name="expiryDate" class="form-control" data-ng-model="credentials.expiryDate" placeholder="Expiry Date">
-						</div>
-					</div>
-					<div class="form-group col-sm-3" style="margin-left: 68px;">
-						<div class="input-group">
-							<span class="input-group-addon">
-							<i class="text-muted glyphicon glyphicon-credit-card"></i>	
-							</span>
-							<input type="number" id="cvv" name="cvv" min = 100 max = 999 class="form-control" data-ng-model="credentials.cvv" placeholder="CVV">
-						</div>
-					</div>
-
 				</div>
 				<div class="form-group col-sm-12">
 					<div class="input-group ">
@@ -92,5 +57,8 @@
 			</fieldset>
 		</form>
 	</div>
-<div>
+</div>
+<div class="alert alert-warning text-center"data-ng-if ="authentication.user.userRoles === 'user'|| !authentication.user">
+        This Page is available to Administrators only, Please <a href="/#!/signin">signin</a> with Admin Account 
+  </div>
 </section>

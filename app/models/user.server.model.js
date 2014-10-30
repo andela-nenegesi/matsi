@@ -25,17 +25,11 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
-	firstName: {
+	fullName: {
 		type: String,
 		trim: true,
 		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your first name']
-	},
-	lastName: {
-		type: String,
-		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
+		validate: [validateLocalStrategyProperty, 'Please fill in your full name']
 	},
 	displayName: {
 		type: String,
@@ -54,19 +48,6 @@ var UserSchema = new Schema({
 		unique: 'testing error message',
 		required: 'Please fill in a username',
 		trim: true
-	},
-	creditCard: {
-		type: Number,
-		default: '',
-		required: 'Please enter your Credit Card Number'
-	},
-	expiryDate: {
-		type: Date,
-		required: 'Please enter your Credit Card Expiry Date'
-	},
-	cvv: {
-		type: Number,
-		required: 'Please enter your Credit Card CVV'
 	},
 	password: {
 		type: String,

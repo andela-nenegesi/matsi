@@ -1,15 +1,38 @@
 <section data-ng-controller="HomeController">
 	<section class="homeContent1 col-md-12">
 		<h2 class="fundWhiteBack col-md-8 col-md-offset-2">Fund healthcare for people around the world.</h2>
-		<p class="fundWhite1 col-md-8 col-md-offset-2"><span></span>People have funded healthcare for <span></span> patients in <span></span> countries</p>
+		<p class="fundWhite1 col-md-8 col-md-offset-2" data-ng-controller="PatientsController" data-ng-init="find()"><span></span>People have funded healthcare for <span>{{patients.length}}</span> patients in <span></span> countries</p>
 		<a href="/#!/patients" class="fundWhite2 button col-md-2 col-md-offset-5">VIEW PATIENTS</a>
 	</section>
 	<div class="homeContent2" data-ng-controller="PatientsController" data-ng-init="find()"> 
 		<h2>Meet the Patients</h2>
 		<h4>100% of your donation funds life-changing healthcare</h4>
 		<div class="col-md-12">
-			<div  class="homePatients1 col-md-4" ng-repeat="patient in patients|limitTo:3" >
-			<img data-ng-src="{{patient.image}}">
+			 <a data-ng-repeat="patient in patients |limitTo: 3" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item patients">
+                <div class="patient col-md-4">
+                    <div class="patientimg">
+                        <img ng-src="{{patient.image}}">
+                    </div>
+                    <div class="patientstory">
+                       <p class="ellipsis">
+                            {{ellipsis(patient.story, 100)}}
+                            <span class="link">Read More&nbsp;»</span>
+                        </p>
+                    </div>
+                    <div class="col-md-4 progressbar">
+                        <progressbar class="progress-striped active" value="fundsPercentage(patient.amountcollected, patient.amountNeeded)" type="{{warning}}">
+                        </progressbar>
+                    </div>
+                    <div class="funds">
+                        <div class="fundsraised">
+                            <p>{{patient.amountcollected || 0 | myCurrency }} raised</p>
+                        </div>
+                        <div class="fundsleft">
+                            <p>{{patient.amountNeeded - patient.amountcollected | myCurrency }} to go</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
 		</div>	
 	</div>
 	<div class="homeContent3 col-md-12">

@@ -24,3 +24,5 @@ module.exports = function(app) {
 	// Finish by binding the Patient middleware
 	app.param('patientId', patients.patientByID);
 };
+
+

@@ -201,6 +201,16 @@ input[type='text']{
 
 /******************************
 		MEDIA QUERIES
+<<<<<<< HEAD
 *******************************
 >>>>>>> 9ee634e7293d19656b0c63e4cc24b41093b05b64
 >>>>>>> c2943e9a7f0e0bd4ea4f55952c06fb3fe7034965
+=======
+*******************************/
+.pushFooter2{
+	/*margin-bottom:545px; */
+	/*background: #fcd15c;*/
+	min-height: 60rem;
+	min-width: 350px;
+	padding-top: 100px;
+}
