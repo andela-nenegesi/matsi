@@ -1,17 +1,38 @@
 <section data-ng-controller="PatientsController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>You are viewing all Patients</h1>
-    </div>
-    <div class="list-group">
-        <a data-ng-repeat="patient in patients" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item">
-        <div>
-            <h4 class="list-group-item-heading" data-ng-bind="patient.name"></h4>
+    <div class="contain">
+        <h1 class="listHeader">You are viewing all Patients</h1>
+        <div class="list-group-patient col-md-12">
+            <a data-ng-repeat="patient in patients" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item patients">
+                <div class="patient col-md-4">
+                    <div class="patientimg">
+                       <!--  <img src=""> -->
+                    </div>
+                    <div class="patientstory">
+                       <p class="ellipsis">
+                            {{ellipsis(patient.story, 100)}}
+                            <span class="link">Read More&nbsp;»</span>
+                        </p>
+                    </div>
+                    <div class="col-md-4 progressbar">
+                        <progressbar class="progress-striped active" value="fundsPercentage(patient.amountcollected, patient.amountNeeded)" type="{{warning}}">
+                        </progressbar>
+                    </div>
+                    <div class="funds">
+                        <div class="fundsraised">
+                            <p>{{patient.amountcollected || 0 | myCurrency }} raised</p>
+                        </div>
+                        <div class="fundsleft">
+                            <p>{{patient.amountNeeded - patient.amountcollected | myCurrency }} to go</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
-        <img src="">
-        <p></p>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!patients.$resolved || patients.length">
-    	No Patients yet, why don't you <a href="/#!/patients/create">create one</a>?
+        <div class="morepat col-md-12">
+            <a href="#" class="morepatients">view more patients</a>
+        </div>
+        <div class="alert alert-warning text-center" data-ng-hide="!patients.$resolved || patients.length">
+        	No Patients yet, why don't you <a href="/#!/patients/create">create one</a>?
+        </div>
     </div>
 </section>

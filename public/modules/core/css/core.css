@@ -1,5 +1,9 @@
-.content {
-	margin-top: 50px;
+header.matsiNav.ng-scope{
+	background: #d4d5d1;
+}
+
+.navbar-nav > li > a{
+	color: #4b5c66;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -13,14 +17,177 @@
 .ng-valid.ng-dirty{
     border-color:#78FA89;
 }
-.matsiNav li a:hover, .navbar-brand a{
-	background-color: #fff;
-	border-bottom: 2px solid #428bca;
-	padding-bottom: 7px;
+.fundWhiteBack{
+	background: #fff;
+	padding: 30px 50px;
 }
-#homeContent{
-	height: 320px;
+.container{
 	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+p.fundWhite1{
+	margin-top: 30px;
+	margin-bottom: 90px;
+}
+.fundWhite1{
+	color: #4b5c66;
+}
+.fundWhite2{
+	background-color: #00b2d8;
+	padding: 15px 40px;
+	margin-top: 30px;
+	color: #fff;
+}
+.matsiNav li a:hover, .navbar-brand a{
+	background-color: #d4d5d1;
+	border-bottom: 1.5px solid #428bca;
+	padding-bottom: 2px;
+}
+.homeContent1, .homeContent2, .homeContent3, .contactBox, .contactBox1{
+	text-align: center;
+}
+
+
+.homeContent1{
+	width: 100%;
+	padding-top: 200px;
+	padding-bottom: 200px;
+	background: url('/modules/core/img/loaders/bkgd2.jpg') no-repeat center center;
+	background-size: cover;
+}
+.homeContent2{
+	padding-top: 40px;
+}
+.homeContent3 h2{
+	margin-bottom: 50px;
+}
+.homeContent1 h2, .homeContent p, .homeContent2 h2, .homeContent2 h4, .homeContent3{	
+	color: #4b5c66;
+}
+.fundWhite2:hover{
+	color: #fff;
+}
+.homeContent2 h2{
+	font-size: 36px;
+}
+.homeContent3{
+	background: #fcd15c;
+	padding-top: 70px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 50px;
+}
+.firstLine{
+	font-weight: bold;
+}
+a:hover{
+	text-decoration: none;
+}
+.homePatients1{
+	border: solid 1px gray;
+	padding: 50px;
+}
+
+/*********************
+	ABOUT PAGE
+*********************/
+.aboutImage{
+	background: url('/modules/core/img/loaders/bkgd1.jpg') no-repeat center center;
+	background-size: cover;
+	text-align: center;
+	padding-top: 200px;
+	padding-bottom: 200px;
+}
+.aboutBox, .aboutBox1, .aboutBox2{
+	text-align: center;
+}
+.aboutHead{
+	background: #fff;
+	padding: 20px 20px;
+}
+.teamPix{
+	width: 150px;
+	height: 150px;
+}
+.teamPixBox{
+	margin-bottom: 20px;
+}
+.teamPixBox span{
+	color: #4b5c66;
+}
+.aboutBox h3, .aboutBox1 h3{
+	margin-bottom: 42px;
+	margin-top: 60px;
+	color: #4b5c66;
+	height: 78px
+}
+.aboutBox h5{
+	margin-bottom: 50px;
+}
+.aboutBox{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.aboutBox1{
+	background: #f4f7f8;
+	color: #4b5c66;
+	padding-top: 15px;
+	padding-bottom: 25px;
+}
+.aboutBox2{
+	color: #4b5c66;
+	background: #fcd15c;
+	padding-top: 70px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 50px;
+}
+/******************
+	CONTACT PAGE
+*******************/
+.contactBox{
+	background: url('/modules/core/img/loaders/bkgd3.jpg') no-repeat center center;
+	background-size: cover;
+	text-align: center;
+	padding-top: 200px;
+	padding-bottom: 250px;
+	color: #4b5c66;
+}
+.contact-info li{
+	list-style: none;
+}
+.contactBox1{
+	padding-top: 60px;
+	padding-bottom: 80px;
+}
+/*******************
+		FOOTER
+*******************/
+.footerNav {
+list-style: none;
+}
+.footerNavDiv{
+	padding-left: 80px;
+	padding-right: 80px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background: #424242;
+}
+.footerNav li{
+display: inline;
+margin-right: 20px;
+margin-left: 20px;	
+}
+.footerNav li  a{
+	color: #fff;
+}
+.footerContainer{
+	color: #ebebeb;
+}
+.container{
+	width: 100%;
+<<<<<<< HEAD
 	background-color: #aaa;
 }
 .footer {
@@ -33,3 +200,13 @@ background-color: #f5f5f5;
 input[type='text']{
 	width:12em;
 }
+=======
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/******************************
+		MEDIA QUERIES
+*******************************
+>>>>>>> 9ee634e7293d19656b0c63e4cc24b41093b05b64
+>>>>>>> c2943e9a7f0e0bd4ea4f55952c06fb3fe7034965
