@@ -1,0 +1,58 @@
+<section data-ng-controller="PatientsController">
+    <div class="row col-md-6 col-md-offset-3">
+        <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-9">
+            <form class="form-horizontal" stripe-form="stripeCallback">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Please enter your name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email</label>
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i>
+                            </span>
+                            <input type="text" data-ng-model="email" id="email" class="form-control" placeholder="Please enter your email address" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="creditCard">Credit Card Details</label>
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                            </span>
+                            <input ng-model="number" payments-format="card" payments-validate="card" id="creditCard" class="form-control" placeholder="Please enter credit card number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                            </span>
+                            <input ng-model="cvc" payments-validate="cvc" payments-format="cvc" id="cvv" class="form-control" placeholder="Please Enter CVC Number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                            </span>
+                            <input class="form-control" placeholder="Please enter Card Expiry Date" ng-model="expiry" payments-format="expiry">
+                        </div><span>Card expiry date</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label" for="amountCollected">Donation</label>
+                        <div class="controls input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i>
+                            </span>
+                            <input type="number" data-ng-model="amountCollected" placeholder="Your generous donation is..." id="amountCollected" class="form-control" required>
+                        </div>
+                    </div>
+                    <button class="pull-right btn btn-success">Donate</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
