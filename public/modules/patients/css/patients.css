@@ -37,6 +37,10 @@
 	padding: 0px;
 
 }
+.newPatient{
+	float: none !important;
+}
+
 
 .patient {
 	width: 330px;
