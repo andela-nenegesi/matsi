@@ -20,6 +20,9 @@ angular.module('patients').config(['$stateProvider',
 		state('editPatient', {
 			url: '/patients/:patientId/edit',
 			templateUrl: 'modules/patients/views/edit-patient.client.view.html'
+		}).state('donatePatient', {
+			url: '/patients/:patientId/donate',
+			templateUrl: 'modules/patients/views/donate-patient.client.view.html'
 		});
 	}
 ]);
