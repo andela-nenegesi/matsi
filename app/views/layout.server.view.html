@@ -58,8 +58,12 @@
 	<!--Application JavaScript Files-->
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %} 
+<<<<<<< HEAD
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
+=======
+		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+>>>>>>> cac44e38445bac88dcab4084c7922f54de3c63ed
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>

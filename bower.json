@@ -4,7 +4,11 @@
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
   "dependencies": {
     "bootstrap": "~3",
+<<<<<<< HEAD
     "angular": "~1.2",
+=======
+    "angular": "~1.3",
+>>>>>>> cac44e38445bac88dcab4084c7922f54de3c63ed
     "angular-resource": "~1.2",
     "angular-mocks": "~1.2",
     "angular-cookies": "~1.2",
@@ -16,4 +20,8 @@
     "angular-ui-router": "~0.2.10",
     "angular-payments": "*"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cac44e38445bac88dcab4084c7922f54de3c63ed

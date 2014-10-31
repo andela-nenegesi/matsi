@@ -4,12 +4,20 @@
 angular.module('patients').config(function() {
     window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
 }).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
+<<<<<<< HEAD
     function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
         $scope.authentication = Authentication;
         $scope.url = 'http://watsi.org' + $location.path();
 
         // $scope.url = $location.absUrl();
         //Date picker
+=======
+	function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients ) {
+		$scope.authentication = Authentication;
+		$scope.url = 'http://watsi.org' + $location.path();
+		// $scope.url = $location.absUrl();
+		//Date picker
+>>>>>>> cac44e38445bac88dcab4084c7922f54de3c63ed
         $scope.today = function() {
             $scope.dt = new Date();
             var curr_date = $scope.dt.getDate();
@@ -185,6 +193,7 @@ angular.module('patients').config(function() {
             });
         };
 
+<<<<<<< HEAD
         //percentage of patients funds
         $scope.fundsPercentage = function(amountCollected, amountNeeded) {
             return ((amountCollected / amountNeeded) * 100);
@@ -197,6 +206,82 @@ angular.module('patients').config(function() {
 ]).filter('myCurrency', ['$filter', function($filter) {
     return function(input) {
         input = parseFloat(input);
+=======
+		// Remove existing Patient
+		$scope.remove = function( patient ) {
+			if ( patient ) { patient.$remove();
+
+				for (var i in $scope.patients ) {
+					if ($scope.patients [i] === patient ) {
+						$scope.patients.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.patient.$remove(function() {
+					$location.path('patients');
+				});
+			}
+		};
+
+// donate function added by Terwase Gberikon
+
+        $scope.stripeCallback = function(code, result) {
+            if (result.error) {
+                window.alert('it failed! error: ' + result.error.message);
+            } else {
+                window.alert('your donation of ' + '$'+ $scope.amountCollected + ' has been recieved');
+            }
+        };
+        /////////////////////////////////////////////////////////////
+
+		// Update existing Patient
+		$scope.update = function() {
+			var patient = $scope.patient;
+			patient.$update(function() {
+				$location.path('patients/' + patient._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Patients
+		$scope.find = function() {
+			$scope.patients = Patients.query();
+			$scope.patients.amountCollected = 20;
+		};
+
+		// Find existing Patient
+		$scope.findOne = function() {
+			$scope.patient = Patients.get({ 
+				patientId: $stateParams.patientId
+			}, function(){
+			 $scope.patientName = $scope.patient.name.toUpperCase();
+			});
+		};
+
+		//percentage of patients funds
+		$scope.fundsPercentage = function(amountCollected, amountNeeded) {
+			return ((amountCollected / amountNeeded) * 100);
+		};
+
+		$scope.ellipsis = function(story, length) {
+			return story.substring(0,length).replace(/[^ ]*$/,'...');
+		};
+	}
+]).filter('myCurrency', ['$filter', function ($filter) {
+ 	return function(input) {
+		input = parseFloat(input);
+
+		if(input % 1 === 0) {
+    		input = input.toFixed(0);
+		}
+    	else {
+    		input = input.toFixed(2);
+		}
+    	return '$' + input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  	};
+}]);
+>>>>>>> cac44e38445bac88dcab4084c7922f54de3c63ed
 
         if (input % 1 === 0) {
             input = input.toFixed(0);

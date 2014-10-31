@@ -4,8 +4,12 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'matsi';
+<<<<<<< HEAD
 	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'angularPayments', 'angularFileUpload'];
 
+=======
+	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'angularPayments'];
+>>>>>>> cac44e38445bac88dcab4084c7922f54de3c63ed
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

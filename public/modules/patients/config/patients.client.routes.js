@@ -20,8 +20,12 @@ angular.module('patients').config(['$stateProvider',
 		state('editPatient', {
 			url: '/patients/:patientId/edit',
 			templateUrl: 'modules/patients/views/edit-patient.client.view.html'
+<<<<<<< HEAD
 		}).
 		state('donatePatient', {
+=======
+		}).state('donatePatient', {
+>>>>>>> cac44e38445bac88dcab4084c7922f54de3c63ed
 			url: '/patients/:patientId/donate',
 			templateUrl: 'modules/patients/views/donate-patient.client.view.html'
 		});
