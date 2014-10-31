@@ -54,11 +54,11 @@
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
 	</script>
-	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
 	<!--Application JavaScript Files-->
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %} 
-
+		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
