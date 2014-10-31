@@ -17,6 +17,7 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
+				'public/lib/angular-payments/lib/angular-payments.js',
 				'public/lib/ng-file-upload/angular-file-upload-shim.min.js',
 				'public/lib/angular/angular.js',
 				'public/lib/ng-file-upload/angular-file-upload.min.js',
