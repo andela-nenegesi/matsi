@@ -184,37 +184,51 @@ angular.module('patients').config(function() {
 			return ((amountCollected / amountNeeded) * 100);
 		};
 
-		$scope.progressBar = function(){
-             var progress = angular.element(document.getElementById('progress')).shieldProgressBar({
-                 min: 0,
-                 max: 100,
-                 value: getFundsPerc(124, 1500),
-                 layout: 'circular',
-                 layoutOptions: {
-                     circular: {
-                         width: 10,
-                         color: "orange",
-	                    colorDisabled: "#eee",
-	                    borderColor: "#eee",
-	                    borderWidth: 1,
-	                    backgroundColor: "#eee"
-                     }
-                 },
-                 text: {
-                     enabled: true,
-                     template: '<span style="font-size:20px;">{0:n0}</span> %'
-                 },
-                 reversed: false
-
-             }).swidget();
-        		  
-             // progress.value();            
+		$scope.progressBar = function(amountCollected, amountNeeded){
+			var perc = Math.floor((amountCollected/amountNeeded) * 100);
+		      	var options = {
+		                min: 0,
+		                max: 100,
+		                value: perc,
+		                layout: "circular",
+		                layoutOptions: {
+		                    circular: {
+		                        width: 10,
+		                        color: "orange",
+			                      colorDisabled: "#eee",
+			                      borderColor: "#eee",
+			                      borderWidth: 1,
+			                      backgroundColor: "#eee"
+		                    }
+		                },
+		                
+		                text: {
+		                    enabled: true,
+		                    template: '<span style="font-size:20px;">{0}</span> %'
+		                },
+		              reversed: false
+                
+            };      
+                         
+          if(perc>=100)
+              options.layoutOptions.circular.color = 'green';
+          		options.text.template = "100%";	
+          var timer = null,
+            startTime = null,
+            progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();       
          
      	};
-     	
-     		$scope.progressBar();
-
-
+     	var amountCollected = 200;
+     	var amountNeeded = 1000; 
+     	$scope.progressBar(amountCollected,amountNeeded);
+     	 $scope.updateRate = function(amountDonated)
+    {
+       var i = parseInt(amountDonated,10);
+       i = i>0?i:0;
+       var newAmount = amountCollected + i;
+       $scope.progressBar(newAmount, amountNeeded);
+       
+    }
 		$scope.fundsPercentage = getFundsPerc();
 
 		$scope.ellipsis = function(story, length) {
