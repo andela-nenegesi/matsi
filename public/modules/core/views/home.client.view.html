@@ -7,7 +7,7 @@
 	<div class="homeContent2" data-ng-controller="PatientsController" data-ng-init="find()"> 
 		<h2>Meet the Patients</h2>
 		<h4>100% of your donation funds life-changing healthcare</h4>
-		<div class="col-md-12">
+		<div class="col-md-12" data-ng-init="homePageDatas()">
 			 <a data-ng-repeat="patient in patients |limitTo: 3" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item patients">
                 <div class="patient col-md-4">
                     <div class="patientimg">
