@@ -234,15 +234,15 @@ angular.module('patients').config(function() {
 		                min: 0,
 		                max: 100,
 		                value: perc,
-		                layout: "circular",
+		                layout: 'circular',
 		                layoutOptions: {
 		                    circular: {
 		                        width: 10,
-		                        color: "orange",
-			                      colorDisabled: "#eee",
-			                      borderColor: "#eee",
+		                        color: 'orange',
+			                      colorDisabled: '#eee',
+			                      borderColor: '#eee',
 			                      borderWidth: 1,
-			                      backgroundColor: "#eee"
+			                      backgroundColor: '#eee'
 		                    }
 		                },
 		                
