@@ -88,8 +88,11 @@
 	font-size: 13px;
 	float: left;
 	height: 36px;
+	line-height: 36px;
+	margin-left: 43px;
 	text-align: center;
 	width: 50%;
+	color: #89949b;
 }
 
 .morepat {
