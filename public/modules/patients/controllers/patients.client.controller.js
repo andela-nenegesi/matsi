@@ -7,6 +7,8 @@ window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
 function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
     $scope.authentication = Authentication;
     $scope.url = 'http://watsi.org' + $location.path();
+    $scope.fileUploaded = true;
+    $scope.fileLoading=false;
     // $scope.url = $location.absUrl();
     //Date picker
     $scope.today = function() {
@@ -87,7 +89,7 @@ function($scope, $stateParams, $timeout, $upload, $location, Authentication, Pat
         }
     };
     $scope.start = function(indexOftheFile) {
-        $scope.loading = true;
+        $scope.fileLoading = true;
         var formData = {
             key: $scope.files[indexOftheFile].name,
             AWSAccessKeyID: 'AKIAIWGDKQ33PXY36LQA',
@@ -109,13 +111,13 @@ function($scope, $stateParams, $timeout, $upload, $location, Authentication, Pat
         });
         $scope.imageFiles[indexOftheFile].then(function(response) {
             $timeout(function() {
-                $scope.loading = false;
                 //alert('uploaded');
                 var imageUrl = 'https://kehesjay.s3-us-west-2.amazonaws.com/' + $scope.files[indexOftheFile].name;
                 $scope.uploadResult.push(imageUrl);
-            });
+                $scope.fileUploaded = false;
+                $scope.fileLoading = false;
+            },2000);
         }, function(response) {
-            $scope.loading = false;
             if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
             alert('Connection Timed out');
         }, function(evt) {
