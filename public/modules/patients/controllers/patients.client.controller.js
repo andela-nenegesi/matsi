@@ -167,7 +167,7 @@ angular.module('patients').config(function() {
 		// Find a list of Patients
 		$scope.find = function() {
 			$scope.patients = Patients.query();
-			$scope.patients.amountCollected = 20;
+	
 		};
 
 		// Find existing Patient
@@ -180,9 +180,63 @@ angular.module('patients').config(function() {
 		};
 
 		//percentage of patients funds
-		$scope.fundsPercentage = function(amountCollected, amountNeeded) {
+		var getFundsPerc = function(amountCollected, amountNeeded) {
 			return ((amountCollected / amountNeeded) * 100);
 		};
+
+		$scope.progressBar = function(){
+             var progress = angular.element(document.getElementById('progress')).shieldProgressBar({
+                 min: 0,
+                 max: 100,
+                 value: getFundsPerc(124, 1500),
+                 layout: 'circular',
+                 layoutOptions: {
+                     circular: {
+                         width: 10,
+                         color: "orange",
+	                    colorDisabled: "#eee",
+	                    borderColor: "#eee",
+	                    borderWidth: 1,
+	                    backgroundColor: "#eee"
+                     }
+                 },
+                 text: {
+                     enabled: true,
+                     template: '<span style="font-size:20px;">{0:n0}</span> %'
+                 },
+                 reversed: false
+
+             }).swidget();
+        		  
+        var progress1 = angular.element(document.getElementById('progress1')).shieldProgressBar({
+                 min: 0,
+                 max: 100,
+                 value: getFundsPerc(124, 1500),
+                 layout: 'circular',
+                 layoutOptions: {
+                     circular: {
+                         width: 10,
+                         color: "#f5b400",
+	                    colorDisabled: "#eee",
+	                    borderColor: "#eee",
+	                    borderWidth: 1,
+	                    backgroundColor: "#eee"
+                     }
+                 },
+                 text: {
+                     enabled: true,
+                     template: '<span style="font-size:20px;">{0:n0}</span> %'
+                 },
+                 reversed: false
+
+            }).swidget();          
+         
+     	};
+     	
+     		$scope.progressBar();
+
+
+		$scope.fundsPercentage = getFundsPerc();
 
 		$scope.ellipsis = function(story, length) {
 			return story.substring(0,length).replace(/[^ ]*$/,'...');

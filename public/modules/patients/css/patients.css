@@ -4,7 +4,7 @@
 
 .contain {
 	padding: 35px;
-	margin: 0px auto;
+	margin: 0 auto;
 	max-width: 1153px;
 }
 
@@ -27,6 +27,7 @@
 .ellipsis {
 	overflow: hidden;
 	white-space: normal;
+	line-height: 24px;
 }
 
 .patients {
@@ -34,7 +35,7 @@
 	background: #f4f7f8;
 	border: none;
 	margin: 10px;
-	padding: 0px;
+	padding: 0;
 
 }
 
@@ -85,11 +86,14 @@
 
 .funds p {
 	box-sizing: border-box;
-	font-size: 13px;
+	font-size: 14px;
 	float: left;
 	height: 36px;
 	text-align: center;
 	width: 50%;
+	color: #89949b;
+	line-height: 36px;
+	margin-left: 43px;
 }
 
 .morepat {
@@ -144,7 +148,7 @@
 }
 
 .page-header {
-	padding: 0px;
+	padding: 0;
 }
 
 
@@ -155,7 +159,7 @@
 	text-align: center;
 	float: left;
 	min-height: 1px;
-	margin: 50px 0px 50px 175px;
+	margin: 50px 0 50px 175px;
 }
 
 .share img {
@@ -214,12 +218,12 @@
 	display: block;
 	margin-top: 148px;
 	margin-left: -31px;
-	width: 198px;	
+	width: 198px;
 }
 
 .col-md-6 {
-	padding-right: 0px;
-	padding-left: 0px
+	padding-right: 0;
+	padding-left: 0;
 }
 
 .link {
@@ -230,7 +234,11 @@
 	color: #428bca;
 }
 
-
+.container1 {
+        width:200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
 
 

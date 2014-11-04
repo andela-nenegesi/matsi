@@ -15,10 +15,18 @@
 		<div class="patimglrg col-md-8">
 			<img ng-src="{{patient.image}}">
 		</div>
+		<div class="col-md-4 progress1">
+			<div>
+    			<div class="container1">
+        			<div id="progress" style="width: 330px; height: 330px; margin-bottom: 10px;"><div id="progress1" style="width: 350px; height: 350px; margin-bottom: 10px;"></div></div>
+    			</div>
+			</div>
+		</div>
 		<div class="col-md-4">
 		    <div class="pull-left">
+		    	<input autocomplete="off" class="donationAmount" type="text" value="" style="width: 48.5%;">
                 <a href="/#!/patients/{{patient._id}}/donate">
-                    <i class="btn btn-success">Make Donation to this patient</i>
+                    <i class="btn btn-success">DONATE</i>
                 </a>
             </div>
 		</div>
@@ -66,4 +74,6 @@
 	        <a href="#" class="morepatients" style="border-top=none;">view all patients</a>
 	    </div>
     </div>
+  
+    
 </section>
