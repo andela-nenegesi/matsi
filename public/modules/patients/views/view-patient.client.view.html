@@ -1,7 +1,7 @@
 <section data-ng-controller="PatientsController" data-ng-init="findOne()">
 	<div class="contain">
 			<p>
-				<h1 data-ng-bind="patient.description" style="margin-bottom: 50px;"></h1>
+				<h1 data-ng-bind="patient.description" class="patientsummary" style="margin-bottom: 50px;"></h1>
 			</p>
 		<div class="pull-right" data-ng-show="authentication.user._id == patient.user._id"
 		data-ng-if="authentication.user.userRoles === 'admin' ">
@@ -18,19 +18,17 @@
 		<div class="col-md-4 progress1">
 			<div>
     			<div class="container1">
-        			<div id="progress" style="width: 300px; height: 300px; margin-bottom: 10px;">
+        			<div id="progress" style="width: 330px; height: 330px; margin-bottom: 10px;"><div id="progress1" style="width: 350px; height: 350px; margin-bottom: 10px;"></div></div>
     			</div>
 			</div>
-			</div>
-			</div>
-
-		<div class="col-md-4">
-			<input type="number" ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated">
-		                    <div class="pull-left">
+		</div>
+		<div class="col-md-4 donatefield">
+		    <div class="pull-left donationfield">
+				<input type="number" class="inputBox" ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated">
                 <a href="/#!/patients/{{patient._id}}/donate">
-                    <i class="btn btn-success">Make Donation to this patient</i>
-                </a></div>
-
+                    <i class="donateButton">DONATE</i>
+                </a>
+            </div>
 		</div>
 		<div class="page-header col-md-8">
 	        <h3 style="color: #4b5c66; font-size:13px;">{{patientName}}'S STORY</h3>
