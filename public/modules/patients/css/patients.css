@@ -4,7 +4,7 @@
 
 .contain {
 	padding: 35px;
-	margin: 0 auto;
+	margin: -100px auto;
 	max-width: 1153px;
 }
 
@@ -12,8 +12,7 @@
 	font-size:  36px;
 	line-height: 54px;
 	color: #4b5c66;
-	margin-top: 10px;
-	margin-bottom: 42px;
+	margin: 10px 0px 30px 25px;
 }
 
 .list-group{
@@ -27,6 +26,7 @@
 .ellipsis {
 	overflow: hidden;
 	white-space: normal;
+	line-height: 24px;
 }
 
 .patients {
@@ -61,6 +61,13 @@
 	color: #89949b;
 }
 
+.patientsummary {
+	font-size: 36px;
+	line-height: 54px;
+	color: #4b5c66;
+	margin-top: 100px;
+}
+
 .patientimg {
 	height: 250px;
 	width: 330px;
@@ -89,18 +96,22 @@
 
 .funds p {
 	box-sizing: border-box;
-	font-size: 13px;
+	font-size: 14px;
 	float: left;
 	height: 36px;
 	text-align: center;
 	width: 50%;
+	color: #89949b;
+	line-height: 36px;
+	margin-left: 43px;
 }
 
 .morepat {
 	height: 66px;
 	border-top: 1px solid #e5e5e5;
 	max-width: 1278px;
-	margin-left: -93px;
+	margin-left: -99px;
+	width: 118%;
 }
 
 .morepatients {
@@ -238,7 +249,48 @@
         width:200px;
         margin-left: auto;
         margin-right: auto;
-    }
+}
+
+.inputBox {
+	width: 48.5%;
+	padding: 12px 12px 12px 24px;
+	border: 1px solid #c0c4c4;
+	color: #4b5c66;
+	font-size: 16px;
+	line-height: 24px;
+	box-sizing: border-box;
+} 
+
+.donationfield:before {
+	color: #4b5c66;
+	content: "$";
+	display: block;
+	pointer-events: none;
+	position: absolute;
+	left: 30px;
+	top: 14px;
+	font-size: 16px;
+}
+
+.donateButton {
+	width: 48.5%;
+	float: right;
+	border-color: rgb(20, 192, 76);
+	background-color: rgb(20, 192, 76);
+	cursor: pointer;
+	color: #f4f7f8;
+	font-size: 16px;
+	line-height: 24px;
+	padding: 12px;
+	padding: 12px;
+	font-style: normal;
+	text-align: center;
+}
+
+.donatefield {
+	margin-left: 75px;
+	margin-top: 30px;
+}
 
 
 
