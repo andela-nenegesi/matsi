@@ -12,7 +12,7 @@
 	font-size:  36px;
 	line-height: 54px;
 	color: #4b5c66;
-	margin: 10px 0px 30px 25px;
+	margin: 10px 0 30px 25px;
 }
 
 .list-group{
@@ -104,8 +104,6 @@
 	text-align: center;
 	width: 50%;
 	color: #89949b;
-	line-height: 36px;
-	margin-left: 43px;
 }
 
 .morepat {
@@ -283,7 +281,6 @@
 	color: #f4f7f8;
 	font-size: 16px;
 	line-height: 24px;
-	padding: 12px;
 	padding: 12px;
 	font-style: normal;
 	text-align: center;

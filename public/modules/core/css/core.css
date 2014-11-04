@@ -55,16 +55,13 @@ p.fundWhite1{
 
 .homeContent1{
 	width: 100%;
-	padding-top: 180px;
-	padding-bottom: 100px;
+	padding: 180px 100px 100px;
 	background: url('/modules/core/img/loaders/bkgd2.jpg') no-repeat center center;
 	background-size: cover;
 	position: relative;
 	top:-55px;
 	right: 0;
 	left:0;
-	padding-left: 100px;
-	padding-right: 100px;
 
 }
 .homeContent2{
@@ -84,10 +81,7 @@ p.fundWhite1{
 }
 .homeContent3{
 	background: #fcd15c;
-	padding-top: 70px;
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-bottom: 50px;
+	padding: 70px 40px 50px;
 }
 .firstLine{
 	font-weight: bold;
@@ -154,10 +148,7 @@ a:hover{
 .aboutBox2{
 	color: #4b5c66;
 	background: #fcd15c;
-	padding-top: 70px;
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-bottom: 50px;
+	padding: 70px 40px 50px;
 }
 /******************
 	CONTACT PAGE
@@ -193,10 +184,7 @@ a:hover{
 list-style: none;
 }
 .footerNavDiv{
-	padding-left: 80px;
-	padding-right: 80px;
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding: 30px 80px;
 	background: #424242;
 }
 .footerNav li{
@@ -220,8 +208,6 @@ margin-left: 20px;
 		MEDIA QUERIES
 *******************************/
 .pushFooter2{
-	/*margin-bottom:545px; */
-	/*background: #fcd15c;*/
 	min-height: 60rem;
 	min-width: 350px;
 	padding-top: 100px;
@@ -231,5 +217,4 @@ margin-left: 20px;
 	background: #fcd15c;
 	min-height: 60rem;
 	min-width: 350px;
-	/*padding-top: 100px;*/
 }
