@@ -178,7 +178,7 @@ angular.module('patients').config(function() {
 			$scope.patientCount=0;
 			$scope.donorCount=0;
 			$scope.countryCount=0;
-			$scope.countryArray=[0];
+			$scope.countryArray=['t'];
 			$scope.shouldPush=false;
 			$scope.pushData = '';
 			$scope.datas = Patients.query().$promise.then(
@@ -187,14 +187,16 @@ angular.module('patients').config(function() {
 			angular.forEach(response,function(data,key){
 				console.log(data.donor);
 					$scope.donorCount += data.donor;
-					if (data.donor > 0)
+					if (data.donor === 0)
 					{
 						console.log('function called');
 						$scope.patientCount++;
 						console.log($scope.patientCount);
 
 						angular.forEach($scope.countryArray,function(country,key){
-							if (data.country.toUpperCase() === country.toUpperCase()){
+							var val1 = data.country.toUpperCase();
+							var val2 = country.toUpperCase();
+							if ( val1 === val2){
 								$scope.shouldPush = false;
 							}	
 							else{

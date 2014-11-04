@@ -1,7 +1,7 @@
 <section data-ng-controller="HomeController">
 	<section class="homeContent1 col-md-12">
 		<h2 class="fundWhiteBack col-md-10 col-md-offset-1">Fund healthcare for people around the world.</h2>
-		<p class="fundWhite1 col-md-8 col-md-offset-2" data-ng-controller="PatientsController" data-ng-init="find()"><span></span>People have funded healthcare for <span>{{patients.length}}</span> patients in <span></span> countries</p>
+		<p class="fundWhite1 col-md-8 col-md-offset-2" data-ng-controller="PatientsController" data-ng-init="homePageDatas()"><span>{{donorCount}}</span> People have funded healthcare for <span>{{patientCount}}</span> patients in <span>{{countryCount}}</span> countries</p>
 		<a href="/#!/patients" class="fundWhite2 button col-md-3 col-md-offset-5">VIEW PATIENTS</a>	
 	</section>
 	<div class="homeContent2" data-ng-controller="PatientsController" data-ng-init="find()"> 
