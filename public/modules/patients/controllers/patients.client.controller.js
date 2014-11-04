@@ -194,7 +194,7 @@ angular.module('patients').config(function() {
 						console.log($scope.patientCount);
 
 						angular.forEach($scope.countryArray,function(country,key){
-							if (data.country === country){
+							if (data.country.toUpperCase() === country.toUpperCase()){
 								$scope.shouldPush = false;
 							}	
 							else{
