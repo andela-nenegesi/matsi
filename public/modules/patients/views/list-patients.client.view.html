@@ -29,13 +29,13 @@
             </a>
         </div>
         <div class="morepat col-md-12" data-ng-show="!patients.$resolved || patients.length">
-            <a href="#" class="morepatients">view more patients</a>
+            <a href="#!/patients" class="morepatients">view more patients</a>
         </div>
     </div>
     <div class="alert alert-warning text-center col-md-12" data-ng-hide="!patients.$resolved || patients.length" data-ng-if ="authentication.user.userRoles === 'admin'">
     	No Patients yet, why don't you <a href="/#!/patients/create">create one</a>
     </div>
-    <div class="alert alert-warning text-center col-md-12" data-ng-hide="!patients.$resolved || patients.length" data-ng-if ="authentication.user.userRoles === 'user'">
+    <div class="alert alert-warning text-center col-md-12" data-ng-hide="!patients.$resolved || patients.length" data-ng-if ="authentication.user.userRoles === 'user'|| !authentication.user">
         No Patients yet
     </div>
 </section>

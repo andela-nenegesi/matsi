@@ -1,5 +1,9 @@
 header.matsiNav.ng-scope{
-	background: #d4d5d1;
+	background: transparent;
+	z-index: 50;
+	margin-left: 100px;
+	margin-right: 100px;
+	position: relative;
 }
 
 .navbar-nav > li > a{
@@ -40,8 +44,8 @@ p.fundWhite1{
 	color: #fff;
 }
 .matsiNav li a:hover, .navbar-brand a{
-	background-color: #d4d5d1;
-	border-bottom: 1.5px solid #428bca;
+	background-color: transparent;
+	border-bottom: 3px solid #606060;
 	padding-bottom: 2px;
 }
 .homeContent1, .homeContent2, .homeContent3, .contactBox, .contactBox1{
@@ -51,10 +55,17 @@ p.fundWhite1{
 
 .homeContent1{
 	width: 100%;
-	padding-top: 200px;
-	padding-bottom: 200px;
+	padding-top: 180px;
+	padding-bottom: 100px;
 	background: url('/modules/core/img/loaders/bkgd2.jpg') no-repeat center center;
 	background-size: cover;
+	position: relative;
+	top:-55px;
+	right: 0;
+	left:0;
+	padding-left: 100px;
+	padding-right: 100px;
+
 }
 .homeContent2{
 	padding-top: 40px;
@@ -98,6 +109,11 @@ a:hover{
 	text-align: center;
 	padding-top: 200px;
 	padding-bottom: 200px;
+	position: relative;
+	top:-55px;
+	right: 0;
+	left:0;
+	z-index: -1;
 }
 .aboutBox, .aboutBox1, .aboutBox2{
 	text-align: center;
@@ -153,6 +169,15 @@ a:hover{
 	padding-top: 200px;
 	padding-bottom: 250px;
 	color: #4b5c66;
+	position: relative;
+	top:-55px;
+	right: 0;
+	left:0;
+	z-index: -1;
+
+}
+.contactWrapper{
+	position: relative;
 }
 .contact-info li{
 	list-style: none;
@@ -200,4 +225,11 @@ margin-left: 20px;
 	min-height: 60rem;
 	min-width: 350px;
 	padding-top: 100px;
+}
+.pushFooter3{
+	margin-top: -39.8px;
+	background: #fcd15c;
+	min-height: 60rem;
+	min-width: 350px;
+	/*padding-top: 100px;*/
 }

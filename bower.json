@@ -14,8 +14,12 @@
     "angular-bootstrap": "~0.11.0",
     "angular-ui-utils": "~0.1.1",
     "angular-ui-router": "~0.2.10",
+<<<<<<< HEAD
     "angular-payments": "*",
     "ng-file-upload": "~1.6.12"
+=======
+    "angular-payments": "*"
+>>>>>>> 28ea17d7a97d18a3bee340ca704cfb1abdd0aa38
   },
   "resolutions": {
     "angular": "1.2.26"
