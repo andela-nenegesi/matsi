@@ -1,7 +1,7 @@
 <section data-ng-controller="PatientsController" data-ng-init="findOne()">
 	<div class="contain">
 			<p>
-				<h1 data-ng-bind="patient.description" style="margin-bottom: 50px;"></h1>
+				<h1 data-ng-bind="patient.description" class="patientsummary" style="margin-bottom: 50px;"></h1>
 			</p>
 		<div class="pull-right" data-ng-show="authentication.user._id == patient.user._id"
 		data-ng-if="authentication.user.userRoles === 'admin' ">
@@ -22,11 +22,11 @@
     			</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-		    <div class="pull-left">
-		    	<input autocomplete="off" class="donationAmount" type="text" value="" style="width: 48.5%;">
+		<div class="col-md-4 donatefield">
+		    <div class="pull-left donationfield">
+				<input type="number" class="inputBox" ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated">
                 <a href="/#!/patients/{{patient._id}}/donate">
-                    <i class="btn btn-success">DONATE</i>
+                    <i class="donateButton">DONATE</i>
                 </a>
             </div>
 		</div>
@@ -71,7 +71,7 @@
 
 	    </div>
 	     <div class="morepats col-md-12">
-	        <a href="#" class="morepatients" style="border-top=none;">view all patients</a>
+	        <a href="#!/patients" class="morepatients" style="border-top=none;">view all patients</a>
 	    </div>
     </div>
   

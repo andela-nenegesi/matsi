@@ -167,9 +167,54 @@ angular.module('patients').config(function() {
 		// Find a list of Patients
 		$scope.find = function() {
 			$scope.patients = Patients.query();
-	
 		};
+		$scope.countryPush = function(value,value2){
+			if (value){
+			$scope.countryCount++;
+			$scope.countryArray.push(value2);
+		}
+		};
+		$scope.homePageDatas = function(){
+			$scope.patientCount=0;
+			$scope.donorCount=0;
+			$scope.countryCount=0;
+			$scope.countryArray=[0];
+			$scope.shouldPush=false;
+			$scope.pushData = '';
+			$scope.datas = Patients.query().$promise.then(
+			function(response){
+					console.log(response);
+			angular.forEach(response,function(data,key){
+				console.log(data.donor);
+					$scope.donorCount += data.donor;
+					if (data.donor > 0)
+					{
+						console.log('function called');
+						$scope.patientCount++;
+						console.log($scope.patientCount);
 
+						angular.forEach($scope.countryArray,function(country,key){
+							if (data.country.toUpperCase() === country.toUpperCase()){
+								$scope.shouldPush = false;
+							}	
+							else{
+								$scope.shouldPush = true;
+								$scope.pushData = data.country;
+							}
+						});
+						$scope.countryPush($scope.shouldPush,$scope.pushData);
+					}
+			});	
+			}
+				);
+			$timeout(function(){
+			console.log($scope.patientCount);
+			console.log($scope.donorCount);
+			console.log($scope.countryCount);
+			console.log($scope.countryArray);
+			}
+			,2000);
+		};
 		// Find existing Patient
 		$scope.findOne = function() {
 			$scope.patient = Patients.get({ 
@@ -178,66 +223,55 @@ angular.module('patients').config(function() {
 			 $scope.patientName = $scope.patient.name.toUpperCase();
 			});
 		};
-
 		//percentage of patients funds
 		var getFundsPerc = function(amountCollected, amountNeeded) {
 			return ((amountCollected / amountNeeded) * 100);
 		};
 
-		$scope.progressBar = function(){
-             var progress = angular.element(document.getElementById('progress')).shieldProgressBar({
-                 min: 0,
-                 max: 100,
-                 value: getFundsPerc(124, 1500),
-                 layout: 'circular',
-                 layoutOptions: {
-                     circular: {
-                         width: 10,
-                         color: "orange",
-	                    colorDisabled: "#eee",
-	                    borderColor: "#eee",
-	                    borderWidth: 1,
-	                    backgroundColor: "#eee"
-                     }
-                 },
-                 text: {
-                     enabled: true,
-                     template: '<span style="font-size:20px;">{0:n0}</span> %'
-                 },
-                 reversed: false
-
-             }).swidget();
-        		  
-        var progress1 = angular.element(document.getElementById('progress1')).shieldProgressBar({
-                 min: 0,
-                 max: 100,
-                 value: getFundsPerc(124, 1500),
-                 layout: 'circular',
-                 layoutOptions: {
-                     circular: {
-                         width: 10,
-                         color: "#f5b400",
-	                    colorDisabled: "#eee",
-	                    borderColor: "#eee",
-	                    borderWidth: 1,
-	                    backgroundColor: "#eee"
-                     }
-                 },
-                 text: {
-                     enabled: true,
-                     template: '<span style="font-size:20px;">{0:n0}</span> %'
-                 },
-                 reversed: false
-
-            }).swidget();          
-         
+		$scope.progressBar = function(amountCollected, amountNeeded){
+			var perc = Math.floor((amountCollected/amountNeeded) * 100);
+		      	var options = {
+		                min: 0,
+		                max: 100,
+		                value: perc,
+		                layout: "circular",
+		                layoutOptions: {
+		                    circular: {
+		                        width: 10,
+		                        color: "orange",
+			                      colorDisabled: "#eee",
+			                      borderColor: "#eee",
+			                      borderWidth: 1,
+			                      backgroundColor: "#eee"
+		                    }
+		                },
+		                
+		                text: {
+		                    enabled: true,
+		                    template: '<span style="font-size:20px;">{0}</span> %'
+		                },
+		              reversed: false
+                
+            };      
+                         
+          if(perc>=100)
+              options.layoutOptions.circular.color = 'green';
+          		options.text.template = "100%";	
+          var timer = null,
+            startTime = null,
+            progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget(); 
      	};
-     	
-     		$scope.progressBar();
-
-
+     	var amountCollected = 200;
+     	var amountNeeded = 1000; 
+     	$scope.progressBar(amountCollected,amountNeeded);
+     	 $scope.updateRate = function(amountDonated)
+    {
+       var i = parseInt(amountDonated,10);
+       i = i>0?i:0;
+       var newAmount = amountCollected + i;
+       $scope.progressBar(newAmount, amountNeeded);
+    }
 		$scope.fundsPercentage = getFundsPerc();
-
 		$scope.ellipsis = function(story, length) {
 			return story.substring(0,length).replace(/[^ ]*$/,'...');
 		};

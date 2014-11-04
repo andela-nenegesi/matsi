@@ -48,6 +48,10 @@ var PatientSchema = new Schema({
 		default:'',
 		required:'Please give a short story about the Patient'
 	},
+	donor:{
+		type:Number,
+		default:0
+	},
 	image:{
 		type:String,
 		default:'',
