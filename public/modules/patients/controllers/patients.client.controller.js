@@ -181,16 +181,11 @@ function($scope, $stateParams, $timeout, $upload, $location, Authentication, Pat
         $scope.pushData = '';
         $scope.datas = Patients.query().$promise.then(
             function(response) {
-                console.log(response);
                 angular.forEach(response, function(data, key) {
-                    console.log(data.donor);
                     $scope.donorCount += data.donor;
                     if (data.donor > 0) {
-                        console.log('function called');
                         $scope.patientCount++;
-                        console.log($scope.patientCount);
-
-                        angular.forEach($scope.countryArray, function(country, key) {
+						angular.forEach($scope.countryArray, function(country, key) {
                             if (data.country.toUpperCase() === country.toUpperCase()) {
                                 $scope.shouldPush = false;
                             } else {
@@ -204,10 +199,6 @@ function($scope, $stateParams, $timeout, $upload, $location, Authentication, Pat
             }
         );
         $timeout(function() {
-            console.log($scope.patientCount);
-            console.log($scope.donorCount);
-            console.log($scope.countryCount);
-            console.log($scope.countryArray);
         }, 2000);
     };
     // Find existing Patient
