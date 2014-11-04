@@ -15,7 +15,20 @@
 		<div class="patimglrg col-md-8">
 			<img ng-src="{{patient.image}}">
 		</div>
+		<div class="col-md-4 progress1">
+			<div>
+    			<div class="container1">
+        			<div id="progress" style="width: 300px; height: 300px; margin-bottom: 10px;"><div id="progress1" style="width: 300px; height: 300px; margin-bottom: 10px;"></div></div>
+    			</div>
+			</div></div>
+
 		<div class="col-md-4">
+			<input type="number" ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated">
+		                    <div class="pull-left">
+                <a href="/#!/patients/{{patient._id}}/donate">
+                    <i class="btn btn-success">Make Donation to this patient</i>
+                </a></div>
+
 		</div>
 		<div class="page-header col-md-8">
 	        <h3 style="color: #4b5c66; font-size:13px;">{{patientName}}'S STORY</h3>
@@ -58,7 +71,9 @@
 
 	    </div>
 	     <div class="morepats col-md-12">
-	        <a href="#" class="morepatients" style="border-top=none;">view all patients</a>
+	        <a href="#!/patients" class="morepatients" style="border-top=none;">view all patients</a>
 	    </div>
     </div>
+  
+    
 </section>
