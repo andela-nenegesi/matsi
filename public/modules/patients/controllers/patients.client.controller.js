@@ -187,7 +187,7 @@ angular.module('patients').config(function() {
 			angular.forEach(response,function(data,key){
 				console.log(data.donor);
 					$scope.donorCount += data.donor;
-					if (data.donor === 0)
+					if (data.donor > 0)
 					{
 						console.log('function called');
 						$scope.patientCount++;
