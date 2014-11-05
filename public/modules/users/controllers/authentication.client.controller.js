@@ -8,6 +8,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
 
 		$scope.signup = function() {
+			console.log($scope.credentials);
 			if(($scope.credentials.email.substring($scope.credentials.email.indexOf('@'), $scope.credentials.email.length)) === '@andela.co'){
         		$scope.credentials.userRoles = 'admin';
     		} else {
@@ -26,6 +27,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		$scope.passMatch = false;
 		$scope.passMatch2 = true;
 		$scope.checkpass = function(){
+			console.log($scope.credentials.password);
 			if ($scope.credentials.password === $scope.credentials.confirmPassword)
 			{
 				$scope.passMatch = false;
@@ -36,8 +38,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.passMatch2 = true;
 			}
 		};
-
 		$scope.signin = function() {
+			console.log($scope.credentials);
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;

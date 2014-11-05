@@ -100,7 +100,6 @@
 	float: left;
 	height: 36px;
 	text-align: center;
-	width: 50%;
 	color: #89949b;
 	line-height: 36px;
 	margin-left: 43px;
@@ -195,7 +194,7 @@
 
 .relatedimage {
 	width: 198px;
-	height: 149px;
+	height: 140px;
 	border:  1px solid #e5e5e5;
 	margin: 54px 20px 54px 60px;
 	background: #e5e5e5;
@@ -227,8 +226,7 @@
 .progress-strip {
 	height: 5px;
 	display: block;
-	margin-top: 148px;
-	margin-left: -31px;
+	margin-left: -15px;
 	width: 198px;
 }
 

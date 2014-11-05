@@ -6,7 +6,9 @@ angular.module('patients').config(function() {
 }).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
     function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
         $scope.authentication = Authentication;
-        $scope.url = 'http://watsi.org' + $location.path();
+        $scope.url = 'https://matsi1.herokuapp.com/#!/' + $location.path();
+        $scope.fileUploaded = true;
+        $scope.fileLoading=false;
         // $scope.url = $location.absUrl();
         //Date picker
         $scope.today = function() {
@@ -65,6 +67,8 @@ angular.module('patients').config(function() {
                 $scope.error = errorResponse.data.message;
             });
         };
+
+        
         // Image Upload
         // 		--on File Select
         $scope.onFileSelect = function($files) {
@@ -77,6 +81,7 @@ angular.module('patients').config(function() {
                     if ($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
                         // $scope.correctFormat = true;
                         $scope.start(i);
+
                     } else {
                         alert('Wrong file format...');
                         $scope.correctFormat = true;
@@ -87,7 +92,7 @@ angular.module('patients').config(function() {
             }
         };
         $scope.start = function(indexOftheFile) {
-            $scope.loading = true;
+        	$scope.fileLoading=true;
             var formData = {
                 key: $scope.files[indexOftheFile].name,
                 AWSAccessKeyID: 'AKIAIWGDKQ33PXY36LQA',
@@ -109,13 +114,13 @@ angular.module('patients').config(function() {
             });
             $scope.imageFiles[indexOftheFile].then(function(response) {
                 $timeout(function() {
-                    $scope.loading = false;
                     //alert('uploaded');
                     var imageUrl = 'https://kehesjay.s3-us-west-2.amazonaws.com/' + $scope.files[indexOftheFile].name;
                     $scope.uploadResult.push(imageUrl);
-                });
+                    $scope.fileUploaded = false;
+                    $scope.fileLoading=false;
+                },2000);
             }, function(response) {
-                $scope.loading = false;
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
                 alert('Connection Timed out');
             }, function(evt) {
@@ -208,12 +213,6 @@ angular.module('patients').config(function() {
 			});	
 			}
 				);
-			$timeout(function(){
-			console.log($scope.patientCount);
-			console.log($scope.donorCount);
-			console.log($scope.countryCount);
-			console.log($scope.countryArray);}
-			,2000);
 		};
 		// Find existing Patient
 		$scope.findOne = function() {
@@ -265,8 +264,6 @@ angular.module('patients').config(function() {
                 startTime = null,
                 progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
         };
-
-
         var amountCollected = 200;
         var amountNeeded = 1000;
         $scope.progressBar(amountCollected, amountNeeded);
