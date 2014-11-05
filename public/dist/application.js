@@ -277,23 +277,29 @@ angular.module('patients').config(function () {
   '$location',
   'Authentication',
   'Patients',
-  function ($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
+  'Donate',
+  'DonatedValue',
+  function ($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, Donate, DonatedValue) {
     $scope.authentication = Authentication;
     $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
     $scope.fileUploaded = true;
     $scope.fileLoading = false;
     // $scope.url = $location.absUrl();
     //Date picker
+    var shortenString = function (str) {
+      if (typeof str === typeof '') {
+        str = str.length >= 200 ? str.substring(0, 197) + '...' : str;
+        return str;
+      }
+      return str;
+    };
     var FBShare = function () {
       FB.ui({
         method: 'feed',
         link: $scope.url,
         picture: $scope.patient.image,
-        caption: $scope.patient.story,
-        message: $scope.patient.description
-      }, function (response) {
-        if (response && !response.error_code) {
-        }
+        caption: shortenString($scope.patient.story),
+        message: shortenString($scope.patient.description)
       });
     };
     $scope.sharePatient = function (i) {
@@ -301,7 +307,7 @@ angular.module('patients').config(function () {
       var shareURL;
       switch (i) {
       case 1:
-        return FBShare();
+        FBShare();
         break;
       case 2:
         shareURL = '//twitter.com/intent/tweet?original_referer=' + url + '&text=' + $scope.patient.description + '&tw_p=tweetbutton&url=' + url;
@@ -447,14 +453,42 @@ angular.module('patients').config(function () {
       if (result.error) {
         window.alert('it failed! error: ' + result.error.message);
       } else {
-        window.alert('your donation of ' + '$' + $scope.amountCollected + ' has been recieved');
+        $scope.patient.amountCollected += $scope.amountCollected;
+        $scope.patient.donor++;
+        $scope.donateUpdate();
+        DonatedValue.amountDonated = $scope.amountCollected;
       }
+    };
+    $scope.findOneToDonate = function () {
+      $scope.name = 'TERWASE KELVIN GBERIKON';
+      $scope.email = 'terwase.gberikon@andela.co';
+      $scope.number = '5555555555554444';
+      $scope.cvc = '2345';
+      $scope.expiry = '12/2014';
+      $scope.amountCollected = DonatedValue.amountDonated;
+      $scope.patient = Donate.get({ patientId: $stateParams.patientId }, function () {
+        console.log($scope.patient, 'patient');
+      });
+    };
+    $scope.goPatientHome = function (toDonate) {
+      if (toDonate)
+        $location.path('patients/' + $scope.patient._id + '/donate');
+      else
+        $location.path('signup');
+    };
+    $scope.donateUpdate = function () {
+      var patient = $scope.patient;
+      patient.$update(function () {
+        $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been recieved';
+      }, function (errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
     };
     // Update existing Patient
     $scope.update = function () {
       var patient = $scope.patient;
       patient.$update(function () {
-        $location.path('patients/' + patient._id);
+        $scope.goPatientHome();
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -473,7 +507,7 @@ angular.module('patients').config(function () {
       $scope.patientCount = 0;
       $scope.donorCount = 0;
       $scope.countryCount = 0;
-      $scope.countryArray = [0];
+      $scope.countryArray = ['t'];
       $scope.shouldPush = false;
       $scope.pushData = '';
       $scope.datas = Patients.query().$promise.then(function (response) {
@@ -498,8 +532,9 @@ angular.module('patients').config(function () {
     };
     // Find existing Patient
     $scope.findOne = function () {
-      $scope.patient = Patients.get({ patientId: $stateParams.patientId }, function () {
+      $scope.patient = Patients.get({ patientId: $stateParams.patientId }, function (r) {
         $scope.patientName = $scope.patient.name.toUpperCase();
+        $scope.progressBar(r.amountCollected, r.amountNeeded);
       });
     };
     //percentage of patients funds
@@ -537,14 +572,12 @@ angular.module('patients').config(function () {
       }
       var timer = null, startTime = null, progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
     };
-    var amountCollected = 200;
-    var amountNeeded = 1000;
-    $scope.progressBar(amountCollected, amountNeeded);
     $scope.updateRate = function (amountDonated) {
       var i = parseInt(amountDonated, 10);
       i = i > 0 ? i : 0;
-      var newAmount = amountCollected + i;
-      $scope.progressBar(newAmount, amountNeeded);
+      DonatedValue.amountDonated = i;
+      var newAmount = $scope.patient.amountCollected + i;
+      $scope.progressBar(newAmount, $scope.patient.amountNeeded);
     };
     $scope.fundsPercentage = getFundsPerc();
     $scope.ellipsis = function (story, length) {
@@ -571,7 +604,16 @@ angular.module('patients').factory('Patients', [
   function ($resource) {
     return $resource('patients/:patientId', { patientId: '@_id' }, { update: { method: 'PUT' } });
   }
-]);'use strict';
+]);
+angular.module('patients').factory('Donate', [
+  '$resource',
+  function ($resource) {
+    return $resource('patients/:patientId/donate', { patientId: '@_id' }, { update: { method: 'PUT' } });
+  }
+]);
+angular.module('patients').factory('DonatedValue', [function () {
+    return { amountDonated: 0 };
+  }]);'use strict';
 // Config HTTP Error Handling
 angular.module('users').config([
   '$httpProvider',
@@ -642,9 +684,11 @@ angular.module('users').controller('AuthenticationController', [
   '$http',
   '$location',
   'Authentication',
-  function ($scope, $http, $location, Authentication) {
+  'DonatedValue',
+  function ($scope, $http, $location, Authentication, DonatedValue) {
     $scope.authentication = Authentication;
     $scope.userRole = '';
+    $scope.amountDonated = DonatedValue.amountDonated;
     // If user is signed in then redirect back home
     if ($scope.authentication.user.userRoles === 'user')
       $location.path('/signin');

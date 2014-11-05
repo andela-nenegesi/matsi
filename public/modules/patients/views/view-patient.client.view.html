@@ -24,10 +24,11 @@
 		</div>
 		<div class="col-md-4 donatefield">
 		    <div class="pull-left donationfield">
-				<input type="number" class="inputBox" ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated">
-                <a href="/#!/patients/{{patient._id}}/donate">
+				<input type="number" class="inputBox" ng-change="updateRate(amountDonated)"  ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated" min="5" required>
+				<input type="button" data-ng-click="goPatientHome(true)" ng-disabled="!amountDonated" class='donateButton' value="DONATE"/>
+                <!--a href="/#!/patients/{{patient._id}}/donate" data-ng-disabled="true">
                     <i class="donateButton">DONATE</i>
-                </a>
+                </a-->
             </div>
 		</div>
 		<div class="page-header col-md-8">
@@ -71,7 +72,7 @@
 
 	    </div>
 	     <div class="morepats col-md-12">
-	        <a href="#!/patients" class="morepatients" style="border-top=none;">view all patients</a>
+	        <a href="#!/patients" class="morepatients" style="border-top:none;">view all patients</a>
 	    </div>
     </div>
   

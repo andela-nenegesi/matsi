@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-	function($scope, $http, $location, Authentication) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication', 'DonatedValue',
+	function($scope, $http, $location, Authentication,DonatedValue) {
 		$scope.authentication = Authentication;
 		$scope.userRole = '';
+		$scope.amountDonated = DonatedValue.amountDonated;
 		// If user is signed in then redirect back home
-		if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
+		if ($scope.authentication.user.userRoles === 'user' ) $location.path('/signin');
 
 		$scope.signup = function() {
 			if(($scope.credentials.email.substring($scope.credentials.email.indexOf('@'), $scope.credentials.email.length)) === '@andela.co'){
