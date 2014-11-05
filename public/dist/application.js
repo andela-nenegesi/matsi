@@ -279,7 +279,7 @@ angular.module('patients').config(function () {
   'Patients',
   function ($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
     $scope.authentication = Authentication;
-    $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
+    $scope.url = 'http://matsi1.herokuapp.com/#!/' + $location.path();
     $scope.fileUploaded = true;
     $scope.fileLoading = false;
     // $scope.url = $location.absUrl();

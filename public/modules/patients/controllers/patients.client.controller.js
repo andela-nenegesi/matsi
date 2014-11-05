@@ -6,7 +6,7 @@ window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
 }).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
 function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
     $scope.authentication = Authentication;
-    $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
+    $scope.url = 'http://matsi1.herokuapp.com/#!/' + $location.path();
     $scope.fileUploaded = true;
     $scope.fileLoading=false;
     // $scope.url = $location.absUrl();
