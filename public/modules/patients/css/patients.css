@@ -231,6 +231,12 @@
 	margin-left: -31px;
 	width: 198px;
 }
+.progress-strip1 {
+	height: 5px;
+	display: block;
+	margin-left: -15px;
+	width: 198px;
+}
 
 .col-md-6 {
 	padding-right: 0;

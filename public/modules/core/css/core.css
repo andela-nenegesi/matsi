@@ -50,17 +50,14 @@ p.fundWhite1{
 
 .homeContent1{
 	width: 100%;
-	padding: 180px 100px 100px;
+	padding: 130px 100px 100px;
 	background: url('/modules/core/img/loaders/bkgd2.jpg') no-repeat center center;
 	background-size: cover;
 	position: relative;
 	top:-55px;
-	right: 0;
-	left:0;
-
 }
 .homeContent2{
-	padding-top: 40px;
+	padding-top: 10px;
 }
 .homeContent3 h2{
 	margin-bottom: 50px;
