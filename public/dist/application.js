@@ -279,11 +279,40 @@ angular.module('patients').config(function () {
   'Patients',
   function ($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
     $scope.authentication = Authentication;
-    $scope.url = 'http://matsi1.herokuapp.com/#!/' + $location.path();
+    $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
     $scope.fileUploaded = true;
     $scope.fileLoading = false;
     // $scope.url = $location.absUrl();
     //Date picker
+    var FBShare = function () {
+      FB.ui({
+        method: 'feed',
+        link: $scope.url,
+        picture: $scope.patient.image,
+        caption: $scope.patient.story,
+        message: $scope.patient.description
+      }, function (response) {
+        if (response && !response.error_code) {
+        }
+      });
+    };
+    $scope.sharePatient = function (i) {
+      var url = encodeURIComponent($scope.url);
+      var shareURL;
+      switch (i) {
+      case 1:
+        return FBShare();
+        break;
+      case 2:
+        shareURL = '//twitter.com/intent/tweet?original_referer=' + url + '&text=' + $scope.patient.description + '&tw_p=tweetbutton&url=' + url;
+        break;
+      case 3:
+        shareURL = '//plus.google.com/share?url=' + url;
+        break;
+      }
+      if (shareURL)
+        window.open(shareURL, 'matsi_window', 'height=250,width=600,toolbar=0,location=0');
+    };
     $scope.today = function () {
       $scope.dt = new Date();
       var curr_date = $scope.dt.getDate();
@@ -345,7 +374,7 @@ angular.module('patients').config(function () {
       });
     };
     // Image Upload
-    // 		--on File Select
+    //      --on File Select
     $scope.onFileSelect = function ($files) {
       $scope.files = $files;
       $scope.imageFiles = [];

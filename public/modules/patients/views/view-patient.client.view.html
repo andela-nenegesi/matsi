@@ -38,13 +38,13 @@
 	    </div>
 	    <div class="col-md-8 share"> 
 	    	<p style="margin:0px 0px 30px 30px; color: #89949b; font-size:18px;">Share {{patient.name}}'s story</p>
-			<a href="https://www.facebook.com/sharer/sharer.php?u={{url}}" target="_blank">
+			<a href="#" data-ng-click="sharePatient(1)">
 				<img src="modules/patients/img/facebookicon.png" width="54" height="54" title="Share on Facebook">
 			</a>
-			<a href="http://twitter.com/intent/tweet?u={{url}}"target="_blank">
+			<a href="#" data-ng-click="sharePatient(2)">
 				<img src="modules/patients/img/twittericon.png" width="54" height="54" title="Share on Twitter">
 			</a>
-			<a href="https://plus.google.com/share?url={{url}}"  target="_blank"> 
+			<a href="#" data-ng-click="sharePatient(3)"> 
 				<img src="modules/patients/img/googleplus.png" width="54" height="54" title="Share on Google+">
 			</a>
 	    </div>
