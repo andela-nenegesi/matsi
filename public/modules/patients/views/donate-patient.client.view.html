@@ -52,7 +52,7 @@
                     </div>
                     <div class="clearfix" data-ng-if="donateResult">
                         <div class="alert alert-info" data-ng-bind="donateResult"></div>
-                        <button  data-ng-click="goPatientHome()" class="btn btn-ok">Sign Up</button>
+                        <button  data-ng-click="goPatientHome()" class="btn btn-ok" data-ng-bind="actionText"></button>
                     </div>
                     <button class="pull-right btn btn-success" ng-disabled="donateResult">Donate</button>
                 </fieldset>

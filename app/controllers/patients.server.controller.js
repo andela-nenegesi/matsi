@@ -52,34 +52,23 @@ exports.update = function(req, res) {
 exports.updateDonation = function(req, res) {
 	var patient = req.patient ;
 	
-	// console.log(patient);
-	// if(patient._id)
-	// {
-	// 	Patient.where().update({_id:patient._id},{$set:{amountCollected:patient.amountCollected,donor:patient.donor}},{multi:false},function(err,count){
+	console.log(patient);
+	if(patient._id)
+	{
+		Patient.where().update({_id:patient._id},{$set:{amountCollected:req.body.amountCollected,donor:req.body.donor}},{multi:false},function(err,count){
 
-	// 		console.log(count,'count');
+			console.log(count,'count');
 
-	// 		if(err)
-	// 			return res.status(400).send({
-	// 			message: errorHandler.getErrorMessage(err)
-	// 		});
-	// 		else 
-	// 			res.jsonp(patient);
-	// 	});
-	// }
-	// else 
-	// 	res.status(400).send({message:'Invalid request'});
-
-	patient = _.extend(patient , req.body);
-	patient.save(function(err) {
-		if (err) {
-			return res.status(400).send({
+			if(err)
+				return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {
-			res.jsonp(patient);
-		}
-	});
+			else 
+				res.jsonp(patient);
+		});
+	}
+	else 
+		res.status(400).send({message:'Invalid request'});
 };
 
 /**

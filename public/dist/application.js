@@ -456,6 +456,7 @@ angular.module('patients').config(function () {
         $scope.patient.amountCollected += $scope.amountCollected;
         $scope.patient.donor++;
         $scope.donateUpdate();
+        $scope.actionText = $scope.authentication.user ? 'Continue' : 'Sign Up';
         DonatedValue.amountDonated = $scope.amountCollected;
       }
     };
@@ -473,8 +474,12 @@ angular.module('patients').config(function () {
     $scope.goPatientHome = function (toDonate) {
       if (toDonate)
         $location.path('patients/' + $scope.patient._id + '/donate');
-      else
-        $location.path('signup');
+      else {
+        if (!$scope.authentication.user)
+          $location.path('signup');
+        else
+          $location.path('patients/' + $scope.patient._id);
+      }
     };
     $scope.donateUpdate = function () {
       var patient = $scope.patient;
@@ -692,11 +697,11 @@ angular.module('users').controller('AuthenticationController', [
     // If user is signed in then redirect back home
     if ($scope.authentication.user.userRoles === 'user')
       $location.path('/signin');
-    $scope.signup = function () {
-      if ($scope.credentials.email.substring($scope.credentials.email.indexOf('@'), $scope.credentials.email.length) === '@andela.co') {
-        $scope.credentials.userRoles = 'admin';
+    $scope.signup = function (credentials) {
+      if (credentials.email.substring(credentials.email.indexOf('@'), credentials.email.length) === '@andela.co') {
+        credentials.userRoles = 'admin';
       } else {
-        $scope.credentials.userRoles = 'user';
+        credentials.userRoles = 'user';
       }
       $http.post('/auth/signup', $scope.credentials).success(function (response) {
         // If successful we assign the response to the global user model
@@ -709,8 +714,8 @@ angular.module('users').controller('AuthenticationController', [
     };
     $scope.passMatch = false;
     $scope.passMatch2 = true;
-    $scope.checkpass = function () {
-      if ($scope.credentials.password === $scope.credentials.confirmPassword) {
+    $scope.checkpass = function (val1, val2) {
+      if (val1 === val2) {
         $scope.passMatch = false;
         $scope.passMatch2 = false;
       } else {

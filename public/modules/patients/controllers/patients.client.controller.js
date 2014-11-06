@@ -191,6 +191,7 @@ angular.module('patients').config(function() {
                 $scope.patient.amountCollected += $scope.amountCollected;
                 $scope.patient.donor++;
                 $scope.donateUpdate();
+                $scope.actionText = $scope.authentication.user?'Continue':'Sign Up';
                 DonatedValue.amountDonated = $scope.amountCollected;
             }
         };
@@ -214,7 +215,12 @@ angular.module('patients').config(function() {
             if (toDonate)
                 $location.path('patients/' + $scope.patient._id + '/donate');
             else
-                $location.path('signup');
+            {
+                if(!$scope.authentication.user)
+                    $location.path('signup');
+                else
+                    $location.path('patients/' + $scope.patient._id);
+            }
         };
 
         $scope.donateUpdate = function() {
