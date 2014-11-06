@@ -277,7 +277,10 @@
 	top: 14px;
 	font-size: 16px;
 }
-
+.donateComplete>.progress-bar
+{
+	background-color: #3BB83B;
+}
 .donateButton {
 	width: 48.5%;
 	float: right;

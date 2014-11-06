@@ -57,7 +57,7 @@
                  			<img ng-src="{{patient.image}}">
  
 						<div class="col-md-5 progressbar">
-		                    <progressbar class="progress-strip1 active" value="fundsPercentage(patient.amountcollected, patient.amountNeeded)" type="{{warning}}">
+		                    <progressbar class="progress-strip1 active" ng-class="{donateComplete:patient.amountCollected>=patient.amountNeeded}" value= "getFundsPerc(patient.amountCollected, patient.amountNeeded)" type="{{warning}}">
 		                    </progressbar>
 	                	</div>
 					</div>

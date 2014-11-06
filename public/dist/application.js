@@ -535,9 +535,13 @@ angular.module('patients').config(function () {
         $scope.progressBar(r.amountCollected, r.amountNeeded);
       });
     };
+    $scope.completeCSSclass = 'donateComplete';
     //percentage of patients funds
-    var getFundsPerc = function (amountCollected, amountNeeded) {
-      return amountCollected / amountNeeded * 100;
+    $scope.getFundsPerc = function (amountCollected, amountNeeded) {
+      // if (amountCollected >= amountNeeded){
+      //     document.getElementById('progressBar2').style.color = "green";
+      // }
+      return Math.round(amountCollected / amountNeeded * 100);
     };
     $scope.progressBar = function (amountCollected, amountNeeded) {
       var perc = Math.floor(amountCollected / amountNeeded * 100);
@@ -577,7 +581,6 @@ angular.module('patients').config(function () {
       var newAmount = $scope.patient.amountCollected + i;
       $scope.progressBar(newAmount, $scope.patient.amountNeeded);
     };
-    $scope.fundsPercentage = getFundsPerc();
     $scope.ellipsis = function (story, length) {
       return story.substring(0, length).replace(/[^ ]*$/, '...');
     };
