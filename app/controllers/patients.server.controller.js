@@ -49,6 +49,25 @@ exports.update = function(req, res) {
 	});
 };
 
+exports.updateDonation = function(req, res) {
+	var patient = req.patient ;
+	
+	if(patient._id)
+	{
+		Patient.where().update({_id:patient._id},{$set:{amountCollected:req.body.amountCollected,donor:req.body.donor}},{multi:false},function(err,count){
+
+			if(err)
+				return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+			else 
+				res.jsonp(patient);
+		});
+	}
+	else 
+		res.status(400).send({message:'Invalid request'});
+};
+
 /**
  * Delete a Patient
  */

@@ -24,10 +24,11 @@
 		</div>
 		<div class="col-md-4 donatefield">
 		    <div class="pull-left donationfield">
-				<input type="number" class="inputBox" ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated">
-                <a href="/#!/patients/{{patient._id}}/donate">
+				<input type="number" class="inputBox" ng-change="updateRate(amountDonated)"  ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated" min="5" required>
+				<input type="button" data-ng-click="goPatientHome(true)" ng-disabled="!amountDonated" class='donateButton' value="DONATE"/>
+                <!--a href="/#!/patients/{{patient._id}}/donate" data-ng-disabled="true">
                     <i class="donateButton">DONATE</i>
-                </a>
+                </a-->
             </div>
 		</div>
 		<div class="page-header col-md-8">
@@ -38,13 +39,13 @@
 	    </div>
 	    <div class="col-md-8 share"> 
 	    	<p style="margin:0px 0px 30px 30px; color: #89949b; font-size:18px;">Share {{patient.name}}'s story</p>
-			<a href="https://www.facebook.com/sharer/sharer.php?u={{url}}" target="_blank">
+			<a href="#" data-ng-click="sharePatient(1)">
 				<img src="modules/patients/img/facebookicon.png" width="54" height="54" title="Share on Facebook">
 			</a>
-			<a href="http://twitter.com/intent/tweet?u={{url}}"target="_blank">
+			<a href="#" data-ng-click="sharePatient(2)">
 				<img src="modules/patients/img/twittericon.png" width="54" height="54" title="Share on Twitter">
 			</a>
-			<a href="https://plus.google.com/share?url={{url}}"  target="_blank"> 
+			<a href="#" data-ng-click="sharePatient(3)"> 
 				<img src="modules/patients/img/googleplus.png" width="54" height="54" title="Share on Google+">
 			</a>
 	    </div>
@@ -56,7 +57,7 @@
                  			<img ng-src="{{patient.image}}">
  
 						<div class="col-md-5 progressbar">
-		                    <progressbar class="progress-strip active" value="fundsPercentage(patient.amountcollected, patient.amountNeeded)" type="{{warning}}">
+		                    <progressbar class="progress-strip1 active" ng-class="{donateComplete:patient.amountCollected>=patient.amountNeeded}" value= "getFundsPerc(patient.amountCollected, patient.amountNeeded)" type="{{warning}}">
 		                    </progressbar>
 	                	</div>
 					</div>
@@ -71,7 +72,7 @@
 
 	    </div>
 	     <div class="morepats col-md-12">
-	        <a href="#!/patients" class="morepatients" style="border-top=none;">view all patients</a>
+	        <a href="#!/patients" class="morepatients" style="border-top:none;">view all patients</a>
 	    </div>
     </div>
   

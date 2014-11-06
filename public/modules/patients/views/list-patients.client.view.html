@@ -14,15 +14,15 @@
                         </p>
                     </div>
                     <div class="col-md-4 progressbar">
-                        <progressbar class="progress-striped active" value="fundsPercentage(patient.amountcollected, patient.amountNeeded)" type="{{warning}}">
+                        <progressbar class="progress-striped active" ng-class="{donateComplete:patient.amountCollected>=patient.amountNeeded}" value="getFundsPerc(patient.amountCollected, patient.amountNeeded)" type="{{warning}}">
                         </progressbar>
                     </div>
                     <div class="funds">
                         <div class="fundsraised">
-                            <p>{{patient.amountcollected || 0 | myCurrency }} raised</p>
+                            <p>{{patient.amountCollected || 0 | myCurrency }} raised</p>
                         </div>
                         <div class="fundsleft">
-                            <p>{{patient.amountNeeded - patient.amountcollected | myCurrency }} to go</p>
+                            <p>{{patient.amountNeeded - patient.amountCollected | myCurrency }} to go</p>
                         </div>
                     </div>
                 </div>
