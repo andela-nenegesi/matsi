@@ -283,7 +283,7 @@ angular.module('patients').config(function() {
             });
         };
 
-        $scope.completeCSSclass="donateComplete";
+        // $scope.completeCSSclass="donateComplete";
         //percentage of patients funds
         $scope.getFundsPerc = function(amountCollected, amountNeeded) {
             // if (amountCollected >= amountNeeded){

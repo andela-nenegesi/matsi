@@ -535,7 +535,7 @@ angular.module('patients').config(function () {
         $scope.progressBar(r.amountCollected, r.amountNeeded);
       });
     };
-    $scope.completeCSSclass = 'donateComplete';
+    // $scope.completeCSSclass="donateComplete";
     //percentage of patients funds
     $scope.getFundsPerc = function (amountCollected, amountNeeded) {
       // if (amountCollected >= amountNeeded){
@@ -699,7 +699,7 @@ angular.module('users').controller('AuthenticationController', [
       } else {
         credentials.userRoles = 'user';
       }
-      $http.post('/auth/signup', $scope.credentials).success(function (response) {
+      $http.post('/auth/signup', credentials).success(function (response) {
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
         // And redirect to the index page
