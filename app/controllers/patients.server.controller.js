@@ -52,12 +52,9 @@ exports.update = function(req, res) {
 exports.updateDonation = function(req, res) {
 	var patient = req.patient ;
 	
-	console.log(patient);
 	if(patient._id)
 	{
 		Patient.where().update({_id:patient._id},{$set:{amountCollected:req.body.amountCollected,donor:req.body.donor}},{multi:false},function(err,count){
-
-			console.log(count,'count');
 
 			if(err)
 				return res.status(400).send({

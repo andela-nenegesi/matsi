@@ -461,15 +461,8 @@ angular.module('patients').config(function () {
       }
     };
     $scope.findOneToDonate = function () {
-      $scope.name = 'TERWASE KELVIN GBERIKON';
-      $scope.email = 'terwase.gberikon@andela.co';
-      $scope.number = '5555555555554444';
-      $scope.cvc = '2345';
-      $scope.expiry = '12/2014';
       $scope.amountCollected = DonatedValue.amountDonated;
-      $scope.patient = Donate.get({ patientId: $stateParams.patientId }, function () {
-        console.log($scope.patient, 'patient');
-      });
+      $scope.patient = Donate.get({ patientId: $stateParams.patientId });
     };
     $scope.goPatientHome = function (toDonate) {
       if (toDonate)

@@ -281,7 +281,8 @@
 .donateButton {
 	width: 48.5%;
 	float: right;
-	border-color: rgb(20, 192, 76);
+	border: none;
+	/*border-color: rgb(20, 192, 76);*/
 	background-color: rgb(20, 192, 76);
 	cursor: pointer;
 	color: #f4f7f8;
@@ -296,7 +297,9 @@
 	margin-left: 75px;
 	margin-top: 30px;
 }
-
+.donatePatientPix{
+	margin-bottom: 110px;
+}
 
 
 
