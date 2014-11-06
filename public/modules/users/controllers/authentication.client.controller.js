@@ -6,7 +6,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
         $scope.userRole = '';
         $scope.amountDonated = DonatedValue.amountDonated;
         // If user is signed in then redirect back home
-        if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
+        //if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
 
         $scope.signup = function(credentials) {
             if ((credentials.email.substring(credentials.email.indexOf('@'), credentials.email.length)) === '@andela.co') {

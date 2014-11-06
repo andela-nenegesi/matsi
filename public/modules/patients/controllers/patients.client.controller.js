@@ -311,17 +311,18 @@ angular.module('patients').config(function() {
 
                 text: {
                     enabled: true,
-                    template: '<span style="font-size:20px;">{0}</span> %'
+                    template: '<span style="font-size:50px;">{0}</span>'
                 },
                 reversed: false
 
             };
 
             if (perc >= 100) {
-                options.layoutOptions.circular.color = 'green';
-                options.text.template = '100%';
+                options.layoutOptions.circular.color = '#3BB83B';
+                options.text.template = '<span class="perc"> 100%</span>' + '<br>' + 'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' +  amountCollected + ' raised' ;
+
             } else {
-                options.text.template = '{0}%';
+                options.text.template = '<span class="perc">{0}%</span>' + '<br>' +'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' + amountCollected + ' raised' +'<br>'+ '$' + (amountNeeded - amountCollected)+ ' to go';
             }
 
 

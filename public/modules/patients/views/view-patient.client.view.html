@@ -1,80 +1,78 @@
 <section data-ng-controller="PatientsController" data-ng-init="findOne()">
-	<div class="contain">
-			<p>
-				<h1 data-ng-bind="patient.description" class="patientsummary" style="margin-bottom: 50px;"></h1>
-			</p>
-		<div class="pull-right" data-ng-show="authentication.user._id == patient.user._id"
-		data-ng-if="authentication.user.userRoles === 'admin' ">
-			<a class="btn btn-primary" href="/#!/patients/{{patient._id}}/edit">
-				<i class="glyphicon glyphicon-edit"></i>
-			</a>
-			<a class="btn btn-primary" data-ng-click="remove();">
-				<i class="glyphicon glyphicon-trash"></i>
-			</a>
-		</div>
-		<div class="patimglrg col-md-8">
-			<img ng-src="{{patient.image}}">
-		</div>
-		<div class="col-md-4 progress1">
-			<div>
-    			<div class="container1">
-        			<div id="progress" style="width: 330px; height: 330px; margin-bottom: 10px;"><div id="progress1" style="width: 350px; height: 350px; margin-bottom: 10px;"></div></div>
-    			</div>
-			</div>
-		</div>
-		<div class="col-md-4 donatefield">
-		    <div class="pull-left donationfield">
-				<input type="number" class="inputBox" ng-change="updateRate(amountDonated)"  ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated" min="5" required>
-				<input type="button" data-ng-click="goPatientHome(true)" ng-disabled="!amountDonated" class='donateButton' value="DONATE"/>
-                <!--a href="/#!/patients/{{patient._id}}/donate" data-ng-disabled="true">
-                    <i class="donateButton">DONATE</i>
-                </a-->
+    <div class="contain">
+        <p>
+            <h1 data-ng-bind="patient.description" class="patientsummary" style="margin-bottom: 50px;"></h1>
+        </p>
+        <div class="pull-right" data-ng-show="authentication.user._id == patient.user._id" data-ng-if="authentication.user.userRoles === 'admin' ">
+            <a class="btn btn-primary" href="/#!/patients/{{patient._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-primary" data-ng-click="remove();">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+        <div class="patimglrg col-md-8 ng-class: {'beforeImg': patient.amountCollected >= patient.amountNeeded};">
+            <img ng-src="{{patient.image}}">
+        </div>
+        <div class="col-md-4 progress1">
+            <div>
+                <div class="container1">
+                    <div id="progress" style="width: 330px; height: 330px; margin-bottom: 10px;">
+                        <div id="progress1" style="width: 350px; height: 350px; margin-bottom: 10px;"></div>
+                    </div>
+                </div>
             </div>
-		</div>
-		<div class="page-header col-md-8">
-	        <h3 style="color: #4b5c66; font-size:13px;">{{patientName}}'S STORY</h3>
-	    </div>
-	    <div class="col-md-8">
-			<p class= "patientStory" data-ng-bind="patient.story"></p>
-	    </div>
-	    <div class="col-md-8 share"> 
-	    	<p style="margin:0px 0px 30px 30px; color: #89949b; font-size:18px;">Share {{patient.name}}'s story</p>
-			<a href="#" data-ng-click="sharePatient(1)">
-				<img src="modules/patients/img/facebookicon.png" width="54" height="54" title="Share on Facebook">
-			</a>
-			<a href="#" data-ng-click="sharePatient(2)">
-				<img src="modules/patients/img/twittericon.png" width="54" height="54" title="Share on Twitter">
-			</a>
-			<a href="#" data-ng-click="sharePatient(3)"> 
-				<img src="modules/patients/img/googleplus.png" width="54" height="54" title="Share on Google+">
-			</a>
-	    </div>
-	    <div class="col-md-12 related" data-ng-init="find()">
-	    	<div data-ng-repeat="patient in patients|limitTo:2" class="col-md-6 related1">
-		    	<a data-ng-href="#!/patients/{{patient._id}}">
-					<div class="col-md-5 relatedimage">
-						
-                 			<img ng-src="{{patient.image}}">
- 
-						<div class="col-md-5 progressbar">
-		                    <progressbar class="progress-strip1 active" ng-class="{donateComplete:patient.amountCollected>=patient.amountNeeded}" value= "getFundsPerc(patient.amountCollected, patient.amountNeeded)" type="{{warning}}">
-		                    </progressbar>
-	                	</div>
-					</div>
-					<div class="col-md-6 relatedtext">
-						<p class="ellipsis">
-							{{ellipsis(patient.story, 100)}} <br>
-							<span class="link">Read More&nbsp;»</span>
-						</p>
-					</div>
-				</a>
-	    	</div>
+        </div>
+        <div class="col-md-4 donatefield">
+            <div class="pull-left donationfield" data-ng-if="patient.amountCollected < patient.amountNeeded">
+                <input type="number" class="inputBox" ng-change="updateRate(amountDonated)" ng-keyup="updateRate(amountDonated)" data-ng-model="amountDonated" min="5" required data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                <input type="button" data-ng-click="goPatientHome(true)" ng-disabled="!amountDonated"  class='donateButton' value="DONATE" />
+            </div>
+            <p class="completeButton" data-ng-if="patient.amountCollected >= patient.amountNeeded">FULLY FUNDED!</p>
+        </div>
+        <div class="page-header col-md-8">
+            <h3 style="color: #4b5c66; font-size:13px;">{{patientName}}'S STORY</h3>
+        </div>
+        <div class="col-md-8">
+            <p class="patientStory" data-ng-bind="patient.story"></p>
+        </div>
+        <div class="col-md-8 share">
+            <p style="margin:0px 0px 30px 30px; color: #89949b; font-size:18px;">Share {{patient.name}}'s story</p>
+            <a href="#" data-ng-click="sharePatient(1)">
+                <img src="modules/patients/img/facebookicon.png" width="54" height="54" title="Share on Facebook">
+            </a>
+            <a href="#" data-ng-click="sharePatient(2)">
+                <img src="modules/patients/img/twittericon.png" width="54" height="54" title="Share on Twitter">
+            </a>
+            <a href="#" data-ng-click="sharePatient(3)">
+                <img src="modules/patients/img/googleplus.png" width="54" height="54" title="Share on Google+">
+            </a>
+        </div>
+        <div class="col-md-12 related" data-ng-init="find()">
+            <div data-ng-repeat="patient in patients|limitTo:2" class="col-md-6 related1">
+                <a data-ng-href="#!/patients/{{patient._id}}">
+                    <div class="col-md-5 relatedimage">
 
-	    </div>
-	     <div class="morepats col-md-12">
-	        <a href="#!/patients" class="morepatients" style="border-top:none;">view all patients</a>
-	    </div>
+                        <img ng-src="{{patient.image}}">
+
+                        <div class="col-md-5 progressbar">
+                            <progressbar class="progress-strip1 active" ng-class="{donateComplete:patient.amountCollected>=patient.amountNeeded}" value="getFundsPerc(patient.amountCollected, patient.amountNeeded)" type="{{warning}}">
+                            </progressbar>
+                        </div>
+                    </div>
+                    <div class="col-md-6 relatedtext">
+                        <p class="ellipsis">
+                            {{ellipsis(patient.story, 100)}}
+                            <br>
+                            <span class="link">Read More&nbsp;»</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class="morepats col-md-12">
+            <a href="#!/patients" class="morepatients" style="border-top:none;">view all patients</a>
+        </div>
     </div>
-  
-    
 </section>
