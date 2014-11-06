@@ -208,12 +208,6 @@ angular.module('patients').config(function() {
 			});	
 			}
 				);
-			$timeout(function(){
-			console.log($scope.patientCount);
-			console.log($scope.donorCount);
-			console.log($scope.countryCount);
-			console.log($scope.countryArray);}
-			,2000);
 		};
 		// Find existing Patient
 		$scope.findOne = function() {
