@@ -19,7 +19,7 @@ var user, patient;
 describe('Patient Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
-			firstName: 'Full',
+			name: 'Full Name',
 			lastName: 'Name',
 			displayName: 'Full Name',
 			email: 'test@test.com',
@@ -30,6 +30,15 @@ describe('Patient Model Unit Tests:', function() {
 		user.save(function() { 
 			patient = new Patient({
 				name: 'Patient Name',
+				dob: 'Date of Birth',
+				sex: 'Patient sex',
+				country: 'Patient country',
+				description: 'description',
+				story: 'story',
+				donor: 0,
+				image: 'Patient image',
+				amountCollected: 0,
+				amountNeeded: 0,
 				user: user
 			});
 

@@ -6,6 +6,7 @@ angular.module('patients').config(function() {
 }).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients', 'Donate', 'DonatedValue',
     function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, Donate, DonatedValue) {
         $scope.authentication = Authentication;
+        $scope.DonatedValue = DonatedValue;
         $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
         $scope.fileUploaded = true;
         $scope.fileLoading = false;
@@ -125,6 +126,7 @@ angular.module('patients').config(function() {
                 }
             }
         };
+
         $scope.start = function(indexOftheFile) {
             $scope.fileLoading = true;
             var formData = {
@@ -197,7 +199,7 @@ angular.module('patients').config(function() {
         };
 
         $scope.findOneToDonate = function() {
-            $scope.amountCollected = DonatedValue.amountDonated;
+            $scope.amountCollected = $scope.DonatedValue.amountDonated;
 
             $scope.patient = Donate.get({
                 patientId: $stateParams.patientId
@@ -219,7 +221,7 @@ angular.module('patients').config(function() {
         $scope.donateUpdate = function() {
             var patient = $scope.patient;
             patient.$update(function() {
-                $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been recieved';
+                $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been received';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -271,7 +273,6 @@ angular.module('patients').config(function() {
                     });
                 }
             );
-            $timeout(function() {}, 2000);
         };
         // Find existing Patient
         $scope.findOne = function() {
@@ -282,16 +283,14 @@ angular.module('patients').config(function() {
                 $scope.progressBar(r.amountCollected, r.amountNeeded);
             });
         };
-
-        // $scope.completeCSSclass="donateComplete";
         //percentage of patients funds
         $scope.getFundsPerc = function(amountCollected, amountNeeded) {
-            // if (amountCollected >= amountNeeded){
-            //     document.getElementById('progressBar2').style.color = "green";
-            // }
             return Math.round((amountCollected / amountNeeded) * 100);
         };
+
+        $scope.progressBarObject = undefined;
         $scope.progressBar = function(amountCollected, amountNeeded) {
+
             var perc = Math.floor((amountCollected / amountNeeded) * 100);
             var options = {
                 min: 0,
@@ -324,14 +323,11 @@ angular.module('patients').config(function() {
             } else {
                 options.text.template = '<span class="perc">{0}%</span>' + '<br>' +'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' + amountCollected + ' raised' +'<br>'+ '$' + (amountNeeded - amountCollected)+ ' to go';
             }
-
-
-            var timer = null,
-                startTime = null,
-                progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
+             $scope.progressBarObject = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
         };
 
         $scope.updateRate = function(amountDonated) {
+
             var i = parseInt(amountDonated, 10);
             i = i > 0 ? i : 0;
             DonatedValue.amountDonated = i;
@@ -339,6 +335,7 @@ angular.module('patients').config(function() {
             $scope.progressBar(newAmount, $scope.patient.amountNeeded);
 
         };
+
         $scope.ellipsis = function(story, length) {
             return story.substring(0, length).replace(/[^ ]*$/, '...');
         };

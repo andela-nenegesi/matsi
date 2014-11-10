@@ -125,7 +125,7 @@
 				_id: '525cf20451979dea2c000001',
 				name: 'New Patient'
 			});
-
+			scope.authentication.user = true;
 			// Mock Patient in scope
 			scope.patient = samplePatientPutData;
 
@@ -158,6 +158,18 @@
 
 			// Test array after successful delete
 			expect(scope.patients.length).toBe(0);
+		}));
+		it('$scope.findOneToDonate() should save amountCollected', inject(function(){
+			scope.findOneToDonate();
+			expect(scope.amountCollected).toEqual(scope.DonatedValue.amountDonated);
+		}));
+
+		it('$scope.updateRate() should call $scope.progressBar', inject(function(){
+			//var spy = jasmine.createSpy('scope.progressBar');
+			scope.findOne();
+			scope.updateRate(0);
+			expect(scope.progressBarObject).toBeDefined();
+			//expect(spy).toHaveBeenCalled();
 		}));
 	});
 }());

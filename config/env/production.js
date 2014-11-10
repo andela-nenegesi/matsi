@@ -8,7 +8,8 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
 			],
-			js: ['public/lib/angular/angular.js',
+			js: [
+				'public/lib/angular/angular.js',
 				'public/lib/angular-payments/lib/angular-payments.js',
 				'public/lib/ng-file-upload/angular-file-upload-shim.min.js',
 				'public/lib/ng-file-upload/angular-file-upload.min.js',
