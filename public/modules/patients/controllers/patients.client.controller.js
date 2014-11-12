@@ -220,6 +220,11 @@ angular.module('patients').config(function() {
         $scope.donateUpdate = function() {
             var patient = $scope.patient;
             patient.$update(function() {
+                
+                if($scope.mockRedirect)
+                    {
+                        $scope.goPatientHome(true);
+                    }
                 $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been received';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
