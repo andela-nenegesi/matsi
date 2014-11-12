@@ -184,8 +184,7 @@ angular.module('patients').config(function() {
         };
 
         // donate function added by Terwase Gberikon
-
-        $scope.stripeCallback = function(code, result) {
+         $scope.stripeCallback = function(code, result) {
             if (result.error) {
                 window.alert('it failed! error: ' + result.error.message);
             } else {

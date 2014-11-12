@@ -140,6 +140,26 @@
 			expect($location.path()).toBe('/patients/' + samplePatientPutData._id);
 		}));
 
+it('$scope.dontate() should update a valid Patient', inject(function(Patients) {
+			// Define a sample Patient put data
+			var samplePatientPutData = new Donate({
+				_id: '525cf20451979dea2c000001',
+				donor: 2,
+				amountCollected: 50
+			});
+			// Mock Patient in scope
+			scope.patient = samplePatientPutData;
+
+			// Set PUT response
+			$httpBackend.expectPUT(/patients\/([0-9a-fA-F]{24})$\/donate/).respond();
+
+			// Run controller functionality
+			scope.update();
+			$httpBackend.flush();
+
+			// Test URL location to new object
+			expect($location.path()).toBe('/patients/' + samplePatientPutData._id);
+		}));
 		it('$scope.remove() should send a DELETE request with a valid patientId and remove the Patient from the scope', inject(function(Patients) {
 			// Create new Patient object
 			var samplePatient = new Patients({
