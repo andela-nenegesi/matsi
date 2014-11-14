@@ -33,10 +33,12 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.passMatch2 = true;
 			}
 		};
-        $scope.signin = function() {
-            $http.post('/auth/signin', $scope.credentials).success(function(response) {
-                // If successful we assign the response to the global user model
-                $scope.authentication.user = response;
+
+		$scope.signin = function() {
+			console.log($scope.credentials);
+			$http.post('/auth/signin', $scope.credentials).success(function(response) {
+				// If successful we assign the response to the global user model
+				$scope.authentication.user = response;
 
 				//User should stay on the current page
 				// And redirect to the index page

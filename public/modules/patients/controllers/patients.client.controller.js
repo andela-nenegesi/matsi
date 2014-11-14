@@ -108,6 +108,8 @@ angular.module('patients').config(function() {
                 $scope.error = errorResponse.data.message;
             });
         };
+
+        
         // Image Upload
         //      --on File Select
         $scope.onFileSelect = function($files) {
@@ -120,6 +122,7 @@ angular.module('patients').config(function() {
                     if ($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
                         // $scope.correctFormat = true;
                         $scope.start(i);
+
                     } else {
                         alert('Wrong file format...');
                         $scope.correctFormat = true;
@@ -345,7 +348,6 @@ angular.module('patients').config(function() {
                 reversed: false
 
             };
-
             if (perc >= 100) {
                 options.layoutOptions.circular.color = '#3BB83B';
                 options.text.template = '<span class="perc"> 100%</span>' + '<br>' + 'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' +  amountCollected + ' raised' ;
@@ -355,7 +357,6 @@ angular.module('patients').config(function() {
             }
             $scope.progressBarObject = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
         };
-
         $scope.updateRate = function(amountDonated) {
 
             var i = parseInt(amountDonated, 10);
