@@ -75,7 +75,9 @@ angular.module('core').controller('HeaderController', [
   '$scope',
   'Authentication',
   'Menus',
-  function ($scope, Authentication, Menus) {
+  '$modal',
+  '$log',
+  function ($scope, Authentication, Menus, $modal, $log) {
     $scope.authentication = Authentication;
     $scope.isCollapsed = false;
     $scope.menu = Menus.getMenu('topbar');
@@ -86,6 +88,18 @@ angular.module('core').controller('HeaderController', [
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
     });
+    //modal for signIn
+    $scope.modalSignIn = function (size) {
+      var modalInstance = $modal.open({
+          templateUrl: 'modules/users/views/authentication/signin.client.view.html',
+          controller: function ($scope, $modalInstance) {
+            $scope.signin = function () {
+              $modalInstance.close();
+            };
+          },
+          size: size
+        });
+    };
   }
 ]);'use strict';
 angular.module('core').controller('HomeController', [
@@ -277,10 +291,12 @@ angular.module('patients').config(function () {
   '$location',
   'Authentication',
   'Patients',
+  'CurPats',
   'Donate',
   'DonatedValue',
-  function ($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, Donate, DonatedValue) {
+  function ($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, CurPats, Donate, DonatedValue) {
     $scope.authentication = Authentication;
+    $scope.DonatedValue = DonatedValue;
     $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
     $scope.fileUploaded = true;
     $scope.fileLoading = false;
@@ -293,8 +309,11 @@ angular.module('patients').config(function () {
       }
       return str;
     };
-    var FBShare = function () {
-      FB.ui({
+    var fBShare = function () {
+      //var FB = FB?FB:null;
+      if (!window.FB)
+        return;
+      window.FB.ui({
         method: 'feed',
         link: $scope.url,
         picture: $scope.patient.image,
@@ -307,7 +326,7 @@ angular.module('patients').config(function () {
       var shareURL;
       switch (i) {
       case 1:
-        FBShare();
+        fBShare();
         break;
       case 2:
         shareURL = '//twitter.com/intent/tweet?original_referer=' + url + '&text=' + $scope.patient.description + '&tw_p=tweetbutton&url=' + url;
@@ -461,7 +480,7 @@ angular.module('patients').config(function () {
       }
     };
     $scope.findOneToDonate = function () {
-      $scope.amountCollected = DonatedValue.amountDonated;
+      $scope.amountCollected = $scope.DonatedValue.amountDonated;
       $scope.patient = Donate.get({ patientId: $stateParams.patientId });
     };
     $scope.goPatientHome = function (toDonate) {
@@ -477,7 +496,10 @@ angular.module('patients').config(function () {
     $scope.donateUpdate = function () {
       var patient = $scope.patient;
       patient.$update(function () {
-        $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been recieved';
+        if ($scope.mockRedirect) {
+          $scope.goPatientHome(true);
+        }
+        $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been received';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -491,9 +513,30 @@ angular.module('patients').config(function () {
         $scope.error = errorResponse.data.message;
       });
     };
+    $scope.patSkip = 0;
+    // console.log(CurPats.curPats);
+    $scope.viewMore = function (currentPatients) {
+      $scope.patSkip++;
+      // console.log($scope.patSkip);
+      $scope.find();
+    };
     // Find a list of Patients
+    $scope.patientArray = [];
+    $scope.showViewMore = true;
     $scope.find = function () {
-      $scope.patients = Patients.query();
+      Patients.query({ page: $scope.patSkip }).$promise.then(function (data) {
+        console.log(data.length);
+        if (data.length < 4) {
+          $scope.showViewMore = false;
+          // var tr = data;
+          $scope.patientArray = $scope.patientArray.concat(data);
+          $scope.patients = $scope.patientArray;
+        } else {
+          var tr = data.splice(0, data.length - 1);
+          $scope.patientArray = $scope.patientArray.concat(tr);
+          $scope.patients = $scope.patientArray;
+        }
+      });
     };
     $scope.countryPush = function (value, value2) {
       if (value) {
@@ -525,8 +568,6 @@ angular.module('patients').config(function () {
           }
         });
       });
-      $timeout(function () {
-      }, 2000);
     };
     // Find existing Patient
     $scope.findOne = function () {
@@ -535,14 +576,11 @@ angular.module('patients').config(function () {
         $scope.progressBar(r.amountCollected, r.amountNeeded);
       });
     };
-    // $scope.completeCSSclass="donateComplete";
     //percentage of patients funds
     $scope.getFundsPerc = function (amountCollected, amountNeeded) {
-      // if (amountCollected >= amountNeeded){
-      //     document.getElementById('progressBar2').style.color = "green";
-      // }
       return Math.round(amountCollected / amountNeeded * 100);
     };
+    $scope.progressBarObject = undefined;
     $scope.progressBar = function (amountCollected, amountNeeded) {
       var perc = Math.floor(amountCollected / amountNeeded * 100);
       var options = {
@@ -572,7 +610,7 @@ angular.module('patients').config(function () {
       } else {
         options.text.template = '<span class="perc">{0}%</span>' + '<br>' + 'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' + amountCollected + ' raised' + '<br>' + '$' + (amountNeeded - amountCollected) + ' to go';
       }
-      var timer = null, startTime = null, progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
+      $scope.progressBarObject = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
     };
     $scope.updateRate = function (amountDonated) {
       var i = parseInt(amountDonated, 10);
@@ -614,6 +652,10 @@ angular.module('patients').factory('Donate', [
 ]);
 angular.module('patients').factory('DonatedValue', [function () {
     return { amountDonated: 0 };
+  }]);
+angular.module('patients').factory('CurPats', [function () {
+    var actions = { curPats: [] };
+    return actions;
   }]);'use strict';
 // Config HTTP Error Handling
 angular.module('users').config([
@@ -662,9 +704,6 @@ angular.module('users').config([
     }).state('signup', {
       url: '/signup',
       templateUrl: 'modules/users/views/authentication/signup.client.view.html'
-    }).state('signin', {
-      url: '/signin',
-      templateUrl: 'modules/users/views/authentication/signin.client.view.html'
     }).state('forgot', {
       url: '/password/forgot',
       templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
@@ -690,8 +729,6 @@ angular.module('users').controller('AuthenticationController', [
     $scope.authentication = Authentication;
     $scope.userRole = '';
     $scope.amountDonated = DonatedValue.amountDonated;
-    // If user is signed in then redirect back home
-    //if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
     $scope.signup = function (credentials) {
       if (credentials.email.substring(credentials.email.indexOf('@'), credentials.email.length) === '@andela.co') {
         credentials.userRoles = 'admin';
@@ -700,9 +737,8 @@ angular.module('users').controller('AuthenticationController', [
       }
       $http.post('/auth/signup', credentials).success(function (response) {
         // If successful we assign the response to the global user model
-        $scope.authentication.user = response;
-        // And redirect to the index page
-        $location.path('/');
+        $scope.authentication.user = response;  //User should stay on the current page
+                                                // And redirect to the index page
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -719,11 +755,11 @@ angular.module('users').controller('AuthenticationController', [
       }
     };
     $scope.signin = function () {
+      console.log($scope.credentials);
       $http.post('/auth/signin', $scope.credentials).success(function (response) {
         // If successful we assign the response to the global user model
-        $scope.authentication.user = response;
-        // And redirect to the index page
-        $location.path('/');
+        $scope.authentication.user = response;  //User should stay on the current page
+                                                // And redirect to the index page
       }).error(function (response) {
         $scope.error = response.message;
       });
