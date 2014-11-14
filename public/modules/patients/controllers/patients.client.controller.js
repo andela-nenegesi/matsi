@@ -19,8 +19,11 @@ angular.module('patients').config(function() {
             }
             return str;
         };
-        var FBShare = function() {
-            FB.ui({
+        var fBShare = function() {
+            //var FB = FB?FB:null;
+            if(!window.FB)
+                return;
+            window.FB.ui({
                 method: 'feed',
                 link: $scope.url,
                 picture: $scope.patient.image,
@@ -35,11 +38,11 @@ angular.module('patients').config(function() {
 
             switch (i) {
                 case 1:
-                    FBShare();
+                    fBShare();
                     break;
                 case 2:
                     shareURL = '//twitter.com/intent/tweet?original_referer=' + url + '&text=' +
-                        $scope.patient.description + '&tw_p=tweetbutton&url=' + url;
+                    $scope.patient.description + '&tw_p=tweetbutton&url=' + url;
                     break;
                 case 3:
                     shareURL = '//plus.google.com/share?url=' + url;
@@ -184,7 +187,7 @@ angular.module('patients').config(function() {
         };
 
         // donate function added by Terwase Gberikon
-         $scope.stripeCallback = function(code, result) {
+        $scope.stripeCallback = function(code, result) {
             if (result.error) {
                 window.alert('it failed! error: ' + result.error.message);
             } else {
@@ -220,11 +223,10 @@ angular.module('patients').config(function() {
         $scope.donateUpdate = function() {
             var patient = $scope.patient;
             patient.$update(function() {
-                
                 if($scope.mockRedirect)
-                    {
-                        $scope.goPatientHome(true);
-                    }
+                {
+                    $scope.goPatientHome(true);
+                }
                 $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been received';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
@@ -317,6 +319,7 @@ angular.module('patients').config(function() {
                     template: '<span style="font-size:50px;">{0}</span>'
                 },
                 reversed: false
+
             };
 
             if (perc >= 100) {
@@ -326,7 +329,7 @@ angular.module('patients').config(function() {
             } else {
                 options.text.template = '<span class="perc">{0}%</span>' + '<br>' +'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' + amountCollected + ' raised' +'<br>'+ '$' + (amountNeeded - amountCollected)+ ' to go';
             }
-             $scope.progressBarObject = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
+            $scope.progressBarObject = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
         };
 
         $scope.updateRate = function(amountDonated) {
