@@ -1,8 +1,10 @@
 <section class="row " data-ng-controller="AuthenticationController">
-	<div class="">
-		<h1 class="h3"> Sing In </h1>
+	<div >
 		<div class="col-xs-offset-2 col-xs-8 ">
-
+			<div class="modalTextFullWidth">
+				<h1 class="h3"> Nice to see you again! </h1>
+				<p>Sign in to spread the health.</p>
+			</div>
 			<form data-ng-submit="signin()" class="form-horizontal" autocomplete="off">
 				<fieldset>
 					<div class="form-group">
@@ -13,17 +15,16 @@
 					</div>
 					<div class="text-center form-group">
 						<div class "forgot-password">
-						<a href="/#!/password/forgot">Forgot your password?</a>
+							<a href="/#!/password/forgot">Forgot your password?</a>
+						</div>
+						<button type="submit" class="moveButtonDown btn btn-primary">Sign in</button>&nbsp; or&nbsp;
+						<a href="/#!/signup">Sign up</a>
 					</div>
-					<button type="submit" class="btn btn-primary">Sign in</button>&nbsp; or&nbsp;
-					<a href="/#!/signup">Sign up</a>
+					<div data-ng-show="error" class="text-center text-danger">
+						<strong data-ng-bind="error"></strong>
+					</div>
+				</fieldset>
+			</form>
 		</div>
-
-		<div data-ng-show="error" class="text-center text-danger">
-			<strong data-ng-bind="error"></strong>
-		</div>
-		</fieldset>
-		</form>
-	</div>
 	</div>
 </section>
