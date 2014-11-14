@@ -33,3 +33,10 @@ angular.module('patients').factory('DonatedValue', [
 		};
 	}
 ]);
+
+angular.module('patients').factory('CurPats',[function(){
+	var actions = {
+		curPats:[]
+	}
+	return actions;
+}]);

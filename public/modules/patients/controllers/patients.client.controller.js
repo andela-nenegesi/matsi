@@ -3,8 +3,8 @@
 // Patients controller
 angular.module('patients').config(function() {
     window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
-}).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients', 'Donate', 'DonatedValue',
-    function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, Donate, DonatedValue) {
+}).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients', 'CurPats', 'Donate', 'DonatedValue',
+    function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, CurPats, Donate, DonatedValue) {
         $scope.authentication = Authentication;
         $scope.DonatedValue = DonatedValue;
         $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
@@ -236,11 +236,34 @@ angular.module('patients').config(function() {
                 $scope.error = errorResponse.data.message;
             });
         };
-
-        // Find a list of Patients
-        $scope.find = function() {
-            $scope.patients = Patients.query();
+          $scope.patSkip = 0;
+        // console.log(CurPats.curPats);
+        $scope.viewMore = function(currentPatients){
+            $scope.patSkip ++;
+            // console.log($scope.patSkip);
+            $scope.find();
         };
+        // Find a list of Patients
+        $scope.patientArray = [];
+        $scope.showViewMore = true; 
+
+        $scope.find = function() {
+        Patients.query({page:$scope.patSkip}).$promise.then(function(data){
+            console.log(data.length);
+                if (data.length < 4)
+            {
+                $scope.showViewMore = false; 
+            // var tr = data;
+            $scope.patientArray= $scope.patientArray.concat(data);
+            $scope.patients = $scope.patientArray;
+            }
+            else{
+            var tr = data.splice(0,(data.length-1));
+            $scope.patientArray= $scope.patientArray.concat(tr);
+            $scope.patients = $scope.patientArray;
+        }
+        });
+    };
         $scope.countryPush = function(value, value2) {
             if (value) {
                 $scope.countryCount++;
