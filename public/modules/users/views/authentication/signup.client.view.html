@@ -1,7 +1,7 @@
 <section class="row pushFooter" data-ng-controller="AuthenticationController">
-<div class="" data-ng-if ="authentication.user.userRoles==='admin'">
+<div class="" data-ng-if ="authentication.user.userRoles==='admin' || amountDonated >= 5">
 	<div class="col-xs-offset-2 col-xs-8 col-md-8">
-		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+		<form name="userForm" data-ng-submit="signup(credentials)" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
 				<div class="form-group col-sm-12">
 					<div class="input-group ">
@@ -41,7 +41,7 @@
 							<span class="input-group-addon">
 							<i class="text-muted glyphicon glyphicon-asterisk"></i>
 							</span>
-							<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" data-ng-model="credentials.confirmPassword" placeholder="Confirm Password" ng-keyup="checkpass()"
+							<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" data-ng-model="credentials.confirmPassword" placeholder="Confirm Password" ng-keyup="checkpass(credentials.password, credentials.confirmPassword)"
 							>
 						</div>
 					</div>
@@ -58,7 +58,12 @@
 		</form>
 	</div>
 </div>
-<div class="alert alert-warning text-center"data-ng-if ="authentication.user.userRoles === 'user'|| !authentication.user">
+<div class="alert alert-warning text-center"data-ng-if ="(authentication.user.userRoles === 'user'|| !authentication.user) && amountDonated === 0">
         This Page is available to Administrators only, Please <a href="/#!/signin">signin</a> with Admin Account 
+
   </div>
+<div class="alert alert-warning text-center" data-ng-if ="amountDonated===0 && !authentication.user">
+        You have to make a donation before sign up
+  </div>
+  
 </section>

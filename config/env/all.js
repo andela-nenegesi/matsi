@@ -3,7 +3,7 @@
 module.exports = {
 	app: {
 		title: 'matsi',
-		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+		description: 'Matsi is a website that helps with healthcare funding for people with health challenges.',
 		keywords: 'matsi, meanstack, healthcare funding'
 	},
 	port: process.env.PORT || 3000,

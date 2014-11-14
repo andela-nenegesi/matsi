@@ -3,14 +3,60 @@
 // Patients controller
 angular.module('patients').config(function() {
     window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
-}).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients',
-    function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients) {
+}).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients', 'Donate', 'DonatedValue',
+    function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, Donate, DonatedValue) {
         $scope.authentication = Authentication;
+<<<<<<< HEAD
         $scope.url = 'https://matsi1.herokuapp.com/#!/' + $location.path();
         $scope.fileUploaded = true;
         $scope.fileLoading=false;
+=======
+        $scope.DonatedValue = DonatedValue;
+        $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
+        $scope.fileUploaded = true;
+        $scope.fileLoading = false;
+>>>>>>> 868b0b812e70de86d40957b09458aa80337100be
         // $scope.url = $location.absUrl();
         //Date picker
+        var shortenString = function(str) {
+            if (typeof str === typeof '') {
+                str = str.length >= 200 ? str.substring(0, 197) + '...' : str;
+                return str;
+            }
+            return str;
+        };
+        var fBShare = function() {
+            //var FB = FB?FB:null;
+            if(!window.FB)
+                return;
+            window.FB.ui({
+                method: 'feed',
+                link: $scope.url,
+                picture: $scope.patient.image,
+                caption: shortenString($scope.patient.story),
+                message: shortenString($scope.patient.description)
+            });
+        };
+
+        $scope.sharePatient = function(i) {
+            var url = encodeURIComponent($scope.url);
+            var shareURL;
+
+            switch (i) {
+                case 1:
+                    fBShare();
+                    break;
+                case 2:
+                    shareURL = '//twitter.com/intent/tweet?original_referer=' + url + '&text=' +
+                    $scope.patient.description + '&tw_p=tweetbutton&url=' + url;
+                    break;
+                case 3:
+                    shareURL = '//plus.google.com/share?url=' + url;
+                    break;
+            }
+            if (shareURL)
+                window.open(shareURL, 'matsi_window', 'height=250,width=600,toolbar=0,location=0');
+        };
         $scope.today = function() {
             $scope.dt = new Date();
             var curr_date = $scope.dt.getDate();
@@ -18,6 +64,7 @@ angular.module('patients').config(function() {
             var curr_year = $scope.dt.getFullYear();
             $scope.dt = curr_year + curr_month + curr_date;
         };
+
         $scope.today();
         $scope.clear = function() {
             $scope.dt = null;
@@ -70,7 +117,7 @@ angular.module('patients').config(function() {
 
         
         // Image Upload
-        // 		--on File Select
+        //      --on File Select
         $scope.onFileSelect = function($files) {
             $scope.files = $files;
             $scope.imageFiles = [];
@@ -91,8 +138,13 @@ angular.module('patients').config(function() {
                 }
             }
         };
+
         $scope.start = function(indexOftheFile) {
+<<<<<<< HEAD
         	$scope.fileLoading=true;
+=======
+            $scope.fileLoading = true;
+>>>>>>> 868b0b812e70de86d40957b09458aa80337100be
             var formData = {
                 key: $scope.files[indexOftheFile].name,
                 AWSAccessKeyID: 'AKIAIWGDKQ33PXY36LQA',
@@ -118,8 +170,13 @@ angular.module('patients').config(function() {
                     var imageUrl = 'https://kehesjay.s3-us-west-2.amazonaws.com/' + $scope.files[indexOftheFile].name;
                     $scope.uploadResult.push(imageUrl);
                     $scope.fileUploaded = false;
+<<<<<<< HEAD
                     $scope.fileLoading=false;
                 },2000);
+=======
+                    $scope.fileLoading = false;
+                }, 2000);
+>>>>>>> 868b0b812e70de86d40957b09458aa80337100be
             }, function(response) {
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
                 alert('Connection Timed out');
@@ -148,26 +205,64 @@ angular.module('patients').config(function() {
         };
 
         // donate function added by Terwase Gberikon
-
         $scope.stripeCallback = function(code, result) {
             if (result.error) {
                 window.alert('it failed! error: ' + result.error.message);
             } else {
-                window.alert('your donation of ' + '$' + $scope.amountCollected + ' has been recieved');
+
+                $scope.patient.amountCollected += $scope.amountCollected;
+                $scope.patient.donor++;
+                $scope.donateUpdate();
+                $scope.actionText = $scope.authentication.user?'Continue':'Sign Up';
+                DonatedValue.amountDonated = $scope.amountCollected;
             }
         };
-        /////////////////////////////////////////////////////////////
 
-        // Update existing Patient
-        $scope.update = function() {
+        $scope.findOneToDonate = function() {
+            $scope.amountCollected = $scope.DonatedValue.amountDonated;
+
+            $scope.patient = Donate.get({
+                patientId: $stateParams.patientId
+            });
+        };
+
+        $scope.goPatientHome = function(toDonate) {
+            if (toDonate)
+                $location.path('patients/' + $scope.patient._id + '/donate');
+            else
+            {
+                if(!$scope.authentication.user)
+                    $location.path('signup');
+                else
+                    $location.path('patients/' + $scope.patient._id);
+            }
+        };
+
+        $scope.donateUpdate = function() {
             var patient = $scope.patient;
             patient.$update(function() {
-                $location.path('patients/' + patient._id);
+
+                if($scope.mockRedirect)
+                {
+                    $scope.goPatientHome(true);
+                }
+                $scope.donateResult = 'Your donation of $' + $scope.amountCollected + ' has been received';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
 
+        // Update existing Patient
+        $scope.update = function() {
+            var patient = $scope.patient;
+            patient.$update(function() {
+                $scope.goPatientHome();
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
+<<<<<<< HEAD
 		// Find a list of Patients
 		$scope.find = function() {
 			$scope.patients = Patients.query();
@@ -253,28 +348,113 @@ angular.module('patients').config(function() {
                 
             };      
                       
-            if (perc >= 100) {
-                options.layoutOptions.circular.color = 'green';
-                options.text.template = '100%';
-            } else {
-                options.text.template = '{0}%';
-            }
-
-            var timer = null,
-                startTime = null,
-                progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
+=======
+        // Find a list of Patients
+        $scope.find = function() {
+            $scope.patients = Patients.query();
         };
+        $scope.countryPush = function(value, value2) {
+            if (value) {
+                $scope.countryCount++;
+                $scope.countryArray.push(value2);
+            }
+        };
+        $scope.homePageDatas = function() {
+            $scope.patientCount = 0;
+            $scope.donorCount = 0;
+            $scope.countryCount = 0;
+            $scope.countryArray = ['t'];
+            $scope.shouldPush = false;
+            $scope.pushData = '';
+            $scope.datas = Patients.query().$promise.then(
+                function(response) {
+                    angular.forEach(response, function(data, key) {
+                        $scope.donorCount += data.donor;
+                        if (data.donor > 0) {
+                            $scope.patientCount++;
+                            angular.forEach($scope.countryArray, function(country, key) {
+                                if (data.country.toUpperCase() === country.toUpperCase()) {
+                                    $scope.shouldPush = false;
+                                } else {
+                                    $scope.shouldPush = true;
+                                    $scope.pushData = data.country;
+                                }
+                            });
+                            $scope.countryPush($scope.shouldPush, $scope.pushData);
+                        }
+                    });
+                }
+            );
+        };
+        // Find existing Patient
+        $scope.findOne = function() {
+            $scope.patient = Patients.get({
+                patientId: $stateParams.patientId
+            }, function(r) {
+                $scope.patientName = $scope.patient.name.toUpperCase();
+                $scope.progressBar(r.amountCollected, r.amountNeeded);
+            });
+        };
+        //percentage of patients funds
+        $scope.getFundsPerc = function(amountCollected, amountNeeded) {
+            return Math.round((amountCollected / amountNeeded) * 100);
+        };
+
+        $scope.progressBarObject = undefined;
+        $scope.progressBar = function(amountCollected, amountNeeded) {
+
+            var perc = Math.floor((amountCollected / amountNeeded) * 100);
+            var options = {
+                min: 0,
+                max: 100,
+                value: perc,
+                layout: 'circular',
+                layoutOptions: {
+                    circular: {
+                        width: 10,
+                        color: 'orange',
+                        colorDisabled: '#eee',
+                        borderColor: '#eee',
+                        borderWidth: 1,
+                        backgroundColor: '#eee'
+                    }
+                },
+
+                text: {
+                    enabled: true,
+                    template: '<span style="font-size:50px;">{0}</span>'
+                },
+                reversed: false
+
+            };
+
+>>>>>>> 868b0b812e70de86d40957b09458aa80337100be
+            if (perc >= 100) {
+                options.layoutOptions.circular.color = '#3BB83B';
+                options.text.template = '<span class="perc"> 100%</span>' + '<br>' + 'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' +  amountCollected + ' raised' ;
+
+            } else {
+                options.text.template = '<span class="perc">{0}%</span>' + '<br>' +'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' + amountCollected + ' raised' +'<br>'+ '$' + (amountNeeded - amountCollected)+ ' to go';
+            }
+            $scope.progressBarObject = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
+        };
+<<<<<<< HEAD
         var amountCollected = 200;
         var amountNeeded = 1000;
         $scope.progressBar(amountCollected, amountNeeded);
+=======
+
+>>>>>>> 868b0b812e70de86d40957b09458aa80337100be
         $scope.updateRate = function(amountDonated) {
+
             var i = parseInt(amountDonated, 10);
             i = i > 0 ? i : 0;
-            var newAmount = amountCollected + i;
-            $scope.progressBar(newAmount, amountNeeded);
+            DonatedValue.amountDonated = i;
+            var newAmount = $scope.patient.amountCollected + i;
+            $scope.progressBar(newAmount, $scope.patient.amountNeeded);
 
         };
-        $scope.fundsPercentage = getFundsPerc();
+
         $scope.ellipsis = function(story, length) {
             return story.substring(0, length).replace(/[^ ]*$/, '...');
         };
