@@ -30,67 +30,71 @@
 	<meta name="twitter:image" content="/img/brand/logo.png">
 
 	<!-- ProgressBar circle -->
-    <link rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/shieldui-all.min.css" />
-    <link id="gridcss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
-   
+	<link rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/shieldui-all.min.css" />
+	<link id="gridcss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+
 	<!-- Fav Icon -->
 	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
 	<!--Application CSS Files-->
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
 	{% endfor %}
-	 <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.10.2.min.js"></script>
-     <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+	<script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 	<script>
-		window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '1530783810493250',
-	      xfbml      : true,
-	      version    : 'v2.2',
-	      status: true,
-	      frictionless:true,
-	      cookie: true
-	    });
-	  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+		window.fbAsyncInit = function() {
+			window.FB = FB;
+			window.FB.init({
+				appId      : '1530783810493250',
+				xfbml      : true,
+				version    : 'v2.2',
+				status: true,
+				frictionless:true,
+				cookie: true
+			});
+		};
+
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement(s); js.id = id;
+			js.async = true;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 
 	</script>
 	<!-- HTML5 Shim -->
 	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="  matsiNav"></header>
-	<section class="content">
-		<section class="container">
-			{% block content %}{% endblock %}
-		</section>
+<div id="fb-root"></div>
+<header data-ng-include="'/modules/core/views/header.client.view.html'" class="  matsiNav"></header>
+<section class="content">
+	<section class="container">
+		{% block content %}{% endblock %}
 	</section>
+</section>
 
-	<!--Embedding The User Object-->
-	<script type="text/javascript">
-		var user = {{ user | json | safe }};
-	</script>
+<!--Embedding The User Object-->
+<script type="text/javascript">
+	var user = {{ user | json | safe }};
+</script>
 
-	<!--Application JavaScript Files-->
-	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
-	{% endfor %} 
-		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-	{% if process.env.NODE_ENV === 'development' %}
-	<!--Livereload script rendered -->
-	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+<!--Application JavaScript Files-->
+{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
+{% endfor %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+{% if process.env.NODE_ENV === 'development' %}
+<!--Livereload script rendered -->
+<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
 
-	{% endif %}
-	<footer ng-include="'/modules/core/views/footer.client.view.html'"></footer>
+{% endif %}
+<footer ng-include="'/modules/core/views/footer.client.view.html'"></footer>
 </body>
 
 </html>

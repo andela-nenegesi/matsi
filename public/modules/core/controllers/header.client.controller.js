@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus',
-	function($scope, Authentication, Menus) {
+angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus', '$modal', '$log',
+	function($scope, Authentication, Menus, $modal, $log) {
 		$scope.authentication = Authentication;
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
@@ -14,5 +14,18 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
 		});
+
+		//modal for signIn
+		$scope.modalSignIn = function (size) {
+			var modalInstance = $modal.open({
+				templateUrl: 'modules/users/views/authentication/signin.client.view.html',
+				controller: function($scope, $modalInstance){
+					$scope.signin = function () {
+						$modalInstance.close();
+					};
+				},
+				size: size,
+			});
+		};
 	}
 ]);
