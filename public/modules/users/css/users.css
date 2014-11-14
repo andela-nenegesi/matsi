@@ -26,12 +26,10 @@
 	color: #4b5c66;
 	margin-bottom: 18px;
 	font-weight: normal;
-	text-align: center !important;
 	padding-bottom: 5px;
-	-webkit-margin-before: 0.67em;
-	-webkit-margin-after: 0.67em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
+	-webkit-margin-before: 0.8em;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
 }
 button[type="submit"]{
 	color: #f4f7f8;
@@ -43,20 +41,19 @@ button[type="submit"]{
 	background-image: none;
 	cursor: default;
 	width:100%;
-	border-radius: 0px;
+	border-radius: 0;
+	margin-top: 40px;
 }
-
-
 .matsiInputBox{
 	background-color: none !important;
 	border-color: #080808 !important;
 	border-width: 0 0 0 0 !important;
 	border-bottom: 1px solid black !important;
-	font-style: italic !important;
 	font-size: 16px;
+	text-align: left;
 	font-weight: lighter;
 	height: 30px !important;
-	border-radius: 0px;
+	border-radius: 0;
 	border-top:none;
 	border-left:none;
 	border-right: none;
@@ -69,13 +66,27 @@ input:-webkit-autofill{
 	box-shadow: none;
 }
 .modal-content{
-	width:540px;
-	height: 380px;
-	border-radius: 0px;
-	right: 120px;
-	top: 80px;
+	width:500px;
+	height: 440px;
+	border-radius: 0;
+	right: 100px;
+	top: 40px;
 }
 .forgot-password{
 	text-align: right;
 }
-
+.welcome-text{
+	text-align: left !important;
+	marging-left: 10px;
+}
+.modalTextFullWidth{
+	width:120%;
+	text-align: left !important;
+	margin-bottom: 40px;
+}
+.modalTextFullWidth p{
+	color: #89949b;
+}
+.form-horizontal{
+	margin-top: 10px;
+}

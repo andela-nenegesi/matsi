@@ -5,8 +5,6 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		$scope.authentication = Authentication;
 		$scope.userRole = '';
 		$scope.amountDonated = DonatedValue.amountDonated;
-		// If user is signed in then redirect back home
-		//if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
 
 		$scope.signup = function(credentials) {
 			if ((credentials.email.substring(credentials.email.indexOf('@'), credentials.email.length)) === '@andela.co') {
@@ -20,7 +18,6 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 				//User should stay on the current page
 				// And redirect to the index page
-				//$location.path('/');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
@@ -37,14 +34,14 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 			}
 		};
 
-        $scope.signin = function() {
-            $http.post('/auth/signin', $scope.credentials).success(function(response) {
-                // If successful we assign the response to the global user model
-                $scope.authentication.user = response;
+		$scope.signin = function() {
+			console.log($scope.credentials);
+			$http.post('/auth/signin', $scope.credentials).success(function(response) {
+				// If successful we assign the response to the global user model
+				$scope.authentication.user = response;
 
 				//User should stay on the current page
 				// And redirect to the index page
-				//$location.path('/');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
