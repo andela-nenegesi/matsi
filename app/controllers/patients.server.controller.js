@@ -99,7 +99,7 @@ exports.list = function(req, res) {
 			return schema.limit(lim).skip(skipCount);
 		}
 		return schema;
-	}
+	};
 
 	processSchema(Patient.find()).sort('-created').populate('user', 'displayName').exec(function(err, patients) {
 		 
