@@ -87,7 +87,22 @@ exports.delete = function(req, res) {
 /**
  * List of Patients
  */
-exports.list = function(req, res) { Patient.find().sort('-created').populate('user', 'displayName').exec(function(err, patients) {
+exports.list = function(req, res) {
+
+	var processSchema = function(schema)
+	{
+		if(req.query.page)
+		{
+			var numItems = 3;
+			var lim = numItems + 1;
+			var skipCount = numItems * parseInt(req.query.page,10);
+			return schema.limit(lim).skip(skipCount);
+		}
+		return schema;
+	};
+
+	processSchema(Patient.find()).sort('-created').populate('user', 'displayName').exec(function(err, patients) {
+		 
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -97,6 +112,24 @@ exports.list = function(req, res) { Patient.find().sort('-created').populate('us
 		}
 	});
 };
+
+
+// Event.find()
+//     .select('name')
+//     .limit(perPage)
+//     .skip(perPage * page)
+//     .sort({
+//         name: 'asc'
+//     })
+//     .exec(function(err, events) {
+//         Event.count().exec(function(err, count) {
+//             res.render('events', {
+//                 events: events,
+//                 page: page,
+//                 pages: count / perPage
+//             })
+//         })
+//     })
 
 /**
  * Patient middleware

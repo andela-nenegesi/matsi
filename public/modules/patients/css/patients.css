@@ -102,7 +102,6 @@
 	line-height: 36px;
 	margin-left: 43px;
 	text-align: center;
-	width: 50%;
 	color: #89949b;
 }
 
@@ -145,6 +144,16 @@
 	height: 479px;
 	/*border: 1px solid;*/
 	padding: 0;
+}
+.beforeImg:before{
+	content: ' ';
+	background: url('/modules/patients/img/fullyfunded.png') center center no-repeat;
+	display: block;
+	position: absolute;
+	bottom: -30px;
+	right: -30px;
+	width: 60px;
+	height: 60px;
 }
 .patimglrg img{
 	width: 638px;
@@ -195,7 +204,7 @@
 
 .relatedimage {
 	width: 198px;
-	height: 149px;
+	height: 140px;
 	border:  1px solid #e5e5e5;
 	margin: 54px 20px 54px 60px;
 	background: #e5e5e5;
@@ -227,8 +236,7 @@
 .progress-strip {
 	height: 5px;
 	display: block;
-	margin-top: 148px;
-	margin-left: -31px;
+	margin-left: -15px;
 	width: 198px;
 }
 .progress-strip1 {
@@ -303,6 +311,33 @@
 .donatePatientPix{
 	margin-bottom: 110px;
 }
+p.fullyFunded.ng-scope{
+	width:220px;
+}
+.terwase{
+	padding: 10px;
+	border-radius: 50%;
+	background: #3BB83B;
+	color: white !important;
+	position: absolute;
+	top: -20px;
+	right: -215px;
+}
+.sui-progressbar-text{
+	color: #89949B;
+	top: 250px;
+	left: 30px;
+	text-align: center;
+	font-size: 20px;
+}
+.completeButton{
+	padding: 15px 30px;
+	background-color: #00b2d8;
+	color: #fff;
+	text-align: center;
+}
 
-
-
+.perc {
+	font-size: 40px;
+	color: #4b5c66;
+}

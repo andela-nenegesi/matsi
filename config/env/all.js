@@ -17,6 +17,7 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
+				'public/lib/jquery/dist/jquery.js',
 				'public/lib/ng-file-upload/angular-file-upload-shim.min.js',
 				'public/lib/angular/angular.js',
 				'public/lib/ng-file-upload/angular-file-upload.min.js',
@@ -28,7 +29,9 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/angular-payments/lib/angular-payments.js'
+				'public/lib/angular-payments/lib/angular-payments.js',
+				'public/lib/Stripe/stripe.js',
+				'public/lib/shield/shieldui-all.min.js'
 			]
 		},
 		css: [
@@ -42,7 +45,9 @@ module.exports = {
 		],
 		tests: [
 			'public/lib/angular-mocks/angular-mocks.js',
-			'public/modules/*/tests/*.js'
+			// 'public/modules/*/tests/*.js'
+			'public/modules/patients/tests/patients.client.controller.test.js'
+
 		]
 	}
 };

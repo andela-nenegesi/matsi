@@ -3,8 +3,8 @@
 // Patients controller
 angular.module('patients').config(function() {
     window.Stripe.setPublishableKey('pk_test_lRwjZcqwjWs9OO2H9M76uP9N');
-}).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients', 'Donate', 'DonatedValue',
-    function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, Donate, DonatedValue) {
+}).controller('PatientsController', ['$scope', '$stateParams', '$timeout', '$upload', '$location', 'Authentication', 'Patients', 'CurPats', 'Donate', 'DonatedValue',
+    function($scope, $stateParams, $timeout, $upload, $location, Authentication, Patients, CurPats, Donate, DonatedValue) {
         $scope.authentication = Authentication;
         $scope.DonatedValue = DonatedValue;
         $scope.url = 'http://matsi1.herokuapp.com/#!' + $location.path();
@@ -108,6 +108,8 @@ angular.module('patients').config(function() {
                 $scope.error = errorResponse.data.message;
             });
         };
+
+        
         // Image Upload
         //      --on File Select
         $scope.onFileSelect = function($files) {
@@ -120,6 +122,7 @@ angular.module('patients').config(function() {
                     if ($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
                         // $scope.correctFormat = true;
                         $scope.start(i);
+
                     } else {
                         alert('Wrong file format...');
                         $scope.correctFormat = true;
@@ -243,11 +246,34 @@ angular.module('patients').config(function() {
                 $scope.error = errorResponse.data.message;
             });
         };
-
-        // Find a list of Patients
-        $scope.find = function() {
-            $scope.patients = Patients.query();
+          $scope.patSkip = 0;
+        // console.log(CurPats.curPats);
+        $scope.viewMore = function(currentPatients){
+            $scope.patSkip ++;
+            // console.log($scope.patSkip);
+            $scope.find();
         };
+        // Find a list of Patients
+        $scope.patientArray = [];
+        $scope.showViewMore = true; 
+
+        $scope.find = function() {
+        Patients.query({page:$scope.patSkip}).$promise.then(function(data){
+            console.log(data.length);
+                if (data.length < 4)
+            {
+                $scope.showViewMore = false; 
+            // var tr = data;
+            $scope.patientArray= $scope.patientArray.concat(data);
+            $scope.patients = $scope.patientArray;
+            }
+            else{
+            var tr = data.splice(0,(data.length-1));
+            $scope.patientArray= $scope.patientArray.concat(tr);
+            $scope.patients = $scope.patientArray;
+        }
+        });
+    };
         $scope.countryPush = function(value, value2) {
             if (value) {
                 $scope.countryCount++;
@@ -322,7 +348,6 @@ angular.module('patients').config(function() {
                 reversed: false
 
             };
-
             if (perc >= 100) {
                 options.layoutOptions.circular.color = '#3BB83B';
                 options.text.template = '<span class="perc"> 100%</span>' + '<br>' + 'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' +  amountCollected + ' raised' ;
@@ -332,7 +357,6 @@ angular.module('patients').config(function() {
             }
             $scope.progressBarObject = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
         };
-
         $scope.updateRate = function(amountDonated) {
 
             var i = parseInt(amountDonated, 10);
