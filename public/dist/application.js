@@ -535,7 +535,7 @@ angular.module('patients').config(function () {
         $scope.progressBar(r.amountCollected, r.amountNeeded);
       });
     };
-    $scope.completeCSSclass = 'donateComplete';
+    // $scope.completeCSSclass="donateComplete";
     //percentage of patients funds
     $scope.getFundsPerc = function (amountCollected, amountNeeded) {
       // if (amountCollected >= amountNeeded){
@@ -562,15 +562,15 @@ angular.module('patients').config(function () {
           },
           text: {
             enabled: true,
-            template: '<span style="font-size:20px;">{0}</span> %'
+            template: '<span style="font-size:50px;">{0}</span>'
           },
           reversed: false
         };
       if (perc >= 100) {
-        options.layoutOptions.circular.color = 'green';
-        options.text.template = '100%';
+        options.layoutOptions.circular.color = '#3BB83B';
+        options.text.template = '<span class="perc"> 100%</span>' + '<br>' + 'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' + amountCollected + ' raised';
       } else {
-        options.text.template = '{0}%';
+        options.text.template = '<span class="perc">{0}%</span>' + '<br>' + 'funded by ' + $scope.patient.donor + ' donors' + '<br>' + '$' + amountCollected + ' raised' + '<br>' + '$' + (amountNeeded - amountCollected) + ' to go';
       }
       var timer = null, startTime = null, progress = angular.element(document.getElementById('progress')).shieldProgressBar(options).swidget();
     };
@@ -691,15 +691,14 @@ angular.module('users').controller('AuthenticationController', [
     $scope.userRole = '';
     $scope.amountDonated = DonatedValue.amountDonated;
     // If user is signed in then redirect back home
-    if ($scope.authentication.user.userRoles === 'user')
-      $location.path('/signin');
+    //if ($scope.authentication.user.userRoles === 'user') $location.path('/signin');
     $scope.signup = function (credentials) {
       if (credentials.email.substring(credentials.email.indexOf('@'), credentials.email.length) === '@andela.co') {
         credentials.userRoles = 'admin';
       } else {
         credentials.userRoles = 'user';
       }
-      $http.post('/auth/signup', $scope.credentials).success(function (response) {
+      $http.post('/auth/signup', credentials).success(function (response) {
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
         // And redirect to the index page

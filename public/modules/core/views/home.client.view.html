@@ -5,9 +5,9 @@
 		<a href="/#!/patients" class="fundWhite2 button col-md-3 col-md-offset-5">VIEW PATIENTS</a>	
 	</section>
 	<div class="homeContent2 col-md-12" data-ng-controller="PatientsController" data-ng-init="find()"> 
-		<h2>Meet the Patients</h2>
+		<h2>Meet the patients</h2>
 		<h4>100% of your donation funds life-changing healthcare</h4>
-		<div class="col-md-12" data-ng-init="homePageDatas()">
+		<div class="col-md-12 homepatients" data-ng-init="homePageDatas()">
 			 <a data-ng-repeat="patient in patients |limitTo: 3" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item patients">
                 <div class="patient col-md-4">
                     <div class="patientimg">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="patientstory">
                        <p class="ellipsis">
-                            {{ellipsis(patient.story, 100)}}
+                            {{ellipsis(patient.story, 130)}}
                             <span class="link">Read More&nbsp;»</span>
                         </p>
                     </div>
@@ -36,22 +36,22 @@
 		</div>	
 	</div>
 	<div class="homeContent3 col-md-12">
-		<h2>How Matsi Works</h2>
-		<div class="col-md-12">
-			<div class="col-md-4">
+		<h2 style="font-size: 36px;">How Matsi Works</h2>
+		<div class="col-md-12 howitworks">
+			<div class="col-md-3">
 				<img ng-src="/modules/core/img/loaders/amount.png">
 				<p class="firstLine">Meet a patient</p>
-				<p>Meet a patient who needs life-changing healthcare</p>
+				<p class="secondLine">Meet a patient who needs life-changing healthcare</p>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<img ng-src="/modules/core/img/loaders/credit2.png">
 				<p class="firstLine">Donate to fund their care</p>
-				<p>Donate as little as $5 to fund their healthcare.</p>
+				<p class="secondLine">Donate as little as $5 to fund their healthcare.</p>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<img ng-src="/modules/core/img/loaders/document.png">
 				<p class="firstLine">Get an update</p>
-				<p>Get an update after they receive healthcare.</p>
+				<p class="secondLine">Get an update after they receive healthcare.</p>
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,9 @@
 /*List.patient.client.view.html styling*/
 /*****************************************/
 
+body {
+	font-family: 'Noto Sans', sans-serif;
+}
 
 .contain {
 	padding: 35px;
@@ -44,7 +47,7 @@
 
 .patient {
 	width: 330px;
-	height: 388px;
+	height: 408px;
 	text-align: left;
 	float: none;
 } 
@@ -53,12 +56,14 @@
 	height: 250px;
 }
 .patientstory {
-	padding: 11px 15px 17px;
-	width:300px;
+	padding: 5px;
+	width:310px;
 	white-space: nowrap;
 	height: 95px;
 	box-sizing: border-box;
 	color: #89949b;
+	font-size: 16px;
+
 }
 
 .patientsummary {
@@ -131,7 +136,7 @@
 .progress-striped {
 	height: 5px;
 	display: block;
-	margin-top: -5px;
+	margin-top: 15px;
 	margin-left: -30px;
 	width: 330px;	
 }
@@ -145,6 +150,16 @@
 	height: 479px;
 	/*border: 1px solid;*/
 	padding: 0;
+}
+.beforeImg:before{
+	content: ' ';
+	background: url('/modules/patients/img/fullyfunded.png') center center no-repeat;
+	display: block;
+	position: absolute;
+	bottom: -30px;
+	right: -30px;
+	width: 60px;
+	height: 60px;
 }
 .patimglrg img{
 	width: 638px;
@@ -303,6 +318,33 @@
 .donatePatientPix{
 	margin-bottom: 110px;
 }
+p.fullyFunded.ng-scope{
+	width:220px;
+}
+.terwase{
+	padding: 10px;
+	border-radius: 50%;
+	background: #3BB83B;
+	color: white !important;
+	position: absolute;
+	top: -20px;
+	right: -215px;
+}
+.sui-progressbar-text{
+	color: #89949B;
+	top: 250px;
+	left: 30px;
+	text-align: center;
+	font-size: 20px;
+}
+.completeButton{
+	padding: 15px 30px;
+	background-color: #00b2d8;
+	color: #fff;
+	text-align: center;
+}
 
-
-
+.perc {
+	font-size: 40px;
+	color: #4b5c66;
+}

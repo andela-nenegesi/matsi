@@ -9,25 +9,29 @@
                     </div>
                     <div class="patientstory">
                         <p class="ellipsis">
-                            {{ellipsis(patient.story, 100)}}
+                            {{ellipsis(patient.story, 130)}}
                             <span class="link">Read More&nbsp;»</span>
                         </p>
                     </div>
-                    <div class="col-md-4 progressbar">
+                    <div class="col-md-4 progressbar"><i class="glyphicon glyphicon-ok terwase pull-right" data-ng-if="patient.amountCollected >= patient.amountNeeded"></i>
                         <progressbar class="progress-striped active" ng-class="{donateComplete:patient.amountCollected>=patient.amountNeeded}" value="getFundsPerc(patient.amountCollected, patient.amountNeeded)" type="{{warning}}">
                         </progressbar>
                     </div>
                     <div class="funds">
-                        <div class="fundsraised">
+                        <div class="fundsraised" data-ng-if="patient.amountCollected < patient.amountNeeded">
                             <p>{{patient.amountCollected || 0 | myCurrency }} raised</p>
                         </div>
                         <div class="fundsleft">
-                            <p>{{patient.amountNeeded - patient.amountCollected | myCurrency }} to go</p>
+                            <p class="fullyFunded" data-ng-if="patient.amountCollected >= patient.amountNeeded">Fully funded</p>
+                            <p data-ng-if="patient.amountCollected < patient.amountNeeded">{{patient.amountNeeded - patient.amountCollected | myCurrency }} to go</p>
                         </div>
                     </div>
+                    <div></div>
                 </div>
             </a>
+
         </div>
+
         <div class="morepat col-md-12" data-ng-show="!patients.$resolved || patients.length">
             <a href="#!/patients" class="morepatients">view more patients</a>
         </div>
