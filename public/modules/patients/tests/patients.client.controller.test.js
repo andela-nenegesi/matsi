@@ -125,7 +125,7 @@
 				_id: '525cf20451979dea2c000001',
 				name: 'New Patient'
 			});
-
+			scope.authentication.user = true;
 			// Mock Patient in scope
 			scope.patient = samplePatientPutData;
 
@@ -140,6 +140,27 @@
 			expect($location.path()).toBe('/patients/' + samplePatientPutData._id);
 		}));
 
+it('$scope.dontate() should update a valid Patient', inject(function(Donate) {
+			// Define a sample Patient put data
+			var samplePatientPutData = new Donate({
+				_id: '525cf20451979dea2c000001',
+				donor: 2,
+				amountCollected: 50
+			});
+			// Mock Patient in scope
+			scope.mockRedirect = true;
+			scope.patient = samplePatientPutData;
+
+			// Set PUT response
+			$httpBackend.expectPUT(/patients\/([0-9a-fA-F]{24})\/donate/).respond(200);
+
+			// Run controller functionality
+			scope.donateUpdate();
+			$httpBackend.flush();
+
+			// Test URL location to new object
+			expect($location.path()).toBe('/patients/' + samplePatientPutData._id + '/donate');
+		}));
 		it('$scope.remove() should send a DELETE request with a valid patientId and remove the Patient from the scope', inject(function(Patients) {
 			// Create new Patient object
 			var samplePatient = new Patients({
@@ -158,6 +179,18 @@
 
 			// Test array after successful delete
 			expect(scope.patients.length).toBe(0);
+		}));
+		it('$scope.findOneToDonate() should save amountCollected', inject(function(){
+			scope.findOneToDonate();
+			expect(scope.amountCollected).toEqual(scope.DonatedValue.amountDonated);
+		}));
+
+		it('$scope.updateRate() should call $scope.progressBar', inject(function(){
+			//var spy = jasmine.createSpy('scope.progressBar');
+			scope.findOne();
+			scope.updateRate(0);
+			expect(scope.progressBarObject).toBeDefined();
+			//expect(spy).toHaveBeenCalled();
 		}));
 	});
 }());

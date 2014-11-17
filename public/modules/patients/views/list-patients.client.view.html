@@ -31,9 +31,8 @@
             </a>
 
         </div>
-
-        <div class="morepat col-md-12" data-ng-show="!patients.$resolved || patients.length">
-            <a href="#!/patients" class="morepatients">view more patients</a>
+        <div class="morepat col-md-12" data-ng-show="!patients.$resolved || patients.length" data-ng-if = "showViewMore">
+            <a href="" class="morepatients" data-ng-click="viewMore(patients)">view more patients</a>
         </div>
     </div>
     <div class="alert alert-warning text-center col-md-12" data-ng-hide="!patients.$resolved || patients.length" data-ng-if ="authentication.user.userRoles === 'admin'">

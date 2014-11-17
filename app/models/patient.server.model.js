@@ -59,8 +59,7 @@ var PatientSchema = new Schema({
 	},
 	amountNeeded:{
 		type:Number,
-		default:'',
-		required:'Specify Amount Needed'
+		default: 0
 	},
 	amountCollected:{
 		type:Number,
