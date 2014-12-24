@@ -1,12 +1,12 @@
 <section data-ng-controller="HomeController">
 	<section class="homeContent1 col-md-12">
-		<h2 class="fundWhiteBack col-md-10 col-md-offset-1">Fund healthcare for people around the world.</h2>
-		<p class="fundWhite1 col-md-8 col-md-offset-2" data-ng-controller="PatientsController" data-ng-init="homePageDatas()"><span>{{donorCount}}</span> People have funded healthcare for <span>{{patientCount}}</span> patients in <span>{{countryCount}}</span> countries</p>
-		<a href="/#!/patients" class="fundWhite2 button col-md-3 col-md-offset-5">VIEW PATIENTS</a>	
+		<h2 class="fundWhiteBack col-md-10 col-md-offset-1">Appreciate a ministry from any location today!</h2>
+		<p class="fundWhite1 col-md-8 col-md-offset-2" data-ng-controller="PatientsController" data-ng-init="homePageDatas()"><span>{{donorCount}}</span> People have given wholeheartedly to <span>{{patientCount}}</span> ministries in <span>{{countryCount}}</span> cities</p>
+		<a href="/#!/ministries" class="fundWhite2 button col-md-3 col-md-offset-5">VIEW MINISTRIES</a>	
 	</section>
 	<div class="homeContent2 col-md-12" data-ng-controller="PatientsController" data-ng-init="find()"> 
-		<h2>Meet the patients</h2>
-		<h4>100% of your donation funds life-changing healthcare</h4>
+		<h2>Meet the ministries</h2>
+		<h4>100% of your donations to fulfil God's work</h4>
 		<div class="col-md-12 homepatients" data-ng-init="homePageDatas()">
 			 <a data-ng-repeat="patient in patients |limitTo: 3" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item patients">
                 <div class="patient col-md-4">
@@ -36,22 +36,22 @@
 		</div>	
 	</div>
 	<div class="homeContent3 col-md-12">
-		<h2 style="font-size: 36px;">How Matsi Works</h2>
+		<h2 style="font-size: 36px;">How Patsi Works</h2>
 		<div class="col-md-12 howitworks">
 			<div class="col-md-3">
 				<img ng-src="/modules/core/img/loaders/amount.png">
-				<p class="firstLine">Meet a patient</p>
-				<p class="secondLine">Meet a patient who needs life-changing healthcare</p>
+				<p class="firstLine">View a ministry</p>
+				<p class="secondLine">Choose a ministry you want to appreciate</p>
 			</div>
 			<div class="col-md-3">
 				<img ng-src="/modules/core/img/loaders/credit2.png">
-				<p class="firstLine">Donate to fund their care</p>
-				<p class="secondLine">Donate as little as $5 to fund their healthcare.</p>
+				<p class="firstLine">Donate to show your appreciation</p>
+				<p class="secondLine">Give what you can (nothing is too small).</p>
 			</div>
 			<div class="col-md-3">
 				<img ng-src="/modules/core/img/loaders/document.png">
 				<p class="firstLine">Get an update</p>
-				<p class="secondLine">Get an update after they receive healthcare.</p>
+				<p class="secondLine">Get an update after they have received your offerings.</p>
 			</div>
 		</div>
 	</div>
