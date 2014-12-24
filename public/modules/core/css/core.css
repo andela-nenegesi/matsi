@@ -8,6 +8,7 @@ header.matsiNav.ng-scope{
 
 .navbar-nav > li > a{
 	color: #4b5c66;
+	font-size: 11px;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -31,6 +32,8 @@ p.fundWhite1{
 }
 .fundWhite1{
 	color: #4b5c66;
+	font-size: 20px;
+	line-height: 30px;
 }
 .fundWhite2{
 	background-color: #00b2d8;
@@ -40,7 +43,7 @@ p.fundWhite1{
 }
 .matsiNav li a:hover, .navbar-brand a{
 	background-color: transparent;
-	border-bottom: 3px solid #606060;
+	border-bottom: 2px solid #606060;
 	padding-bottom: 2px;
 }
 .homeContent1, .homeContent2, .homeContent3, .contactBox, .contactBox1{
@@ -51,7 +54,7 @@ p.fundWhite1{
 .homeContent1{
 	width: 100%;
 	padding: 130px 100px 100px;
-	background: url('/modules/core/img/loaders/bkgd2.jpg') no-repeat center center;
+	background: url('/modules/core/img/brand/cross.jpeg') no-repeat center center;
 	background-size: cover;
 	position: relative;
 	top:-55px;
@@ -62,8 +65,17 @@ p.fundWhite1{
 .homeContent3 h2{
 	margin-bottom: 50px;
 }
-.homeContent1 h2, .homeContent p, .homeContent2 h2, .homeContent2 h4, .homeContent3{	
+
+.homeContent2 h4 {
+	font-size: 20px;
+	line-height: 30px;
+	margin-top: 6px;
+	color: #89949b;
+}
+
+.homeContent1 h2, .homeContent p, .homeContent2 h2, .homeContent3{	
 	color: #4b5c66;
+	font-size: 36px;
 }
 .fundWhite2:hover{
 	color: #fff;
@@ -75,9 +87,29 @@ p.fundWhite1{
 	background: #fcd15c;
 	padding: 70px 40px 50px;
 }
-.firstLine{
-	font-weight: bold;
+
+.homepatients {
+	margin-top: 60px;
 }
+
+.firstLine{
+	font-weight: bolder;
+	font-size: 16px;
+}
+
+.secondLine{
+	font-size: 16px;
+	margin-top: -7px;
+}
+
+.howitworks {
+	margin: auto 80px;
+}
+
+.howitworks > .col-md-3 {
+	margin: 0 24px 40px;
+}
+
 a:hover{
 	text-decoration: none;
 }
@@ -104,25 +136,56 @@ a:hover{
 .aboutBox, .aboutBox1, .aboutBox2{
 	text-align: center;
 }
+
+.aboutBox2List {
+	margin: auto 80px;
+}
+
+.aboutBox2List > .col-md-3 {
+	margin: 0 24px 40px;
+	font-size: 16px;
+}
+
 .aboutHead{
 	background: #fff;
 	padding: 20px 20px;
+	color: #4b5c66;
+	font-size: 36px;
+	margin-bottom: 40px;
 }
+
+.aboutBox2Header {
+	margin-bottom: 50px;
+	margin-top: 40px;
+	font-size: 36px;
+	color: #4b5c66;
+	font-weight: bolder;
+}
+
+.aboutText {
+	color: #4b5c66;
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
 .teamPix{
 	width: 150px;
 	height: 150px;
+	margin-bottom: 8px;
 }
 .teamPixBox{
 	margin-bottom: 20px;
 }
 .teamPixBox span{
-	color: #4b5c66;
+	color: #808080;
+	font-size: 13px;
 }
 .aboutBox h3, .aboutBox1 h3{
-	margin-bottom: 42px;
-	margin-top: 60px;
+	margin-top: 5px;
 	color: #4b5c66;
-	height: 78px
+	height: 78px;
+	font-size: 37px;
+	margin-bottom: 35px;
 }
 .aboutBox h5{
 	margin-bottom: 50px;
@@ -130,17 +193,34 @@ a:hover{
 .aboutBox{
 	padding-top: 20px;
 	padding-bottom: 20px;
+	margin-bottom: 40px;
 }
 .aboutBox1{
 	background: #f4f7f8;
 	color: #4b5c66;
 	padding-top: 15px;
-	padding-bottom: 25px;
+	padding-bottom: 60px;
 }
 .aboutBox2{
 	color: #4b5c66;
 	background: #fcd15c;
 	padding: 70px 40px 50px;
+}
+
+.teamMember {
+	color: #00b2d8;
+	font-size: 13px;
+}
+
+.teamMember:hover {
+	color: #005e72;
+}
+
+.ourStory {
+	font-style: italic;
+	line-height: 30px;
+	color: #89949b;
+	font-size: 16px;
 }
 /******************
 	CONTACT PAGE

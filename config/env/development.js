@@ -3,7 +3,7 @@
 module.exports = {
 	db: 'mongodb://localhost/matsi-dev',
 	app: {
-		title: 'matsi - Development Environment'
+		title: 'Patsi'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

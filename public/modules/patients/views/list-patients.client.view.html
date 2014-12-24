@@ -9,7 +9,7 @@
                     </div>
                     <div class="patientstory">
                         <p class="ellipsis">
-                            {{ellipsis(patient.story, 100)}}
+                            {{ellipsis(patient.story, 130)}}
                             <span class="link">Read More&nbsp;»</span>
                         </p>
                     </div>
@@ -31,7 +31,6 @@
             </a>
 
         </div>
-
         <div class="morepat col-md-12" data-ng-show="!patients.$resolved || patients.length" data-ng-if = "showViewMore">
             <a href="" class="morepatients" data-ng-click="viewMore(patients)">view more patients</a>
         </div>

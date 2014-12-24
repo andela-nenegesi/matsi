@@ -2,9 +2,9 @@
 
 module.exports = {
 	app: {
-		title: 'matsi',
-		description: 'Matsi is a website that helps with healthcare funding for people with health challenges.',
-		keywords: 'matsi, meanstack, healthcare funding'
+		title: 'patsi',
+		description: 'Patsi is a website that takes Kingdom financing and appreciation online!',
+		keywords: 'patsi, ministry, offering, tithe'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',

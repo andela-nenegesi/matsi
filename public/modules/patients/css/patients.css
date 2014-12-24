@@ -1,6 +1,9 @@
 /*List.patient.client.view.html styling*/
 /*****************************************/
 
+body {
+	font-family: 'Noto Sans', sans-serif;
+}
 
 .contain {
 	padding: 35px;
@@ -44,7 +47,7 @@
 
 .patient {
 	width: 330px;
-	height: 388px;
+	height: 408px;
 	text-align: left;
 	float: none;
 } 
@@ -53,12 +56,14 @@
 	height: 250px;
 }
 .patientstory {
-	padding: 11px 15px 17px;
-	width:300px;
+	padding: 5px;
+	width:310px;
 	white-space: nowrap;
 	height: 95px;
 	box-sizing: border-box;
 	color: #89949b;
+	font-size: 16px;
+
 }
 
 .patientsummary {
@@ -130,7 +135,7 @@
 .progress-striped {
 	height: 5px;
 	display: block;
-	margin-top: -5px;
+	margin-top: 15px;
 	margin-left: -30px;
 	width: 330px;	
 }
