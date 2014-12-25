@@ -2,7 +2,7 @@
 <div class="col-md-2 donatePatientPix ">
        <div class="patimglrg col-md-4">
            <img ng-src="{{patient.image}}">
-           <h3 >Donate to <em><span data-ng-bind="patient.name | uppercase"></span></em></h3>
+           <h3>Appreciate <em><span data-ng-bind="patient.name | uppercase"></span></em></h3>
        </div>
    </div>
     <div class="row col-md-6 col-md-offset-3 donatePatientPix" >
@@ -49,7 +49,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="control-label" for="amountCollected">Donation</label>
+                        <label class="control-label" for="amountCollected">Appreciation</label>
                         <div class="controls input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i>
                             </span>
@@ -60,7 +60,7 @@
                         <div class="alert alert-info" data-ng-bind="donateResult"></div>
                         <button  data-ng-click="goPatientHome()" class="btn btn-ok" data-ng-bind="actionText"></button>
                     </div>
-                    <button class="pull-right btn btn-success" ng-disabled="donateResult">Donate</button>
+                    <button class="pull-right btn btn-success" ng-disabled="donateResult">Appreciate</button>
                 </fieldset>
             </form>
         </div>

@@ -118,6 +118,7 @@ angular.module('patients').config(function() {
             $scope.uploadResult = [];
             $scope.correctFormat = true;
             if ($scope.files) {
+                console.log('file found');
                 for (var i in $scope.files) {
                     if ($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
                         // $scope.correctFormat = true;
@@ -161,10 +162,11 @@ angular.module('patients').config(function() {
                     $scope.uploadResult.push(imageUrl);
                     $scope.fileUploaded = false;
                     $scope.fileLoading = false;
-                }, 2000);
+                }, 10000);
             }, function(response) {
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-                alert('Connection Timed out');
+                alert('Connection Timed out oooooo');
+                $scope.fileLoading = false;
             }, function(evt) {
 
             });

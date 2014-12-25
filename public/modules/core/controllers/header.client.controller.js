@@ -17,10 +17,11 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 
 		//modal for signIn
 		$scope.modalSignIn = function (size) {
+			console.log("modal");
 			var modalInstance = $modal.open({
 				templateUrl: 'modules/users/views/authentication/signin.client.view.html',
 				controller: function($scope, $modalInstance){
-					$scope.signin = function () {
+					$scope.close = function () {
 						$modalInstance.close();
 					};
 				},

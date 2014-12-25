@@ -1,6 +1,6 @@
 <section data-ng-controller="PatientsController" data-ng-init="find()" class="pushFooter2">
     <div class="contain">
-        <h1 class="listHeader" data-ng-show="!patients.$resolved || patients.length">You are viewing all Patients</h1>
+        <h1 class="listHeader" data-ng-show="!patients.$resolved || patients.length">You are viewing all Ministries</h1>
         <div class="list-group-patient col-md-12">
             <a data-ng-repeat="patient in patients" data-ng-href="#!/patients/{{patient._id}}" class="list-group-item patients">
                 <div class="patient col-md-4">
@@ -32,13 +32,13 @@
 
         </div>
         <div class="morepat col-md-12" data-ng-show="!patients.$resolved || patients.length" data-ng-if = "showViewMore">
-            <a href="" class="morepatients" data-ng-click="viewMore(patients)">view more patients</a>
+            <a href="" class="morepatients" data-ng-click="viewMore(patients)">view more Ministries</a>
         </div>
     </div>
     <div class="alert alert-warning text-center col-md-12" data-ng-hide="!patients.$resolved || patients.length" data-ng-if ="authentication.user.userRoles === 'admin'">
-    	No Patients yet, why don't you <a href="/#!/patients/create">create one</a>
+    	No Ministries yet, why don't you <a href="/#!/patients/create">create one</a>
     </div>
     <div class="alert alert-warning text-center col-md-12" data-ng-hide="!patients.$resolved || patients.length" data-ng-if ="authentication.user.userRoles === 'user'|| !authentication.user">
-        No Patients yet
+        No Ministries yet
     </div>
 </section>

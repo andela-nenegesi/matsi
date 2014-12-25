@@ -1,7 +1,7 @@
 <section data-ng-controller="PatientsController" >
 <div class="pushFooter3">
     <div class="page-header col-md-offset-1" >
-        <h1>New Patient</h1>
+        <h1>New Ministry</h1>
     </div>
     <div class="newPatient row col-md-8 col-md-offset-2">
         <div class=" col-xs-12  col-md-12">
@@ -35,11 +35,11 @@
                         <div class="controls">
                             <input type="text" data-ng-model="country" id="country" class="form-control" placeholder="Country" required>
                         </div>
-                        <label class="control-label" for="description">Patient's Summary</label>
+                        <label class="control-label" for="description">Ministry's Summary</label>
                         <div class="controls">
                             <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="Enter patient's Summary" required>
                         </div>
-                        <label class="control-label" for="story">Patient's Story</label>
+                        <label class="control-label" for="story">Ministry's Story</label>
                         <div class="controls">
                             <textarea class="form-control" rows="2" data-ng-model="story" id="story" placeholder="Enter Patient's Story" required></textarea>
                         </div>
@@ -52,11 +52,7 @@
                             <input type="file" ng-file-select="onFileSelect($files)" name="fileselect" required accept="image/*">
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <span data-ng-if="fileLoading">Uploading image file,please wait.....</span>
-=======
                     <span data-ng-if="fileLoading">Uploading image file,please wait....</span>
->>>>>>> 868b0b812e70de86d40957b09458aa80337100be
                     <div class="form-group">
                         <input type="submit" class="btn btn-default" data-ng-disabled="fileUploaded">
                     </div>

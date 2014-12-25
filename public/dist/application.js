@@ -90,10 +90,11 @@ angular.module('core').controller('HeaderController', [
     });
     //modal for signIn
     $scope.modalSignIn = function (size) {
+      console.log('modal');
       var modalInstance = $modal.open({
           templateUrl: 'modules/users/views/authentication/signin.client.view.html',
           controller: function ($scope, $modalInstance) {
-            $scope.signin = function () {
+            $scope.close = function () {
               $modalInstance.close();
             };
           },
@@ -253,8 +254,8 @@ angular.module('patients').run([
   function (Menus) {
     // Set top bar menu items
     // Menus.addMenuItem('topbar', 'Patients', 'patients', '/patients(/create)?');
-    Menus.addMenuItem('topbar', 'View Patients', 'patients');
-    Menus.addMenuItem('topbar', 'New Patient', 'patients/create');
+    Menus.addMenuItem('topbar', 'View Ministries', 'ministries');
+    Menus.addMenuItem('topbar', 'New Ministry', 'ministries/create');
   }
 ]);'use strict';
 //Setting up route
@@ -263,10 +264,10 @@ angular.module('patients').config([
   function ($stateProvider) {
     // Patients state routing
     $stateProvider.state('listPatients', {
-      url: '/patients',
+      url: '/ministries',
       templateUrl: 'modules/patients/views/list-patients.client.view.html'
     }).state('createPatient', {
-      url: '/patients/create',
+      url: '/ministries/create',
       templateUrl: 'modules/patients/views/create-patient.client.view.html'
     }).state('viewPatient', {
       url: '/patients/:patientId',
@@ -406,6 +407,7 @@ angular.module('patients').config(function () {
       $scope.uploadResult = [];
       $scope.correctFormat = true;
       if ($scope.files) {
+        console.log('file found');
         for (var i in $scope.files) {
           if ($scope.files[i].type === 'image/jpeg' || $scope.files[i].type === 'image/png' || $scope.files[i].size < 600000) {
             // $scope.correctFormat = true;
@@ -442,11 +444,12 @@ angular.module('patients').config(function () {
           $scope.uploadResult.push(imageUrl);
           $scope.fileUploaded = false;
           $scope.fileLoading = false;
-        }, 2000);
+        }, 10000);
       }, function (response) {
         if (response.status > 0)
           $scope.errorMsg = response.status + ': ' + response.data;
-        alert('Connection Timed out');
+        alert('Connection Timed out oooooo');
+        $scope.fileLoading = false;
       }, function (evt) {
       });
       $scope.imageFiles[indexOftheFile].xhr(function (xhr) {
@@ -727,22 +730,10 @@ angular.module('users').controller('AuthenticationController', [
   'DonatedValue',
   function ($scope, $http, $location, Authentication, DonatedValue) {
     $scope.authentication = Authentication;
+    $scope.credentials = {};
     $scope.userRole = '';
     $scope.amountDonated = DonatedValue.amountDonated;
-    $scope.signup = function (credentials) {
-      if (credentials.email.substring(credentials.email.indexOf('@'), credentials.email.length) === '@andela.co') {
-        credentials.userRoles = 'admin';
-      } else {
-        credentials.userRoles = 'user';
-      }
-      $http.post('/auth/signup', credentials).success(function (response) {
-        // If successful we assign the response to the global user model
-        $scope.authentication.user = response;  //User should stay on the current page
-                                                // And redirect to the index page
-      }).error(function (response) {
-        $scope.error = response.message;
-      });
-    };
+    $scope.isSignIn = true;
     $scope.passMatch = false;
     $scope.passMatch2 = true;
     $scope.checkpass = function (val1, val2) {
@@ -754,12 +745,33 @@ angular.module('users').controller('AuthenticationController', [
         $scope.passMatch2 = true;
       }
     };
+    $scope.toggleState = function () {
+      $scope.isSignIn = !$scope.isSignIn;
+    };
+    $scope.signup = function () {
+      var credentials = $scope.credentials;
+      console.log('credentials', credentials);
+      if (credentials.email.substring(credentials.email.indexOf('@'), credentials.email.length) === '@andela.co') {
+        credentials.userRoles = 'admin';
+      } else {
+        credentials.userRoles = 'user';
+      }
+      $http.post('/auth/signup', credentials).success(function (response) {
+        // If successful we assign the response to the global user model
+        $scope.authentication.user = response;
+        $scope.$parent.close();  //User should stay on the current page
+                                 // And redirect to the index page
+      }).error(function (response) {
+        $scope.error = response.message;
+      });
+    };
     $scope.signin = function () {
-      console.log($scope.credentials);
+      console.log($scope.$parent);
       $http.post('/auth/signin', $scope.credentials).success(function (response) {
         // If successful we assign the response to the global user model
-        $scope.authentication.user = response;  //User should stay on the current page
-                                                // And redirect to the index page
+        $scope.authentication.user = response;
+        $scope.$parent.close();  //User should stay on the current page
+                                 // And redirect to the index page
       }).error(function (response) {
         $scope.error = response.message;
       });

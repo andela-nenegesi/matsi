@@ -4,9 +4,9 @@
 		<div class="col-xs-offset-2 col-xs-8 ">
 			<div class="modalTextFullWidth">
 				<h1 class="h3"> Nice to see you again! </h1>
-				<p>Sign in to spread the health.</p>
+				<p>Sign in to move the ministry.</p>
 			</div>
-			<form data-ng-submit="signin()" class="form-horizontal" autocomplete="off">
+			<form data-ng-submit="signin()" data-ng-if="isSignIn" class="form-horizontal" autocomplete="off">
 				<fieldset>
 					<div class="form-group">
 						<input type="text" id="email" name="email" class="matsiInputBox form-control" data-ng-model="credentials.email" placeholder="Email Address">
@@ -19,7 +19,27 @@
 							<a href="/#!/password/forgot">Forgot your password?</a>
 						</div>
 						<button type="submit" class="moveButtonDown btn btn-primary">Sign in</button>&nbsp; or&nbsp;
-						<a href="/#!/signup">Sign up</a>
+						<p class="auth" ng-click="toggleState()">Sign up</p>
+					</div>
+					<div data-ng-show="error" class="text-center text-danger">
+						<strong data-ng-bind="error"></strong>
+					</div>
+				</fieldset>
+			</form>
+			<form data-ng-submit="signup()" data-ng-if="!isSignIn" class="form-horizontal" autocomplete="off">
+				<fieldset>
+					<div class="form-group">
+						<input type="text" id="email" name="email" class="matsiInputBox form-control" data-ng-model="credentials.email" placeholder="Email Address">
+					</div>
+					<div class="form-group">
+						<input type="password" id="password" name="password" class="matsiInputBox form-control" data-ng-model="credentials.password" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<input type="text" id="name" name="name" class="matsiInputBox form-control" data-ng-model="credentials.fullName" placeholder="Full Name">
+					</div>
+					<div class="text-center form-group">
+						<button type="submit" class="moveButtonDown btn btn-primary">Sign up</button>&nbsp; or&nbsp;
+						<p class="auth" ng-click="toggleState()">Already have an account? Sign in</p>
 					</div>
 					<div data-ng-show="error" class="text-center text-danger">
 						<strong data-ng-bind="error"></strong>

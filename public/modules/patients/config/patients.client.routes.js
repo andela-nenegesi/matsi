@@ -6,11 +6,11 @@ angular.module('patients').config(['$stateProvider',
 		// Patients state routing
 		$stateProvider.
 		state('listPatients', {
-			url: '/patients',
+			url: '/ministries',
 			templateUrl: 'modules/patients/views/list-patients.client.view.html'
 		}).
 		state('createPatient', {
-			url: '/patients/create',
+			url: '/ministries/create',
 			templateUrl: 'modules/patients/views/create-patient.client.view.html'
 		}).
 		state('viewPatient', {

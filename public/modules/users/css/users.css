@@ -39,7 +39,7 @@ button[type="submit"]{
 	text-transform: uppercase;
 	background-color: #99e0ef;
 	background-image: none;
-	cursor: default;
+	cursor: pointer;
 	width:100%;
 	border-radius: 0;
 	margin-top: 40px;
@@ -89,4 +89,12 @@ input:-webkit-autofill{
 }
 .form-horizontal{
 	margin-top: 10px;
+}
+.auth{
+	color: #428bca;
+  cursor: pointer;
+}
+.auth:hover{
+	color: blue;
+	text-decoration: underline;
 }
