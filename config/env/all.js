@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'patsi',
+		title: 'Patsi',
 		description: 'Patsi is a website that takes Kingdom financing and appreciation online!',
 		keywords: 'patsi, ministry, offering, tithe'
 	},
